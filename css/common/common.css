@@ -1,0 +1,46 @@
+body, html {
+    height: 100%;
+    font-family: 微软雅黑;
+    font-size: 14px;
+   /*  line-height: 1.42857; */
+    color: rgb(51, 51, 51);
+    overflow-y: hidden;
+}
+body {
+    margin: 0;
+    padding-top: 50px;
+    background-color: #fff;
+}
+
+
+
+
+*{
+    box-sizing: border-box;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+/*滚动条整体样式*/
+.scrollBox::-webkit-scrollbar {
+    width: 5px;
+    background: #f3f3f3;
+}
+/*滚动条里面小方块*/
+.scrollBox::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #9d9d9d;
+    height: 120px;
+}
+  /*滚动条里面轨道*/
+.scrollBox::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.1);
+}
+.scrollBox{
+    overflow-y: auto;
+}

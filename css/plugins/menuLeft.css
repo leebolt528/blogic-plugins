@@ -1,0 +1,138 @@
+/* 左侧导航 */
+.iot-sidebar{
+    background-color:#222;
+    width:200px;
+    float: left;
+    height:-webkit-calc(100% - 35px); 
+    height:-moz-calc(100% - 35px); 
+    height:calc(100% - 35px); 
+}
+.iot-sidebar>ul{
+    height: 100%;
+}
+.iot-sidebar li a {
+    display: block;
+    padding:17px;
+    height: 50px;
+    line-height: 17px;
+}
+.iot-sidebar li a:hover{
+    background: #2c363f;
+}
+.iot-sidebar li a span{
+    color:#fff;
+    padding-left:15px;
+}
+.iot-sidebar li a i,
+.iot-menu-arrow>i{
+    color: #9d9d9d;
+}
+.iot-sidebar li a:hover i,
+.iot-sidebar li a:hover span,
+.iot-menu-arrow>i:hover{
+    color:#fff;
+}
+.iot-sidebar li.treeview.active>a{
+    background-color: #198ccb;
+}
+.iot-sidebar li.treeview.active>a i{
+    color:#fff;
+}
+.iot-sidebar .floatRight2>li.active>a{
+    background-color: #198ccb;
+}
+.iot-sidebar .floatRight2>li.active>a i{
+    color:#fff;
+}
+/* 左侧导航二级 */
+.iot-sidebar>ul {
+    white-space: normal;
+}
+.iot-sidebar>ul ul li a {
+    padding-left: 40px;
+}
+.iot-sidebar>ul .acc-menu {
+    display: none;
+}
+.iot-sidebar>ul li.hasChild>a {
+    position: relative;
+}
+.iot-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a span,
+.iot-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a i {
+    color: #198ccb;
+}
+.iot-sidebar>ul li.hasChild>a:before,
+.iot-sidebar>ul li.hasChild>a:after {
+    content: " ";
+    display: table;
+}
+.iot-sidebar>ul li.hasChild>a:after {
+    clear: both;
+}
+.iot-sidebar>ul li.hasChild>a:before,
+.iot-sidebar>ul .floatRight2>li.hasChild>a:before{
+    content: "\f0d7";
+    color:#9d9d9d;
+    filter: alpha(opacity=50);
+}
+.iot-sidebar>ul li.hasChild:hover>a:before,
+.iot-sidebar>ul li.hasChild.active>a:before{
+    color:#fff;
+}
+.iot-sidebar>ul li.hasChild.open>a:before {
+    content: "\f0d8";
+    color:#fff;
+    filter: alpha(opacity=50);
+}
+
+.iot-sidebar>ul>li>ul>li.hasChild>a:before {
+    content: "\f105";/* "\f078" */
+    color:#9d9d9d;
+    filter: alpha(opacity=50);
+}
+.iot-sidebar>ul li.hasChild>a:before {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px !important;
+    text-decoration: inherit;
+    text-align: right;
+    padding-right: 12px;
+    display: inline-block;
+    float: right;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+/* 左侧导航收缩 */
+.iot-menu-arrow{
+    height:35px;
+    position: fixed;
+    bottom: 0px;
+    width: 200px;
+    border-top: 1px solid #09121a;
+    background-color: #222;
+    color: #9d9d9d;
+}
+.iot-menu-arrow>i{
+    margin-left: 15px;
+    margin-top: 10px;
+    cursor:pointer;
+}
+.floatRight2,
+.floatRight3{
+    width: 200px;
+    background-color: #222;
+    position: absolute;
+}
+.floatRight2{
+    margin-left: 50px;
+}
+/* .floatRight2 li{
+    background-color: #222;
+} */
+ul ul{
+    background-color: rgb(55, 56, 57);
+}
+.floatRight3{
+    margin-left: 200px;
+}

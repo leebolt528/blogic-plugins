@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/common/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/common/common.css">
+    <link rel="stylesheet" href="../css/plugins/menuLeft.css">
+    <script type='text/javascript' src='../js/common/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='../js/plugins/menuLeft.js'></script>
+    <title>左侧菜单</title>
+    <script>
+        $(function(){
+            var options={
+                selected:"1",
+                menuOpen:false,
+                hideFloat:false,
+                callback:{
+                    onExpand:function(){console.log('onExpand');},
+                    onCollapse:function(){ console.log('onCollapse');},
+                }
+            };
+            $(".menuLeft").menuLeft(options,function(){
+                var data=[
+                    {"id":"1","name":"首页","fa":"fa-home","href":"#","children":[]},
+                    {"id":"2","name":"规则链库","fa":"fa-link","href":"#","children":[
+                        {"id":"2-1","name":"规则链库1","fa":"fa-home","href":"#","children":[]},
+                        {"id":"2-2","name":"规则链库2","fa":"fa-home","href":"#","children":[]},
+                        {"id":"2-3","name":"规则链库3","fa":"fa-home","href":"#","children":[]},
+                        {"id":"2-4","name":"规则链库4","fa":"fa-home","href":"#","children":[]}
+                    ]},
+                    {"id":"3","name":"设备管理","fa":"fa-link","href":"#","children":[
+                        {"id":"3-1","name":"设备管理1","fa":"fa-home","href":"#","children":[
+                            {"id":"3-1-1","name":"设备管理1-1","fa":"fa-home","href":"#","children":[]},
+                            {"id":"3-1-2","name":"设备管理1-2","fa":"fa-home","href":"#","children":[]},
+                            {"id":"3-1-3","name":"设备管理1-3","fa":"fa-home","href":"#","children":[]}
+                        ]},
+                        {"id":"3-2","name":"设备管理2","fa":"fa-home","href":"#","children":[]},
+                        {"id":"3-3","name":"设备管理3","fa":"fa-home","href":"#","children":[]},
+                        {"id":"3-4","name":"设备管理4","fa":"fa-home","href":"#","children":[]}
+                    ]}
+                ]
+                return data;
+            });
+        })
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="height: 50px;background-color: #222;position: fixed;right: 0;left: 0;top: 0px;"></nav>
+    <div class="iot-container" style="height: 100%;">
+        <div class="menuLeft" style="height:100%"></div>
+        <!-- <nav class="iot-sidebar" role="navigation">
+            <ul>
+                <li><a href="#"><i class="fa fa-home"></i><span>首页</span></a></li>
+                <li><a href="#"><i class="fa fa-link"></i><span>规则链库</span></a></li>
+                <li>
+                    <a href="#"><i class="fa fa-building"></i><span>资产管理</span></a>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>资产1</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>资产2</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>资产3</span> </a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gears"></i><span>设备管理</span></a>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>设备1</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>设备2</span> </a></li>
+                        <li>
+                            <a href="#"><i class="fa fa-gears"></i><span>设备3</span></a>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-desktop"></i> <span>设备3-1</span> </a></li>
+                                <li><a href="#"><i class="fa fa-cube"></i> <span>设备3-2</span> </a></li>
+                                <li><a href="#"><i class="fa fa-cubes"></i> <span>设备3-3</span> </a></li>
+                                <li><a href="#"><i class="fa fa-cubes"></i> <span>设备3-4</span> </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-users"></i><span>客户</span></a>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户1</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户2</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户3</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户4</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户5</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户6</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户7</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户8</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户9</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户10</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户11</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户12</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户13</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户14</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户15</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户16</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户17</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户18</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户19</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户20</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户21</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户22</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户23</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户24</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户25</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户26</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户27</span> </a></li>
+                        <li><a href="#"><i class="fa fa-desktop"></i> <span>客户28</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cube"></i> <span>客户29</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户30</span> </a></li>
+                        <li><a href="#"><i class="fa fa-cubes"></i> <span>客户31</span> </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="iot-menu-arrow">
+            <i class="fa fa-indent fa-lg"></i>
+        </div> -->
+        <div class="iot-content scrollBox container-fluid">
+            右侧
+        </div>
+    </div>
+</body>
+</html>

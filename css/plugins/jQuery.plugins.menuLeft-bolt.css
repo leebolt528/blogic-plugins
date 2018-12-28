@@ -1,96 +1,103 @@
-/* 左侧导航 */
-.iot-sidebar{
-    background-color:#222;
-    width:200px;
+.menuLeftBolt{
+    height:100%;
+    position: relative;
+    width: 200px;
     float: left;
+}
+/* 左侧导航 */
+.bolt-sidebar{
+    background-color:#222;
     height:-webkit-calc(100% - 35px); 
     height:-moz-calc(100% - 35px); 
     height:calc(100% - 35px); 
 }
-.iot-sidebar>ul{
+.bolt-sidebar>ul{
     height: 100%;
 }
-.iot-sidebar li a {
+.bolt-sidebar li a {
     display: block;
     padding:17px;
     height: 50px;
     line-height: 17px;
 }
-.iot-sidebar li a:hover{
+.bolt-sidebar li a:hover{
     background: #2c363f;
 }
-.iot-sidebar li a span{
+.bolt-sidebar li a span{
     color:#fff;
     padding-left:15px;
 }
-.iot-sidebar li a i,
-.iot-menu-arrow>i{
+.bolt-sidebar li a i,
+.bolt-menu-arrow>i{
     color: #9d9d9d;
 }
-.iot-sidebar li a:hover i,
-.iot-sidebar li a:hover span,
-.iot-menu-arrow>i:hover{
+.bolt-sidebar li a:hover i,
+.bolt-sidebar li a:hover span,
+.bolt-menu-arrow>i:hover{
     color:#fff;
 }
-.iot-sidebar li.treeview.active>a{
+.bolt-sidebar li.treeview.active>a{
     background-color: #198ccb;
 }
-.iot-sidebar li.treeview.active>a i{
-    color:#fff;
-}
-.iot-sidebar .floatRight2>li.active>a{
-    background-color: #198ccb;
-}
-.iot-sidebar .floatRight2>li.active>a i{
+.bolt-sidebar li.treeview.active>a i{
     color:#fff;
 }
 /* 左侧导航二级 */
-.iot-sidebar>ul {
+ul ul{
+    background-color: rgb(55, 56, 57);
+}
+.bolt-sidebar .floatRight2>li.active>a{
+    background-color: #198ccb;
+}
+.bolt-sidebar .floatRight2>li.active>a i{
+    color:#fff;
+}
+.bolt-sidebar>ul {
     white-space: normal;
 }
-.iot-sidebar>ul ul li a {
+.bolt-sidebar>ul ul li a {
     padding-left: 40px;
 }
-.iot-sidebar>ul .acc-menu {
+.bolt-sidebar>ul .acc-menu {
     display: none;
 }
-.iot-sidebar>ul li.hasChild>a {
+.bolt-sidebar>ul li.hasChild>a {
     position: relative;
 }
-.iot-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a span,
-.iot-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a i {
+.bolt-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a span,
+.bolt-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a i {
     color: #198ccb;
 }
-.iot-sidebar>ul li.hasChild>a:before,
-.iot-sidebar>ul li.hasChild>a:after {
+.bolt-sidebar>ul li.hasChild>a:before,
+.bolt-sidebar>ul li.hasChild>a:after {
     content: " ";
     display: table;
 }
-.iot-sidebar>ul li.hasChild>a:after {
+.bolt-sidebar>ul li.hasChild>a:after {
     clear: both;
 }
-.iot-sidebar>ul li.hasChild>a:before,
-.iot-sidebar>ul .floatRight2>li.hasChild>a:before{
+.bolt-sidebar>ul li.hasChild>a:before,
+.bolt-sidebar>ul .floatRight2>li.hasChild>a:before{
     content: "\f0d7";
     color:#9d9d9d;
     filter: alpha(opacity=50);
 }
-.iot-sidebar>ul li.hasChild:hover>a:before,
-.iot-sidebar>ul li.hasChild.active>a:before{
+.bolt-sidebar>ul li.hasChild:hover>a:before,
+.bolt-sidebar>ul li.hasChild.active>a:before{
     color:#fff;
 }
-.iot-sidebar>ul li.hasChild.open>a:before {
+.bolt-sidebar>ul li.hasChild.open>a:before {
     content: "\f0d8";
     color:#fff;
     filter: alpha(opacity=50);
 }
 
-.iot-sidebar>ul>li>ul>li.hasChild>a:before {
+.bolt-sidebar>ul>li>ul>li.hasChild>a:before {
     content: "\f105";/* "\f078" */
     color:#9d9d9d;
     filter: alpha(opacity=50);
 }
-.iot-sidebar>ul li.hasChild>a:before {
+.bolt-sidebar>ul li.hasChild>a:before {
     font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
@@ -104,7 +111,7 @@
     -moz-osx-font-smoothing: grayscale;
 }
 /* 左侧导航收缩 */
-.iot-menu-arrow{
+.bolt-menu-arrow{
     height:35px;
     position: fixed;
     bottom: 0px;
@@ -113,7 +120,7 @@
     background-color: #222;
     color: #9d9d9d;
 }
-.iot-menu-arrow>i{
+.bolt-menu-arrow>i{
     margin-left: 15px;
     margin-top: 10px;
     cursor:pointer;
@@ -126,12 +133,6 @@
 }
 .floatRight2{
     margin-left: 50px;
-}
-/* .floatRight2 li{
-    background-color: #222;
-} */
-ul ul{
-    background-color: rgb(55, 56, 57);
 }
 .floatRight3{
     margin-left: 200px;

@@ -1,0 +1,23 @@
+body, html {
+    height: 100%;
+    font-family: 微软雅黑;
+    font-size: 14px;
+    color: rgb(51, 51, 51);
+    overflow-y: hidden;
+}
+body {
+    margin: 0;
+    padding-top: 50px;
+    background-color: #fff;
+}
+.blogic-nav{
+    height: 50px;
+    background-color: #222;
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0px;
+}
+.blogic-container{
+    height: 100%;
+}

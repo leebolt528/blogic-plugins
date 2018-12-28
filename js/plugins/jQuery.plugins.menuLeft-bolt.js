@@ -1,5 +1,5 @@
  (function($){
-    $.fn.menuLeft=function (options1,getData) {
+    $.fn.menuLeftBolt=function (options1,getData) {
         if (arguments.length === 1) {
             getData=options1;
             options1={callback:{}};
@@ -43,16 +43,15 @@
         }
         /* 收缩事件 */
         var hasChildArr=[];
-        $(document).on("click",".iot-menu-arrow .fa-indent",function(){
+        $(document).on("click",".bolt-menu-arrow .fa-indent",function(){
             menuOpen=false;
-            $(".iot-sidebar>ul>li>a>span").css("display","none");
-            $(".iot-sidebar").css("width","50px");
-            $(".iot-menu-arrow").css("width","50px");
+            $(".bolt-sidebar>ul>li>a>span").css("display","none");
+           $(".menuLeftBolt").css("width","50px");
+            $(".bolt-menu-arrow").css("width","50px");
             $(this).removeClass("fa-indent");
             $(this).addClass("fa-outdent");
-            //$(".iot-content").css("margin-left","50px");
     
-            $(".iot-sidebar>.acc-menu>li").each(function(){
+            $(".bolt-sidebar>.acc-menu>li").each(function(){
                 if($(this).hasClass("hasChild")){
                     $(this).removeClass("hasChild open");
     
@@ -61,26 +60,25 @@
                     hasChildArr.push($(this));
                 }
             });
-            $(".iot-sidebar>ul.acc-menu ul.acc-menu li").each(function(){
+            $(".bolt-sidebar>ul.acc-menu ul.acc-menu li").each(function(){
                 $(this).children(".acc-menu").removeClass("floatRight3");
             });
             if(!first){
                 options.callback.onCollapse();
             }
         });
-        $(document).on("click",".iot-menu-arrow .fa-outdent",function(){
+        $(document).on("click",".bolt-menu-arrow .fa-outdent",function(){
             menuOpen=true;
-            $(".iot-sidebar ul li span").css("display","inline");
-            $(".iot-sidebar").css("width","200px");
-            $(".iot-menu-arrow").css("width","200px");
+            $(".bolt-sidebar ul li span").css("display","inline");
+           $(".menuLeftBolt").css("width","200px");
+            $(".bolt-menu-arrow").css("width","200px");
             $(this).removeClass("fa-outdent");
             $(this).addClass("fa-indent");
-            //$(".iot-content").css("margin-left","200px");
     
-            $(".iot-sidebar>.acc-menu>li").each(function(){
+            $(".bolt-sidebar>.acc-menu>li").each(function(){
                 $(this).children(".acc-menu").removeClass("floatRight2");
             });
-            $(".iot-sidebar>ul.acc-menu ul.acc-menu li").each(function(){
+            $(".bolt-sidebar>ul.acc-menu ul.acc-menu li").each(function(){
                 if($(this).hasClass("hasChild")){
                     $(this).children(".acc-menu").addClass("floatRight3");
                     $(this).removeClass("open");
@@ -94,27 +92,27 @@
             $(".treeview.active.hasChild").addClass("open").children(".acc-menu").css("display","block");//向右边展开时展开选中二级的父级
             options.callback.onExpand();
         });
-        var menuLeftDiv='<nav class="iot-sidebar" role="navigation">'+drawMenu(data)+'</nav>'+
-                        '<div class="iot-menu-arrow">'+
+        var menuLeftDiv='<nav class="bolt-sidebar" role="navigation">'+drawMenu(data)+'</nav>'+
+                        '<div class="bolt-menu-arrow">'+
                             '<i class="fa fa-indent fa-lg"></i>'+
                         '</div>';
         /* 初始化组件 */
         $(this).empty();
         $(this).append(menuLeftDiv);
         /*  左侧菜单 */
-        $(".iot-sidebar ul").addClass("acc-menu scrollBox");
-        $(".iot-sidebar>ul>li").addClass("treeview");
-        $(".iot-sidebar ul ul ul").addClass("floatRight3");
+        $(".bolt-sidebar ul").addClass("acc-menu scrollBox");
+        $(".bolt-sidebar>ul>li").addClass("treeview");
+        $(".bolt-sidebar ul ul ul").addClass("floatRight3");
         var liHasUlChild = $('li').filter(function () {
             return $(this).find('ul.acc-menu').length;
         });
         $(liHasUlChild).addClass('hasChild');
         /* 默认选中项高亮 */
         if(menuOpen){
-            $('[data='+options.selected+']').addClass("active").parents(".iot-sidebar li").addClass("active").end().parents(".iot-sidebar>ul>li>ul").css("display","block");
+            $('[data='+options.selected+']').addClass("active").parents(".bolt-sidebar li").addClass("active").end().parents(".bolt-sidebar>ul>li>ul").css("display","block");
         }else{
-            $('[data='+options.selected+']').addClass("active").parents(".iot-sidebar li").addClass("active");
-            $(".iot-menu-arrow .fa-indent").click();
+            $('[data='+options.selected+']').addClass("active").parents(".bolt-sidebar li").addClass("active");
+            $(".bolt-menu-arrow .fa-indent").click();
         }
         first=false;
          /* 点击事件 */
@@ -134,7 +132,7 @@
              }else if($(this).closest('li').hasClass("hasChild")){//点击展开
                  $(this).closest('li').addClass('open');
              }else{//单击叶子菜单
-                 var LIs = $(this).closest('.iot-sidebar').find('li');
+                 var LIs = $(this).closest('.bolt-sidebar').find('li');
                  $.each(LIs, function (i) {
                      $(LIs[i]).removeClass('active');
                  });
@@ -147,32 +145,29 @@
                  }
              }
              var $this=$(this);
-             if ((menuOpen&&$(this).is(".iot-sidebar>ul.acc-menu>li>a")||!menuOpen&&$(this).is(".iot-sidebar>ul.acc-menu>li>ul>li>a"))&&$(this).next('.acc-menu').children().length > 0) {
+             if ((menuOpen&&$(this).is(".bolt-sidebar>ul.acc-menu>li>a")||!menuOpen&&$(this).is(".bolt-sidebar>ul.acc-menu>li>ul>li>a"))&&$(this).next('.acc-menu').children().length > 0) {
                 $(this).siblings('ul.acc-menu').slideToggle({
                     duration: 200,
                     progress: function () {
                         if ($(this).closest('li').is(":last-child")) { //only scroll down if last-child
-                            //$(".iot-sidebar>ul").animate({scrollTop: $(".iot-sidebar>ul").height()}, 0);
+                            //$(".bolt-sidebar>ul").animate({scrollTop: $(".bolt-sidebar>ul").height()}, 0);
                         }
                     },
                     complete: function () {
-                        /* $(".iot-sidebar>ul").getNiceScroll().resize(); */
-                        if(!menuOpen&&$this.is(".iot-sidebar>ul.acc-menu>li>ul>li>a")){
-                            var navH=$(".iot-sidebar").height();
+                        if(!menuOpen&&$this.is(".bolt-sidebar>ul.acc-menu>li>ul>li>a")){
+                            var navH=$(".bolt-sidebar").height();
                             if($this.next(".acc-menu").length>0){
-                                var liTop=$this.closest(".acc-menu").prev("a").offset();
+                                var liTop=$this.closest(".acc-menu").prev("a").position();
                                 var liH=50;
-                                var headerH=$(".navbar-inverse").height();
-                                var arrowH=$(".iot-menu-arrow").height();
                                 if($this.next(".acc-menu").css("display")=="block"){
                                     var ulH=$this.closest(".acc-menu").height();
                                 }else{
                                     var ulH=$this.closest(".acc-menu").children().length*liH;
                                 }
                                 if(ulH>=navH-liH){
-                                    $this.closest(".acc-menu").css({"top":liH+headerH,"height":navH-liH});
-                                }else if(liTop.top+ulH>navH+arrowH){
-                                    var count=Math.floor((liTop.top+ulH-navH-arrowH)/liH);
+                                    $this.closest(".acc-menu").css({"top":liH,"height":navH-liH});
+                                }else if(liTop.top+ulH>navH){
+                                    var count=Math.floor((liTop.top+ulH-navH)/liH);
                                     $this.closest(".acc-menu").css({"top":liTop.top-liH*count,"height":"auto"});
                                 }else{
                                     $this.closest(".acc-menu").css({"top":liTop.top,"height":"auto"});
@@ -181,24 +176,22 @@
                         }
                     }
                 });
-             }else if(!menuOpen&&$(this).is(".iot-sidebar>ul.acc-menu>li>ul>li>a")){
+             }else if(!menuOpen&&$(this).is(".bolt-sidebar>ul.acc-menu>li>ul>li>a")){
                 $this.closest(".acc-menu").css({"top":secondTop,"height":secondHeight});//菜单收缩时,三级菜单收缩后重绘父级(二级)ul的top和height
              }
          });
          /* 移入移出事件 */
-         $('body').on('mouseenter','.iot-sidebar ul.acc-menu li a',function(){ 
-             if(!menuOpen&&$(this).is(".iot-sidebar>ul.acc-menu>li>a")){
-                 var navH=$(".iot-sidebar").height();
+         $('body').on('mouseenter','.bolt-sidebar ul.acc-menu li a',function(){ 
+             if(!menuOpen&&$(this).is(".bolt-sidebar>ul.acc-menu>li>a")){
+                 var navH=$(".bolt-sidebar").height();
                  if($(this).next(".acc-menu").length>0&&$(this).next(".acc-menu").css("display")=="none"){
-                     var liTop=$(this).offset();
+                     var liTop=$(this).position();
                      var liH=$(this).parent().height();
-                     var headerH=$(".navbar-inverse").height();
-                     var arrowH=$(".iot-menu-arrow").height();
                      var ulH=$(this).next(".acc-menu").children().length*liH;
                      if(ulH>=navH-liH){
-                         $(this).next(".acc-menu").css({"top":liH+headerH,"height":navH-liH});
-                     }else if(liTop.top+ulH>navH+arrowH){
-                         var count=Math.floor((liTop.top+ulH-navH-arrowH)/liH);
+                         $(this).next(".acc-menu").css({"top":liH,"height":navH-liH});
+                     }else if(liTop.top+ulH>navH){
+                         var count=Math.floor((liTop.top+ulH-navH)/liH);
                          $(this).next(".acc-menu").css({"top":liTop.top-liH*count,"height":"auto"});
                      }else{
                          $(this).next(".acc-menu").css({"top":liTop.top,"height":"auto"});
@@ -208,26 +201,24 @@
                  }
      
                  if($(this).next(".acc-menu").css("display")=="none"){//三级菜单隐藏
-                     $(".iot-sidebar>ul.acc-menu ul.acc-menu .acc-menu").css("display","none");
-                     $(".iot-sidebar>ul.acc-menu ul.acc-menu li").removeClass("open");
+                     $(".bolt-sidebar>ul.acc-menu ul.acc-menu .acc-menu").css("display","none");
+                     $(".bolt-sidebar>ul.acc-menu ul.acc-menu li").removeClass("open");
                  }
      
                  $(this).closest(".acc-menu").children("li").children(".acc-menu").css("display","none");//二级菜单隐藏
                  $(this).next(".acc-menu").css("display","block");
-             }else if(menuOpen&&$(this).is(".iot-sidebar>ul.acc-menu>li>a")){
-                 $(".iot-sidebar>ul.acc-menu ul.acc-menu .acc-menu").css("display","none");//三级菜单隐藏
-             }else if(menuOpen&&$(this).is(".iot-sidebar>ul.acc-menu ul.acc-menu a")){
-                 var navH=$(".iot-sidebar").height();
+             }else if(menuOpen&&$(this).is(".bolt-sidebar>ul.acc-menu>li>a")){
+                 $(".bolt-sidebar>ul.acc-menu ul.acc-menu .acc-menu").css("display","none");//三级菜单隐藏
+             }else if(menuOpen&&$(this).is(".bolt-sidebar>ul.acc-menu ul.acc-menu a")){
+                 var navH=$(".bolt-sidebar").height();
                  if($(this).next(".acc-menu").length>0){
-                     var liTop=$(this).offset();
+                     var liTop=$(this).position();
                      var liH=$(this).parent().height();
-                     var headerH=$(".navbar-inverse").height();
-                     var arrowH=$(".iot-menu-arrow").height();
                      var ulH=$(this).next(".acc-menu").height();
                      if(ulH>=navH-liH){
-                         $(this).next(".acc-menu").css({"top":liH+headerH,"height":navH-liH});
-                     }else if(liTop.top+ulH>navH+arrowH){
-                         var count=Math.floor((liTop.top+ulH-navH-arrowH)/liH);
+                         $(this).next(".acc-menu").css({"top":liH,"height":navH-liH});
+                     }else if(liTop.top+ulH>navH){
+                         var count=Math.floor((liTop.top+ulH-navH)/liH);
                          $(this).next(".acc-menu").css({"top":liTop.top-liH*count,"height":"auto"});
                      }else{
                          $(this).next(".acc-menu").css({"top":liTop.top,"height":"auto"});
@@ -238,7 +229,7 @@
                  $(this).next(".acc-menu").css("display","block");
              }
          });
-         $('body').on('mouseleave','.iot-sidebar',function(){ 
+         $('body').on('mouseleave','.bolt-sidebar',function(){ 
              if(!menuOpen){
                  $(".acc-menu .acc-menu").css({"display":"none","height":"auto"});
              }else{

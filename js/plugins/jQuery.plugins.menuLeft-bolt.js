@@ -97,8 +97,7 @@
                             '<i class="fa fa-indent fa-lg"></i>'+
                         '</div>';
         /* 初始化组件 */
-        $(this).empty();
-        $(this).append(menuLeftDiv);
+        $(this).empty().addClass("menuLeftBolt").append(menuLeftDiv);
         /*  左侧菜单 */
         $(".bolt-sidebar ul").addClass("acc-menu scrollBox");
         $(".bolt-sidebar>ul>li").addClass("treeview");

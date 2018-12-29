@@ -1,0 +1,155 @@
+body, html {
+    box-sizing: border-box;
+}
+*{
+    box-sizing: inherit;
+}
+.selectTimeBolt{
+    height: 25px;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 12px 0px;
+    padding-right: 20px;
+}
+.selectTimeBolt button,
+.selectTimeBolt input{
+    padding: 3px 7px!important;
+}
+/* 按钮 */
+.btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+}
+.btn-xs {
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.btn:focus {
+    outline: none;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn-default.active{
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+
+.btn:hover, .btn:focus {
+    color: #333333;
+    text-decoration: none;
+}
+.btn-default:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+/* .btn-default.focus, .btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+} */
+/* 按钮组 */
+.btn-group{
+    position: relative;
+    vertical-align: middle;
+}
+.btn-group>.btn:last-child:not(:first-child){
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.btn-group>.btn:first-child:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.btn-group>.btn:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+.btn-group>.btn:first-child {
+    margin-left: 0;
+}
+.btn-group .btn+.btn,.btn-group .btn+input,.btn-group div+.btn{
+    margin-left: -1px;
+}
+.btn-group>.btn {
+    position: relative;
+    float: left;
+}
+.btn-group>.btn.active, .btn-group>.btn:active, .btn-group>.btn:focus, .btn-group>.btn:hover {
+    z-index: 2;
+}
+/* 日期input框 */
+.btn-input-time{
+    position: relative;
+    float: left;
+    border: 1px solid #ccc;
+    border-left: 0px;
+    border-right: 0px;
+    width: 150px;
+    height: 26px!important;
+}
+.btn-group.calendarPa input{
+    font-size: 12px!important;
+}
+.btn-group.calendarPa span.timeTo{
+    padding:3px 5px
+}
+/* 提示框 */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.alert-info {
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+.alert-laydate {
+    position: absolute;
+    left: 28px;
+    top: 100%;
+    font-size: 14px;
+    line-height: 30px;
+    display: none;
+    padding-right: 35px!important;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+button.close {
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+}
+.alert-laydate .close {
+    position: relative;
+    top: -2px;
+    right: -21px;
+    color: inherit;
+}
+/* laydate样式覆盖 */
+.laydate_box{
+    box-sizing: content-box;
+}

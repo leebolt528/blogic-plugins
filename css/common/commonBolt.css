@@ -1,5 +1,8 @@
-*{
+body, html {
     box-sizing: border-box;
+}
+*{
+    box-sizing: inherit;
 }
 ul {
     margin: 0;
@@ -7,6 +10,12 @@ ul {
 }
 a{
     text-decoration: none;
+}
+.float-right{
+    float:right;
+}
+.float-left{
+    float:left;
 }
 /*滚动条整体样式*/
 .scrollBox::-webkit-scrollbar {

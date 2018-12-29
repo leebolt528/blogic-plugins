@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="../css/common/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/common/commonBlogic.css">
     <link rel="stylesheet" href="../css/common/commonBolt.css">
-    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-bolt.css">
     <script type='text/javascript' src='../js/common/jquery/jquery.min.js'></script>
+
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-bolt.css">
     <script type='text/javascript' src='../js/plugins/jQuery.plugins.menuLeft-bolt.js'></script>
+
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.selectTime-bolt.css">
+    <script type='text/javascript' src='../js/plugins/laydate/laydate.js'></script>
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.selectTime-bolt.js'></script>
+
     <title>首页</title>
     <script>
         $(function(){
-            var options={
+            var optionsMenu={
                 selected:"1",
                 menuOpen:true,
                 hideFloat:true,
@@ -22,7 +28,7 @@
                     onCollapse:function(){ console.log('onCollapse');},
                 }
             };
-            $(".menuLeft").menuLeftBolt(options,function(){
+            $(".menuLeft").menuLeftBolt(optionsMenu,function(){
                 var data=[
                     {"id":"1","name":"首页","fa":"fa-home","href":"#","children":[]},
                     {"id":"2","name":"规则链库","fa":"fa-link","href":"#","children":[
@@ -62,15 +68,28 @@
                 ]
                 return data;
             });
+
+            var optionsTime = {
+                deTime:"5m",//"1545618901000-1545732098371"
+                interval:1,
+                listArr:["5m","20m","1h","3h","6h","12h","1d","2d"],
+                switch:true,
+                callback:{
+                    onClickSearch:function(time){console.log(time);},
+                    onClickTimeTag:function(time){ console.log(time);},
+                    onClickClear:function(){console.log("clear");}
+                }
+            };
+            $(".selectTime").selectTime(optionsTime);
         })
     </script>
 </head>
 <body>
     <nav class="blogic-nav"></nav>
     <div class="blogic-container">
-        <div class="menuLeft menuLeftBolt"></div>
+        <div class="menuLeft"></div>
         <div class="blogic-content scrollBox">
-            右侧
+            <div class="selectTime"></div>
         </div>
     </div>
 </body>

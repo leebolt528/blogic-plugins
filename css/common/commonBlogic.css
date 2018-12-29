@@ -4,6 +4,10 @@ body, html {
     font-size: 14px;
     color: rgb(51, 51, 51);
     overflow-y: hidden;
+    box-sizing: border-box;
+}
+*{
+    box-sizing: inherit;
 }
 body {
     margin: 0;
@@ -21,3 +25,16 @@ body {
 .blogic-container{
     height: 100%;
 }
+.blogic-content{
+    padding:10px;
+    height:700px;
+}
+/* .blogic-content:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.blogic-content:before{
+    content: "";
+    display: table;
+} */

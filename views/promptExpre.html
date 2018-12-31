@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/common/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/common/commonBlogic.css">
+    <link rel="stylesheet" href="../css/common/commonBolt.css">
+    <script type='text/javascript' src='../js/common/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='../js/plugins/data.js'></script>
+
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-bolt.css">
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.menuLeft-bolt.js'></script>
+
+    <link rel="stylesheet" href="../css/plugins/jS.plugins.promptExpre-bolt.css">
+    <script type='text/javascript' src='../js/plugins/jS.plugins.promptExpre-bolt.js'></script>
+
+    <title>自动提示</title>
+    <script>
+        $(function(){
+            var optionsMenu={
+                selected:"5",
+                menuOpen:true,
+                hideFloat:true,
+                callback:{
+                    onExpand:function(){console.log('onExpand');},
+                    onCollapse:function(){ console.log('onCollapse');},
+                }
+            };
+            $(".menuLeft").menuLeftBolt(optionsMenu,function(){
+                return menuLeftData;
+            });
+
+            $(".autoInput").promptExpre();
+        })
+    </script>
+</head>
+<body>
+    <nav class="blogic-nav"></nav>
+    <div class="blogic-container">
+        <div class="menuLeft"></div>
+        <div class="blogic-content scrollBox">
+            <input type="text" class='autoInput autoInput-bolt'/>
+        </div>
+    </div>
+</body>
+</html>

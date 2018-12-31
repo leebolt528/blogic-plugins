@@ -1,0 +1,103 @@
+.promptExpreBolt{
+    display:inline-block;
+    width:300px;
+    margin:0 auto 0 auto;
+    position:relative
+}
+.auto_hidden {
+    width: 204px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+    position: absolute;
+    display: none;
+}
+
+.auto_show {
+    width: 100%;
+    position: absolute;
+    z-index: 9999;
+    /* 设置对象的层叠顺序 */
+    display: block;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+    transition: opacity 0.1s linear, visibility 0.1s linear;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.auto_onmouseover {
+    background-color: #d4d4d4;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.auto_onmouseout {
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.auto_onmouseout>strong,
+.auto_onmouseover>strong {
+    font-weight: 700!important;
+}
+
+.autoInput-bolt {
+    background-color: #fff;
+    color: #16325c;
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    width: 100%;
+    transition: border 0.1s linear, background-color 0.1s linear;
+    display: inline-block;
+    padding: 0 1rem 0 0.75rem;
+    line-height: 1.875rem;
+    min-height: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 32px;
+    box-sizing: border-box;
+}
+
+.autoInput-bolt:focus {
+    outline: 0;
+    border-color: #1589ee !important;
+    background-color: #fff;
+    box-shadow: 0 0 3px #0070d2;
+}
+
+#clear {
+    cursor: default;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    right: 0;
+    margin: 0;
+    height: 100%;
+    width: 32px;
+    display:none;
+}
+
+#clear:before {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+    margin-top: -0.5em;
+}
+
+.promptExpreBolt:hover .clear {
+    display: inline!important;
+}   

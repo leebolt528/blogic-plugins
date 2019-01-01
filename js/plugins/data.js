@@ -1,6 +1,11 @@
 var menuLeftData=[
     {"id":"1","name":"时间选择","fa":"fa-home","href":"selectTime.html","children":[]},
     {"id":"5","name":"自动提示","fa":"fa-home","href":"promptExpre.html","children":[]},
+    {"id":"6","name":"仪表板","fa":"fa-home","href":"dashBoard.html","children":[]},
+    {"id":"7","name":"百度地图","fa":"fa-home","href":"#","children":[]},
+    {"id":"8","name":"关系依赖图","fa":"fa-home","href":"#","children":[]},
+    {"id":"9","name":"zTree表格","fa":"fa-home","href":"#","children":[]},
+    {"id":"10","name":"TreeView","fa":"fa-home","href":"#","children":[]},
     {"id":"2","name":"规则链库","fa":"fa-link","href":"#","children":[
         {"id":"2-1","name":"规则链库1","fa":"fa-home","href":"#","children":[]},
         {"id":"2-2","name":"规则链库2","fa":"fa-home","href":"#","children":[]},

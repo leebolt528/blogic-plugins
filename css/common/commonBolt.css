@@ -9,6 +9,7 @@ ul {
     padding: 0;
 }
 a{
+    cursor: pointer;
     text-decoration: none;
 }
 .float-right{

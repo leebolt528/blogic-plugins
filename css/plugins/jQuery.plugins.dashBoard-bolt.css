@@ -1,0 +1,84 @@
+.grid-stack .dashboard-panel{
+    background: #fff;
+    margin:0px 7px;
+    border-radius: 4px;
+}
+.dashboard-panel .panel-body{
+    position:relative;
+}
+.dashboard-panel .panel-body>div{
+    border-radius: 4px;
+}
+.grid-stack > .grid-stack-item > .grid-stack-item-content{
+    overflow-y:hidden!important;
+}
+.panel-load{
+    color: #777171;
+    position:absolute;
+    top:40%;
+    left:calc(50% - 15px);
+    left: -webkit-calc(50% - 15px);
+    left:-moz-calc(50% - 15px);
+}
+
+.title-editor {
+    display: block;
+    width: 100%;
+    background-color: transparent;
+    line-height: normal;
+    box-sizing: border-box;
+    border:1px solid transparent;
+    border-radius: 4px;
+    padding:4px 6px;    
+}
+.title-editor:hover:not(:focus) {
+    border-color: #ccc;
+    box-shadow: 0 1px 1px rgba(0,0,0,.075);
+    background-color: #fff;
+}
+.title-editor:focus {
+    background-color: #fff;
+    border-color: rgba(82,168,236,.8);
+    outline: 0;
+    border-collapse: separate;
+    box-shadow: 0 0 8px rgba(82,168,236,.6);
+}
+.edit-widget .panel-title{
+    font-size: 14px;
+    padding:3px 5px;
+    border-bottom: 1px solid #eee;
+}
+.edit-widget .drag-handle {
+    padding: 5px 5px 0;
+}
+.edit-widget .drag-handle .handle-inner {
+    background: url(../../img/plugins/dashBoard/handle.png) repeat;
+    opacity: .5;
+    height: 8px;
+    margin-right: 14px;
+    cursor: move;
+}
+.edit-widget .drag-handle .delete-panel {
+    display: inline-block;
+    float: right;
+    font-size: 17px;
+    padding: 0 3px;
+    color: #97999b;
+    margin-right: -3px;
+    margin-top: -4px;
+    line-height: 14px;
+}
+
+.view-widget .panel-title{
+    display: block;
+    width: 100%;
+    padding:7px 15px;
+    font-size: 14px;
+}
+.title-view{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    display: inline-block;
+}

@@ -12,7 +12,7 @@ body, html {
 body {
     margin: 0;
     padding-top: 50px;
-    background-color: #fff;
+    background-color: #EAEAEA;
 }
 .blogic-nav{
     height: 50px;
@@ -27,7 +27,7 @@ body {
 }
 .blogic-content{
     padding:10px;
-    height:700px;
+    height:100%;
 }
 /* .blogic-content:after{
     content: "";

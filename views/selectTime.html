@@ -44,7 +44,8 @@
                     onClickClear:function(){console.log("clear");}
                 }
             };
-            $(".selectTime").selectTime(optionsTime);
+            var selectTimeObj=$(".selectTime").selectTime(optionsTime);
+            console.log(selectTimeObj.getSelectedTime());
         })
     </script>
 </head>

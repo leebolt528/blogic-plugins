@@ -209,6 +209,23 @@
         $(document).on("click",".calendarPa .close",function(){
             $(".alert-laydate").hide();
         })
-        return this;
+        var selectTimeTools={
+            getSelectedTime:function(){
+                var time;
+                if(keep){
+                    var startTime=new Date(keepValue.split("-")[0]).getTime();
+                    var endTime=new Date(keepValue.split("-")[1]).getTime();
+                    time=startTime+"-"+endTime;
+                }else{
+                    $(".listPa .timeTag").each(function(){
+                        if($(this).hasClass("active")){
+                            time=formatStamp($(this).data("tag"));
+                        }
+                    })
+                }
+                return time;
+            }
+        }
+        return selectTimeTools;
     }
 })(jQuery)

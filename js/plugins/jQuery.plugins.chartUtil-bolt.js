@@ -298,8 +298,14 @@
             var s = time.getSeconds();
             return y+'-'+add0(m)+'-'+add0(d)+' '+add0(h)+':'+add0(mm)+':'+add0(s);
         }
+        //替换数组中两个值位置
+        function swap(array,index1,index2){
+            var t = array[index1];
+            array[index1] = array[index2];
+            array[index2] = t;
+        }
         //获取series
-        var parseData=function(data){
+        var parseData=function(data,count,maxValue,maxValueIndex){
             var dataproArr=[];
             switch(data[0].label.type){
                 case "areachart":
@@ -315,6 +321,10 @@
                                 oneDataResult.values.map(function(point){
                                     xAxisTypeFun(data,point);
                                     point[1]=((point[1]=='null'||point[1]==null)?null:Number(point[1]));
+                                    if(point[1]>maxValue){
+                                        maxValueIndex=count;
+                                        maxValue=point[1];
+                                    }
                                 });
                                 var seriesElem={
                                     "data":oneDataResult.values,
@@ -324,9 +334,11 @@
                                     "name":transSeriesName(batchData,oneDataResult)
                                 };
                                 dataproArr.push(seriesElem);
+                                count++;
                             }
                         }
                     });
+                    swap(dataproArr,0,maxValueIndex);//hightcharts第一组数据最大值较小时会导致丢失此数据
                     break;
                 case "piechartringrule":
                 case "piechart":
@@ -1039,7 +1051,7 @@
                         }
                     };
                     defaultChart["yAxis"]=$.extend(true,{},defaultChart["yAxis"],yAxis);
-                    defaultChart["series"]=parseData(data);
+                    defaultChart["series"]=parseData(data,0,Number.MIN_VALUE,0);
                     defaultChart["tooltip"]["headerFormat"]='<span>{point.key}</span><br/>';
                     defaultChart["plotOptions"]={
                         area: {

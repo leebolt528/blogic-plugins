@@ -40,8 +40,8 @@
                 switch:true,
                 serverTime:"/blogic/app/monitor/ajax/get/server/time",
                 callback:{
-                    onClickSearch:function(time){console.log(time);},
-                    onClickTimeTag:function(time){ console.log(time);},
+                    onClickSearch:function(from,to){console.log("from="+from+";to="+to);},
+                    onClickTimeTag:function(from,to){ console.log("from="+from+";to="+to);},
                     onClickClear:function(){console.log("clear");}
                 }
             };

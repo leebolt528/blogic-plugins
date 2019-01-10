@@ -192,8 +192,10 @@
             $(this).addClass("active").siblings().removeClass("active");
             clearTime();
             var time=formatStamp($(this).data("tag"));
+            var timeFrom=time.split("-")[0];
+            var timeTo=time.split("-")[1];
             if(options.callback.hasOwnProperty("onClickTimeTag")){
-                options.callback.onClickTimeTag(time);
+                options.callback.onClickTimeTag(timeFrom,timeTo);
             }
         });
         $(".calendarPa .clear").on("click",function(){
@@ -207,15 +209,14 @@
                 keep=true;
                 keepValue=$("#start").val()+"-"+$("#end").val();
                 $(".listPa button").removeClass("active");
-                var time=new Date($("#start").val()).getTime()+"-"+new Date($("#end").val()).getTime();
+                var timeFrom=new Date($("#start").val()).getTime();
+                var timeTo=new Date($("#end").val()).getTime();
                 if(options.callback.hasOwnProperty("onClickSearch")){
-                    options.callback.onClickSearch(time);
+                    options.callback.onClickSearch(timeFrom,timeTo);
                 }
             }else{
-                if($("#start").val().length==0||$("#end").val().length==0){
-                    $(".alert-laydate").show();
-                    return;
-                }
+                $(".alert-laydate").show();
+                return;
             }
         });
         $(document).on("click",".calendarPa .close",function(){
@@ -235,7 +236,10 @@
                         }
                     })
                 }
-                return time;
+                return {
+                    from:time.split("-")[0],
+                    to:time.split("-")[1]
+                };
             },
             getSelectedTag:function(){
                 var $this;

@@ -38,6 +38,7 @@
                 interval:1,
                 listArr:["5m","20m","1h","3h","6h","12h","1d","2d"],
                 switch:true,
+                serverTime:"/blogic/app/monitor/ajax/get/server/time",
                 callback:{
                     onClickSearch:function(time){console.log(time);},
                     onClickTimeTag:function(time){ console.log(time);},
@@ -46,6 +47,7 @@
             };
             var selectTimeObj=$(".selectTime").selectTime(optionsTime);
             console.log(selectTimeObj.getSelectedTime());
+            console.log(selectTimeObj.getSelectedTag());
         })
     </script>
 </head>

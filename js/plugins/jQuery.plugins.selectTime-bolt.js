@@ -8,6 +8,7 @@
             interval:2,
             listArr:["5m","20m","1h","3h","6h","12h","1d","2d"],
             switch:true,
+            serverTime:"null",
             callback:{}
         }
         var options=$.extend(true,{},options0,options1);
@@ -111,6 +112,17 @@
         function formatStamp(dateTag){
             var unit=dateTag.split('')[dateTag.length-1];
             var now=new Date().getTime();
+            if(options.serverTime!=="null"){
+                $.ajax({
+                    url:options.serverTime,
+                    async:false,
+                    success:function(data){
+                        if(data.hasOwnProperty("serverTime")&&data.serverTime.length>0){
+                            now=data.serverTime;
+                        }
+                    }
+                });
+            }
             switch(unit)
             {
                 case "m":
@@ -224,6 +236,19 @@
                     })
                 }
                 return time;
+            },
+            getSelectedTag:function(){
+                var $this;
+                if(keep){
+                    $this=null;
+                }else{
+                    $(".listPa .timeTag").each(function(){
+                        if($(this).hasClass("active")){
+                            $this=$(this);
+                        }
+                    })
+                }
+                return $this;
             }
         }
         return selectTimeTools;

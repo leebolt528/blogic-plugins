@@ -1,0 +1,87 @@
+/*ztree表格*/
+.ztreeTBolt {
+    padding: 0;
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    height:100%;
+}
+.ztreeTBolt .tbodyOut{
+    width:calc(100% + 5px)!important;
+    width: -webkit-calc(100% + 5px)!important;
+    width:-moz-calc(100% + 5px)!important;
+}
+.ztreeTBolt>ul{
+    height:calc(100% - 32px)!important;
+    height:-webkit-calc(100% - 32px)!important;
+    height:-moz-calc(100% - 32px)!important;
+}
+.ztreeTBolt li{
+    list-style: none;
+}
+.ztreeTBolt li a,
+.ztreeTBolt li a.curSelectedNode {
+    width: 100%;
+    vertical-align: middle;
+    height: 30px;
+    padding: 0px;
+    cursor: default;
+    border: none;
+    color:#333!important;
+    font-family: Helvetica, Arial, sans-serif!important;
+}
+.ztreeTBolt div.diy {
+    height: 100%;
+    border-top: 1px solid #ddd;
+    display: inline-block;
+    padding:0px 7px;
+}
+.ztreeTBolt div.diy,
+.ztreeTBolt div.diy>span{
+    font-size: 12px;
+}
+.ztreeTBolt div.diy span {
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.ztreeTBolt .ztree{
+    padding:0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.ztreeTBolt .ztree i{
+    font-family: FontAwesome;
+    text-align: right;
+    display: inline-block;
+    margin-right: 2px;
+    width: 12px;
+}
+.ztreeTBolt .ztree,
+.ztreeTBolt .ztree li a.curSelectedNode{
+    background: #fff;
+}
+.ztreeTBolt .ztree li ul {
+    padding-left: 0px
+}
+.ztreeTBolt .ztree div.diy{
+    line-height: 30px;
+}
+.ztreeTBolt .ztree div.diy:first-child {
+    text-indent: -7px;
+}
+
+.ztreeTBolt .head a{
+    display: table;
+}
+.ztreeTBolt .head a:hover{
+    text-decoration: none;
+}
+.ztreeTBolt .head div.diy{
+    white-space: normal;
+    text-overflow: unset;
+    border-top: none;
+    border-right: 1px solid #ddd;
+    padding: 8px;
+    display: table-cell;
+    vertical-align: middle;
+}

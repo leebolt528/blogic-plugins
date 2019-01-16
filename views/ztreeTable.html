@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/common/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/common/commonBlogic.css">
+    <link rel="stylesheet" href="../css/common/commonBolt.css">
+    <script type='text/javascript' src='../js/common/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='../js/plugins/data.js'></script>
+
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-bolt.css">
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.menuLeft-bolt.js'></script>
+
+    <link rel="stylesheet" href="../css/common/ztree/zTreeStyle.css">
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.zTreeTable-bolt.css">
+    <script type='text/javascript' src='../js/common/ztree/jquery.ztree.all.min.js'></script>
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.zTreeTable-bolt.js'></script>
+    <title>zTree表格</title>
+    <script>
+        $(function(){
+            var optionsMenu={
+                selected:"9",
+                menuOpen:true,
+                hideFloat:true,
+                callback:{
+                    onExpand:function(){
+                        console.log('onExpand');
+                        ztreeWidth();
+                },
+                    onCollapse:function(){ 
+                        console.log('onCollapse');
+                        ztreeWidth();
+                    },
+                }
+            };
+            $(".menuLeft").menuLeftBolt(optionsMenu,function(){
+                return menuLeftData;
+            });
+
+            var optionsZtree={displayW:0.86};
+            $(".ztreeTable").ztreeTable(optionsZtree,function(){
+                return ztreeData;
+            })
+            var ztreeWidth=function(){
+                var tableW=$(".blogic-content").width()/0.86;
+                $(".ztreeTBolt").css("width",tableW);
+            }
+        })
+    </script>
+</head>
+<body>
+    <nav class="blogic-nav"></nav>
+    <div class="blogic-container">
+        <div class="menuLeft"></div>
+        <div class="blogic-content scrollBox">
+            <div class="ztreeTable"> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>

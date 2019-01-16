@@ -43,7 +43,7 @@
     color:#fff;
 }
 /* 左侧导航二级 */
-ul ul{
+.bolt-sidebar ul ul{
     background-color: rgb(55, 56, 57);
 }
 .bolt-sidebar .floatRight2>li.active>a{

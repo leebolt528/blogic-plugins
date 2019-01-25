@@ -12,14 +12,14 @@
 .grid-stack > .grid-stack-item > .grid-stack-item-content{
     overflow-y:hidden!important;
 }
-.panel-load{
+/* .panel-load{
     color: #777171;
     position:absolute;
     top:40%;
     left:calc(50% - 15px);
     left: -webkit-calc(50% - 15px);
     left:-moz-calc(50% - 15px);
-}
+} */
 
 .title-editor {
     display: block;

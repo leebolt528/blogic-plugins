@@ -338,7 +338,9 @@
                             }
                         }
                     });
-                    swap(dataproArr,0,maxValueIndex);//hightcharts第一组数据最大值较小时会导致丢失此数据
+                    if(dataproArr.length>0){
+                        swap(dataproArr,0,maxValueIndex);//hightcharts第一组数据最大值较小时会导致丢失此数据
+                    }
                     break;
                 case "piechartringrule":
                 case "piechart":

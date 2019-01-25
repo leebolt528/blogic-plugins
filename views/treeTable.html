@@ -13,25 +13,25 @@
     <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-bolt.css">
     <script type='text/javascript' src='../js/plugins/jQuery.plugins.menuLeft-bolt.js'></script>
 
-    <link rel="stylesheet" href="../css/common/ztree/zTreeStyle.css">
-    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.zTreeTable-bolt.css">
-    <script type='text/javascript' src='../js/common/ztree/jquery.ztree.all.min.js'></script>
-    <script type='text/javascript' src='../js/plugins/jQuery.plugins.zTreeTable-bolt.js'></script>
-    <title>zTree表格</title>
+    <link rel="stylesheet" href="../css/common/treetable/jquery.treetable.css">
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.treeTable-bolt.css">
+    <script type='text/javascript' src='../js/common/treetable/jquery.treetable.js'></script>
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.treeTable-bolt.js'></script>
+    <title>treeTable异步</title>
     <script>
         $(function(){
             var optionsMenu={
-                selected:"9",
+                selected:"10",
                 menuOpen:true,
                 hideFloat:true,
                 callback:{
                     onExpand:function(){
                         console.log('onExpand');
-                        ztreeWidth();
-                },
+                        treeTWidth();
+                    },
                     onCollapse:function(){ 
                         console.log('onCollapse');
-                        ztreeWidth();
+                        treeTWidth();
                     },
                 }
             };
@@ -39,26 +39,31 @@
                 return menuLeftData;
             });
 
-            var optionsZtree={
-                displayW:0.86,
+            var optionsTreeT={
+                displayW:0.8,
+                startUrl:"",
+                async:true,
                 class:"table-click table-hover",
-                columns:ztreeData.columns,
+                columns:treeTData.columns,
                 callback:{
                     onClick:function($this,param){console.log($this);console.log(param);},
-                    onExpand:function($this,param){console.log($this);console.log(param);},
+                    onExpand:function($this,param){ console.log($this);console.log(param);},
                     onCollapse:function($this,param){console.log($this);console.log(param);}
                 }
-            };
-            var zTreeTableObj=$(".ztreeTable").ztreeTable(optionsZtree,function(){
-                return ztreeData.data;
-            })
+            }
+            var treeTableObj=$(".treeTable").treeTableBolt(optionsTreeT,function(){
+                return treeTData.data;
+            });
             setTimeout(() => {
-                console.log(zTreeTableObj.getSelectedParam());
-                console.log(zTreeTableObj.getSelectedElem());
+                console.log("setTimeout");
+                var param=treeTableObj.getSelectedParam();
+                var $this=treeTableObj.getSelectedElem();
+                console.log(param);
+                console.log($this);
             }, 5000);
-            var ztreeWidth=function(){
-                var tableW=$(".blogic-content").width()/optionsZtree.displayW;
-                $(".ztreeTable").css("width",tableW);
+            var treeTWidth=function(){
+                var tableW=$(".treeTable").parent().width()/optionsTreeT.displayW;
+                $(".treeTable").css("width",tableW);
             }
         })
     </script>
@@ -68,8 +73,8 @@
     <div class="blogic-container">
         <div class="menuLeft"></div>
         <div class="blogic-content scrollBox">
-            <div class="ztreeTable"> 
-            </div>
+            <table class="treeTable">
+            </table>
         </div>
     </div>
 </body>

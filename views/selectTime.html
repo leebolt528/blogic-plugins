@@ -41,13 +41,19 @@
                 serverTime:"/blogic/app/monitor/ajax/get/server/time",
                 callback:{
                     onClickSearch:function(from,to){console.log("from="+from+";to="+to);},
-                    onClickTimeTag:function(from,to){ console.log("from="+from+";to="+to);},
+                    onClickTimeTag:function(from,to){ console.log("from="+from+";to="+to);console.log(selectTimeObj.getSelectedTime());
+            console.log(selectTimeObj.getSelectedTag());},
                     onClickClear:function(){console.log("clear");}
                 }
             };
             var selectTimeObj=$(".selectTime").selectTime(optionsTime);
             console.log(selectTimeObj.getSelectedTime());
             console.log(selectTimeObj.getSelectedTag());
+            setTimeout(function(){
+                console.log("-=-=-=-=");
+                console.log(selectTimeObj.getSelectedTime());
+                console.log(selectTimeObj.getSelectedTag());
+            },3000)
         })
     </script>
 </head>

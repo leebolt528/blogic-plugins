@@ -230,11 +230,7 @@
                     var endTime=new Date(keepValue.split("-")[1]).getTime();
                     time=startTime+"-"+endTime;
                 }else{
-                    $(".listPa .timeTag").each(function(){
-                        if($(this).hasClass("active")){
-                            time=formatStamp($(this).data("tag"));
-                        }
-                    })
+                    time=formatStamp($(".listPa .timeTag.active").data("tag"));
                 }
                 return {
                     from:time.split("-")[0],
@@ -242,16 +238,7 @@
                 };
             },
             getSelectedTag:function(){
-                var $this;
-                if(keep){
-                    $this=null;
-                }else{
-                    $(".listPa .timeTag").each(function(){
-                        if($(this).hasClass("active")){
-                            $this=$(this);
-                        }
-                    })
-                }
+                var $this=keep?null:$(".listPa .timeTag.active");
                 return $this;
             }
         }

@@ -52,3 +52,29 @@ a{
 .scrollBox{
     overflow-y: auto;
 }
+/* 表格头部固定 */
+.tableOut tbody.layout{
+    display:block;
+    /*height:300px;*/
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+.tableOutPa thead,
+.tableOut tbody.layout tr{
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+.tbodyOut{
+    width:calc(100% + 5px)!important;
+    width: -webkit-calc(100% + 5px)!important;
+    width:-moz-calc(100% + 5px)!important;
+ }
+ .panel-load{
+    color: #777171;
+    position:absolute;
+    top:40%;
+    left:calc(50% - 15px);
+    left: -webkit-calc(50% - 15px);
+    left:-moz-calc(50% - 15px);
+}

@@ -10,11 +10,11 @@
     width: -webkit-calc(100% + 5px)!important;
     width:-moz-calc(100% + 5px)!important;
 }
-.ztreeTBolt>ul{
+/* .ztreeTBolt>ul{
     height:calc(100% - 32px)!important;
     height:-webkit-calc(100% - 32px)!important;
     height:-moz-calc(100% - 32px)!important;
-}
+} */
 .ztreeTBolt li{
     list-style: none;
 }
@@ -22,12 +22,17 @@
 .ztreeTBolt li a.curSelectedNode {
     width: 100%;
     vertical-align: middle;
-    height: 30px;
+    height: 33px;
     padding: 0px;
     cursor: default;
     border: none;
-    color:#333!important;
+    color:#333;
     font-family: Helvetica, Arial, sans-serif!important;
+    opacity:1;
+}
+.ztreeTBolt li a.curSelectedNode{
+    background-color: #3875d7!important;
+    color: #fff;
 }
 .ztreeTBolt div.diy {
     height: 100%;
@@ -56,15 +61,14 @@
     margin-right: 2px;
     width: 12px;
 }
-.ztreeTBolt .ztree,
-.ztreeTBolt .ztree li a.curSelectedNode{
-    background: #fff;
+.ztreeTBolt .ztree{
+    background: #f9f9f9;
 }
 .ztreeTBolt .ztree li ul {
     padding-left: 0px
 }
 .ztreeTBolt .ztree div.diy{
-    line-height: 30px;
+    line-height: 33px;
 }
 .ztreeTBolt .ztree div.diy:first-child {
     text-indent: -7px;
@@ -85,3 +89,14 @@
     display: table-cell;
     vertical-align: middle;
 }
+
+.ztreeTBolt.table-hover .ztree li a:hover{
+    background-color: #ebedf5;
+}
+.ztreeTBolt .ztree li a{
+    cursor:initial;
+}
+.ztreeTBolt.table-click .ztree li a,
+.ztreeTBolt.table-click .ztree li a{
+    cursor: pointer;
+} 

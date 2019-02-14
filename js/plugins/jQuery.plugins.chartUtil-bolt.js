@@ -261,7 +261,7 @@
             });
         }
         //获取柱状图下钻数据drillData
-        function getColDrillData(){
+        function getColDrillData(data){
             var drillData=[];
             data.map(function(batchData){
                 drillData=updateDrillData(batchData,drillData);
@@ -346,7 +346,8 @@
                 case "piechart":
                 case "piechartring":
                     if(data[0].label.type=="piechartringrule"||data[0].label.type=="piechartring"){
-                        var size=Math.abs(options.ring.startAngle-options.ring.endAngle)==360||270?(Number(options.size.replace("%",""))-10)+"%":options.size;
+                        var angleGap=Math.abs(options.ring.startAngle-options.ring.endAngle);
+                        var size=(angleGap==360||angleGap==270)?(Number(options.size.replace("%",""))-10)+"%":options.size;
                     }else{
                         var size=options.size;
                     }
@@ -1145,7 +1146,7 @@
                     if(boolean){
                         defaultChart["chart"]["type"]=data[0].label.type.split("chart")[0];
                         defaultChart["subtitle"]={
-                            text:options.pieRing.subEnabled?ruleSubText(options,color):null,
+                            text:options.pieRing.subEnabled?ruleSubText(options):null,
                             align: 'center',
                             verticalAlign: 'middle',
                             y: options.pieRing.subY,
@@ -1238,12 +1239,13 @@
                     };
                     defaultChart["series"]=parseData(data);
                 break;
-                case "columnchartdrill":
-                    defaultChart["legend"]["enabled"]=false;
                 case "columnchart":
                 case "columnchartpercent":
                 case "columnchartnormal":
                 case "columnchartdrill":
+                    if(data[0].label.type=="columnchartdrill"){
+                        defaultChart["legend"]["enabled"]=false;
+                    }
                     defaultChart["chart"]["type"]=data[0].label.type.split("chart")[0];
                     if(data[0].label.xAxisType=="dataTime"){
                         xAxisData(defaultChart);
@@ -1407,7 +1409,8 @@
                         //}
                         var preValue=Number(singlePreValue().replace("%",""));
                         defaultChart["tooltip"]["headerFormat"]='<span>{point.key}</span><br/>';
-                        var size=Math.abs(options.ring.startAngle-options.ring.endAngle)==360||270?(Number(options.size.replace("%",""))-15)+"%":options.size;
+                        var angleGap=Math.abs(options.ring.startAngle-options.ring.endAngle);
+                        var size=(angleGap==360||angleGap==270)?(Number(options.size.replace("%",""))-15)+"%":options.size;
                         var center=Math.abs(options.ring.startAngle-options.ring.endAngle)==270?[options.ring.center[0],Number(options.ring.center[1].replace("%",""))+7+"%"]:options.ring.center;
                         defaultChart["pane"]={
                             size:size,

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/common/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/common/commonBlogic.css">
+    <link rel="stylesheet" href="../css/common/commonBolt.css">
+    <script type='text/javascript' src='../js/common/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='../js/plugins/data.js'></script>
+
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-bolt.css">
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.menuLeft-bolt.js'></script>
+
+    <script type="text/javascript" src="../js/common/D3/d3.min.js"></script>
+    <script type="text/javascript" src="../js/plugins/jQuery.plugins.relativeD3-bolt.js"></script>
+    <style>
+        .moveDrill{
+            background: url(../img/plugins/dashBoard/handle.png) repeat;
+            opacity: .5;
+            height: 8px;
+            margin-top: 4px;
+            cursor: move;
+        }
+        #canvas{
+            margin:50px 100px;
+            height: 500px;
+            background: #fbfbfb;
+            border: 1px solid; 
+            width:1000px;
+            background: rgba(7,7,5,0.8); 
+        }
+    </style>
+    <title>关系依赖图</title>
+    <script>
+        $(function(){
+            var optionsMenu={
+                selected:"1",
+                menuOpen:true,
+                hideFloat:true,
+                callback:{
+                    onExpand:function(){console.log('onExpand');},
+                    onCollapse:function(){ console.log('onCollapse');},
+                }
+            };
+            $(".menuLeft").menuLeftBolt(optionsMenu,function(){
+                return menuLeftData;
+            });
+
+            var options={
+            lineColorNor:"#A9A9A9",//灰色
+            lineColorShow:"#CC0000",//红色
+            lineColorFalse:"#228B22",//绿色
+            clickColor:"#0099CC",//蓝色 点击
+            textColor:"#696969",//蓝色 文本
+            fillColor:"#fff",
+            zoom:false,
+            blankClear:true,
+            callback:{
+                onClickNode:function(node){console.log("node="+node);return node},
+                onClickEdge:function(edge){console.log("edge="+edge);return edge}
+            }
+        };
+        $(function(){
+            $.relativeD3("#canvas", d3Data,options);//options参数可不传，将使用默认值
+        })
+        /* var resizeQunee=function(){
+            if(d3Data.nodes.length>0){
+                $.relativeD3("#canvas",d3Data,options, false);
+            };
+        }
+        //如果画布的父类大小随窗口变化自适应需要重新绘图，防止连续变化窗口大小时进行多次数据请求和绘图
+        var debounce = function(idle, action){
+            var last
+            return function(){
+                var ctx = this, args = arguments
+                clearTimeout(last)
+                last = setTimeout(function(){
+                    action.apply(ctx, args)
+                }, idle)
+            }
+        }
+        var oneQunee=debounce(250,resizeQunee);
+        $(window).resize(function(){
+            oneQunee();
+        }); */
+        })
+    </script>
+</head>
+<body>
+    <nav class="blogic-nav"></nav>
+    <div class="blogic-container">
+        <div class="menuLeft"></div>
+        <div class="blogic-content scrollBox">
+            <div id="canvas"></div>
+        </div>
+    </div>
+</body>
+</html>

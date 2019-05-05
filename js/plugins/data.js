@@ -1,9 +1,10 @@
+/* 左侧导航数据 */
 var menuLeftData=[
     {"id":"1","name":"时间选择","fa":"fa-home","href":"selectTime.html","children":[]},
     {"id":"5","name":"自动提示","fa":"fa-home","href":"promptExpre.html","children":[]},
     {"id":"6","name":"仪表板","fa":"fa-home","href":"dashBoard.html","children":[]},
     {"id":"7","name":"百度地图","fa":"fa-home","href":"#","children":[]},
-    {"id":"8","name":"关系依赖图","fa":"fa-home","href":"#","children":[]},
+    {"id":"8","name":"关系依赖图","fa":"fa-home","href":"relativeD3.html","children":[]},
     {"id":"9","name":"zTree表格","fa":"fa-home","href":"ztreeTable.html","children":[]},
     {"id":"10","name":"TreeTable异步","fa":"fa-home","href":"treeTable.html","children":[]},
     {"id":"2","name":"规则链库","fa":"fa-link","href":"#","children":[
@@ -41,7 +42,7 @@ var menuLeftData=[
         {"id":"3-4","name":"设备管理4","fa":"fa-home","href":"#","children":[]}
     ]},
 ]
-
+/* 关联自动提述搜索数据 */
 var promptExpreData = {
     "field": [
         "fl_article_from",
@@ -113,6 +114,7 @@ var promptExpreData = {
         }
     }
 }
+/* zTree表格数据 */
 var ztreeData={
     columns:[
         {
@@ -321,7 +323,7 @@ var ztreeData={
 
 
 
-
+/* treeTable数据 */
 var oneData=[
     {
       "id": "bconsoletest-dcos",
@@ -622,3 +624,67 @@ var oneData=[
         }
       }]
   }
+  /* D3关系图数据*/
+  var d3Data = {
+    "nodes": [{
+        "name": "存量营销(同网)",
+        "image": "../img/plugins/relativeD3/user.png",
+        "key": "11"
+    }, {
+        "name": "营销活动接口服务",
+        "image": "../img/plugins/relativeD3/tomcat.png",
+        "key": "22"
+    }, {
+        "name": "用户划配",
+        "image": "../img/plugins/relativeD3/mysql.png",
+        "key": "33"
+    }, {
+        "name": "fdafafawefwaefwef",
+        "image": "../img/plugins/relativeD3/user.png",
+        "key": "44"
+    }, {
+        "name": "USER",
+        "image": "../img/plugins/relativeD3/mysql.png",
+        "key": "55"
+    }, {
+        "name": "工单中心",
+        "image": "../img/plugins/relativeD3/tomcat.png",
+        "key": "00"
+    }],
+    "edges": [{
+        "source": "00",
+        "target": "11",
+        "relation": "17",
+        "status": "fast"
+    }, {
+        "source": "00",
+        "target": "33",
+        "relation": "1718",
+        "status": "fast"
+    }, {
+        "source": "22",
+        "target": "44",
+        "relation": "5",
+        "status": "slow"
+    }, {
+        "source": "22",
+        "target": "33",
+        "relation": "24324234",
+        "status": "slow"
+    }, {
+        "source": "33",
+        "target": "55",
+        "relation": "79",
+        "status": "normal"
+    }, {
+        "source": "22",
+        "target": "22",
+        "relation": "354",
+        "status": "slow"
+    }, {
+        "source": "55",
+        "target": "33",
+        "relation": "7718",
+        "status": "slow"
+    }]
+};

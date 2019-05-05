@@ -26,6 +26,8 @@
 .bolt-sidebar li a span{
     color:#fff;
     padding-left:15px;
+    font-family: 微软雅黑;
+    font-size: 14px;
 }
 .bolt-sidebar li a i,
 .bolt-menu-arrow>i{
@@ -113,7 +115,7 @@
 /* 左侧导航收缩 */
 .bolt-menu-arrow{
     height:35px;
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     width: 200px;
     border-top: 1px solid #09121a;
@@ -132,8 +134,10 @@
     position: absolute;
 }
 .floatRight2{
-    margin-left: 50px;
+    margin-left: 54px;
+    z-index:999;
 }
 .floatRight3{
     margin-left: 200px;
+    z-index:999;
 }

@@ -1,23 +1,33 @@
 (function( $ ){
-    $.fn.getDashboard = function(dashboardData){
-        var options=$.extend(true,{},{
+    $.fn.getDashboard = function(options1,getData){
+        if (arguments.length === 1) {
+            getData=options1;
+            options1={};
+        }
+        var options0={
+            mode: "view",
             grid_options:{
                 verticalMargin:15,
                 cellHeight:2,
                 handle: ".drag-handle",
                 float:false,
                 levelMargin:15
-            }
-        },dashboardData.options);
+            },
+            callback:{}
+        }
+        var options=$.extend(true,{},options0,options1);
+        var dashboardData=$.isFunction(getData) ? getData() : getData;
         var $this=$(this).addClass("grid-stack dashBoardBolt");
         if(options.mode=="view"){
             options.grid_options.float=true;
         }
         $this.gridstack(options.grid_options);
         var grid = $this.data('gridstack');
+        var delArray=[];//记录删除的面板id
+        var widgetsArray=[];//获取当前面板的最新属性
         switch(options.mode) {
             case "view":
-                dashboardData.panels.map(function(value){
+                dashboardData.map(function(value){
                     var el= '<div class="dashboard-row grid-stack-item" data-gs-no-resize="true">';
                     el+='<div class="grid-stack-item-content" style="width:100%">';
                     el+= '<div class="dashboard-panel view-widget">';
@@ -49,14 +59,14 @@
                     });
 
                     $.when.apply(this, defferArr).done(function() {
-                        $this.find("#"+value.id).chart(chartData,value.options);
+                        $this.find("#"+value.id).chart(value.options,chartData);
                     }).fail(function() {
                        $this.find("#"+value.id).chart([]);
                     });
                 });
                 break;
             case "edit":
-                dashboardData.panels.map(function(value){
+                dashboardData.map(function(value){
                     var el= '<div class="dashboard-row grid-stack-item">';
                     el+='<div class="grid-stack-item-content" style="width:100%">';
                     el+= '<div class="dashboard-panel edit-widget">';
@@ -92,11 +102,20 @@
                     });
 
                     $.when.apply(this, defferArr).done(function() {
-                        $this.find("#"+value.id).chart(chartData,value.options);
+                        $this.find("#"+value.id).chart(value.options,chartData);
                     });
                 });
                 break;
         }
+        $(document).on("click",".delete-panel",function(){
+            var grid = $(this).closest(".grid-stack").data('gridstack');
+            grid.removeWidget($(this).closest(".grid-stack-item"));
+            if(options.callback.hasOwnProperty("onClear")){
+                var $this=$(this).closest(".grid-stack-item");
+                delArray.push($(this).closest(".dashboard-panel").children(".panel-body").attr("id"));
+                options.callback.onClear($this,delArray);
+            }
+        });
         $this.on('gsresizestop', function(event, elem) {
             var contentH=$(elem).find('.grid-stack-item-content').innerHeight();
             var panelH=Number($(elem).find(".grid-stack-item-content>.dashboard-panel").css("margin-bottom").replace('px',''));
@@ -130,6 +149,25 @@
             var postfixfontSize=fontStandard*0.15<=53?fontStandard*0.15+"px":53+"px";//单值图中心文字后缀大小
             $chart.find(".singlestat-panel span.single-postfix").css("fontSize",postfixfontSize);
         });
+         //返回对象事件
+         var dashboardTools={
+            getAllWidgets:function(){
+                $(".grid-stack-item").each(function(){
+                    widgetsArray.push({
+                        "id":$(this).find(".panel-body").attr("id"),
+                        "title": $(this).find(".title-editor").val(),
+                        "location": {
+                            "dataGsX": $(this).data("gs-x"),
+                            "dataGsY": $(this).data("gs-y"),
+                            "dataGsWidth": $(this).data("gs-width"),
+                            "dataGsHeight": $(this).data("gs-height")
+                        },
+                    });
+                });
+                return widgetsArray;
+            }
+        }
+        return dashboardTools;
     }
 })( jQuery );
 var chartViewHeight=function($this){
@@ -150,7 +188,3 @@ var chartEditHeight=function($this){
     var $chart = $this.find('.panel-body');
     $chart.outerHeight(chartH);
 }
-$(document).on("click",".delete-panel",function(){
-    var grid = $(this).closest(".grid-stack").data('gridstack');
-    grid.removeWidget($(this).closest(".grid-stack-item"));
-});

@@ -1,6 +1,15 @@
 (function($){
-    $.fn.promptExpre=function(){
-        var dataSource=promptExpreData;
+    $.fn.promptExpre=function(options1,getData){
+        if (arguments.length === 1) {
+            getData=options1;
+            options1={};
+        }
+        var options0={
+            callback:{}
+        }
+        var options=$.extend(true,{},options0,options1);
+        var dataSource=$.isFunction(getData) ? getData() : getData;
+        $(this).addClass("autoInput-bolt");
         var inputNode = document.getElementsByClassName('autoInput-bolt')[0]; //输入框
         var indexSelect = -1; //当前选中的DIV的索引 
         var search_value = ""; //保存当前搜索的字符
@@ -208,10 +217,14 @@
                     changeClassname(length);
                 }
                 //回车
-                else if (event.keyCode == 13) {
+                else if (event.keyCode == 13 && (indexSelect=='-1'||$("#auto").hasClass("auto_hidden"))) {
+                    if(options.callback.hasOwnProperty("onClickSearch")){
+                        options.callback.onClickSearch($(".autoInput-bolt").val());
+                    }
+                } else if (event.keyCode == 13) {
                     autoNode.className = "auto_hidden";
                     indexSelect = -1;
-                } else {
+                }else {
                     indexSelect = -1;
                 }
             }
@@ -234,5 +247,11 @@
         document.onclick = function(event) {
             autoNode.className = "auto_hidden";
         };
+        var promptExpreTools={
+            getInputValue:function(){
+                return $(".autoInput-bolt").val();
+            }
+        }
+        return promptExpreTools;
     }
 })(jQuery)

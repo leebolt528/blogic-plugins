@@ -13,7 +13,7 @@
             callback:{}
         }
         var options=$.extend(true,{},options0,options1);
-        var treeTData=getData();
+        var treeTData=$.isFunction(getData) ? getData() : getData;
         var aa=0;//模拟异步请求需要的临时变量
         var ajaxArr=[];//存储正在执行的AJAX
         var abortBoolean=false;//是否停止一个AJAX

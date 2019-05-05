@@ -1,5 +1,10 @@
 (function( $ ){
-    $.fn.chart = function(data,options1) {
+    $.fn.chart = function(options1,getData) {
+        if (arguments.length == 1) {
+            getData=options1
+            options1={};
+        }
+        var data=$.isFunction(getData) ? getData() : getData;
         if(data==null||data=="null"||data.length==0){
             data=[{
                 "label":{
@@ -11,9 +16,6 @@
                 },
                 "result":[]
             }];
-        }
-        if (arguments.length == 1) {
-            var options1={};
         }
        var options0={
             zoomType:"xy",

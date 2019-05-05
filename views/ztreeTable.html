@@ -49,7 +49,7 @@
                     onCollapse:function($this,param){console.log($this);console.log(param);}
                 }
             };
-            var zTreeTableObj=$(".ztreeTable").ztreeTable(optionsZtree,function(){
+            var zTreeTableObj=$(".ztreeTable").ztreeTableBolt(optionsZtree,function(){
                 return ztreeData.data;
             })
             setTimeout(() => {

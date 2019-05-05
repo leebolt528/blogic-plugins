@@ -1,5 +1,5 @@
 (function($){
-    $.fn.ztreeTable=function(options1,getData){
+    $.fn.ztreeTableBolt=function(options1,getData){
         if (arguments.length === 1) {
             getData=options1;
             options1={};
@@ -11,7 +11,7 @@
             callback:{}
         }
         var options=$.extend(true,{},options0,options1);
-        var ztreeData=getData();
+        var ztreeData=$.isFunction(getData) ? getData() : getData;
         var keyName;//记录第一列显示的值（对应ztree默认的name）
         var headData=options.columns;//列名称
         keyName=headData[0].field;

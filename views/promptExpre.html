@@ -32,7 +32,13 @@
                 return menuLeftData;
             });
 
-            $(".autoInput").promptExpre();
+            var optionsPrompt = {
+                callback:{
+                    onClickSearch:function(value){console.log("value="+value);},
+                }
+            };
+            var promptExpreObj=$(".autoInput").promptExpre(optionsPrompt,promptExpreData);
+            console.log(promptExpreObj.getInputValue());
         })
     </script>
 </head>
@@ -41,7 +47,7 @@
     <div class="blogic-container">
         <div class="menuLeft"></div>
         <div class="blogic-content scrollBox">
-            <input type="text" class='autoInput autoInput-bolt'/>
+            <input type="text" class='autoInput'/>
         </div>
     </div>
 </body>

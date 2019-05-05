@@ -10,7 +10,7 @@
             callback:{}
         }
         var options=$.extend(true,{},options0,options1);
-        var data=getData();
+        var data=$.isFunction(getData) ? getData() : getData;
         var first=true;//初始化时禁止部分操作
         var secondTop,secondHeight;//保存menuOpen=false时，二级菜单初始化的定位和高度
         var menuOpen=options.menuOpen;
@@ -46,8 +46,8 @@
         $(document).on("click",".bolt-menu-arrow .fa-indent",function(){
             menuOpen=false;
             $(".bolt-sidebar>ul>li>a>span").css("display","none");
-           $(".menuLeftBolt").css("width","50px");
-            $(".bolt-menu-arrow").css("width","50px");
+            $(".menuLeftBolt").css("width","54px");
+            $(".bolt-menu-arrow").css("width","54px");
             $(this).removeClass("fa-indent");
             $(this).addClass("fa-outdent");
     

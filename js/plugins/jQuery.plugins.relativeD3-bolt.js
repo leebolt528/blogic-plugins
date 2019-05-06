@@ -1,12 +1,19 @@
 var object2={
-    lineColorNor:"#A9A9A9",
-    lineColorShow:"#CC0000",
-    lineColorFalse:"#228B22",
-    clickColor:"#0099CC",
-    textColor:"#696969",
-    fillColor:"#ccc",
+    style:{
+        lineColorNor:"#A9A9A9",
+        lineColorSlow:"#CC0000",
+        lineColorFast:"#228B22",
+        highLColor:"#0099CC",
+        textColor:"#696969",
+        fillColor:"#ccc",
+        faultColor:"#CC0000",
+        strokeW:0,
+    },
     zoom:false,
     blankClear:true,
+    modalSwitch:false,
+    mode:"line",
+    freedom:false,
     callback:{}
 };
 $.extend({
@@ -20,6 +27,10 @@ $.extend({
             object1={};
         }
         var object=$.extend({},object2,object1);
+        if(object.mode=="node"){
+            object.style.lineColorSlow=object2.style.lineColorNor;
+            object.style.lineColorFast=object2.style.lineColorNor;
+        }
         $("#canvas").empty();
         //定义一个画布
 
@@ -35,7 +46,6 @@ $.extend({
         var nodeClick = null;
         var lineClick=null;
         if(object.zoom){
-            var nofree = false;
             var zoom = d3.behavior.zoom()
             .scaleExtent([0.5, 10])
             .on("zoom", zoomed);
@@ -53,42 +63,55 @@ $.extend({
                     $(".drill").css("display", "none");
                     if(object.blankClear){
                         nodeClick = null;
+                        lineClick=null;
                         edges_path.style("", function(d) {
                             if (d.source.key !== d.target.key) {
                                 if (d.status == "fast") {
                                     d3.select(this).attr("marker-end", "url(#resolved6)");
-                                    d3.select(this).style("stroke", object.lineColorFalse);
+                                    d3.select(this).style("stroke", object.style.lineColorFast);
                                 } else if (d.status == "slow") {
                                     d3.select(this).attr("marker-end", "url(#resolved2)");
-                                    d3.select(this).style("stroke", object.lineColorShow);
+                                    d3.select(this).style("stroke", object.style.lineColorSlow);
                                 } else {
                                     d3.select(this).attr("marker-end", "url(#resolved)");
-                                    d3.select(this).style("stroke", object.lineColorNor);
+                                    d3.select(this).style("stroke", object.style.lineColorNor);
                                 }
                             } else {
                                 if (d.status == "fast") {
                                     d3.select(this).attr("marker-end", "url(#resolved7)");
-                                    d3.select(this).style("stroke", object.lineColorFalse);
+                                    d3.select(this).style("stroke", object.style.lineColorFast);
                                 } else if (d.status == "slow") {
                                     d3.select(this).attr("marker-end", "url(#resolved5)");
-                                    d3.select(this).style("stroke", object.lineColorShow);
+                                    d3.select(this).style("stroke", object.style.lineColorSlow);
                                 } else {
                                     d3.select(this).attr("marker-end", "url(#resolved3)");
-                                    d3.select(this).style("stroke", object.lineColorNor);
+                                    d3.select(this).style("stroke", object.style.lineColorNor);
                                 }
                             }
                         });
                         edges_text.style("", function(d, i) {
                             if (d.status == "fast") {
-                                d3.select(this).style("fill", object.lineColorFalse);
+                                d3.select(this).style("fill", object.style.lineColorFast);
                             } else if (d.status == "slow") {
-                                d3.select(this).style("fill", object.lineColorShow);
+                                d3.select(this).style("fill", object.style.lineColorSlow);
                             } else {
-                                d3.select(this).style("fill", object.lineColorNor);
+                                d3.select(this).style("fill", object.style.lineColorNor);
                             }
                         });
+                        nodes_rect.style("", function(d, i) {
+                            d3.select(this).style("stroke", object.style.textColor);
+                            if(object.mode=="line"){
+                                d3.select(this).style("stroke", object.style.textColor);
+                              }else{
+                                  if(d.status==0){
+                                      d3.select(this).style("stroke", object.style.textColor);
+                                  }else{
+                                      d3.select(this).style("stroke", object.style.faultColor);
+                                  }
+                              }
+                        });
                         nodes_text.style("",function(d,i){  
-                            d3.select(this).style("fill", object.textColor);
+                            d3.select(this).style("fill", object.style.textColor);
                         });
                     }
                 }
@@ -112,7 +135,7 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.lineColorNor)
+            .attr('stroke', object.style.lineColorNor)
             .attr("fill", "none"); //箭头颜色       
         var marker1 = //直+蓝
             defs.append("marker")
@@ -127,7 +150,7 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.clickColor)
+            .attr('stroke', object.style.highLColor)
             .attr("fill", "none"); //箭头颜色
         var marker2 = //直+红
             defs.append("marker")
@@ -142,7 +165,22 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.lineColorShow)
+            .attr('stroke', object.style.lineColorSlow)
+            .attr("fill", "none"); //箭头颜色
+        var marker2node = //直+红
+            defs.append("marker")
+            .attr("id", "resolved2node")
+            .attr("markerUnits", "userSpaceOnUse")
+            .attr("viewBox", "0 -5 10 10") //坐标系的区域
+            .attr("refX", 32) //箭头坐标
+            .attr("refY", 0)
+            .attr("markerWidth", 12) //标识的大小
+            .attr("markerHeight", 12)
+            .attr("orient", "auto") //绘制方向，可设定为：auto（自动确认方向）和 角度值
+            .attr("stroke-width", 1.5) //箭头宽度
+            .append("path")
+            .attr("d", "M0,-5L10,0L0,5") //箭头的路径
+            .attr('stroke', object.style.faultColor)
             .attr("fill", "none"); //箭头颜色
         var marker3 = //环+灰
             defs.append("marker")
@@ -157,7 +195,7 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.lineColorNor)
+            .attr('stroke', object.style.lineColorNor)
             .attr("fill", "none") //箭头颜色
             .attr("transform", "rotate(30)");
         var marker4 = //环+蓝
@@ -173,7 +211,7 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.clickColor)
+            .attr('stroke', object.style.highLColor)
             .attr("fill", "none") //箭头颜色
             .attr("transform", "rotate(30)");
         var marker5 = //环+红
@@ -189,7 +227,23 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.lineColorShow)
+            .attr('stroke', object.style.lineColorSlow)
+            .attr("fill", "none") //箭头颜色
+            .attr("transform", "rotate(30)");
+        var marker5node = //环+红
+            defs.append("marker")
+            .attr("id", "resolved5node")
+            .attr("markerUnits", "userSpaceOnUse")
+            .attr("viewBox", "0 -5 10 10") //坐标系的区域
+            .attr("refX", 20) //箭头坐标
+            .attr("refY", -43)
+            .attr("markerWidth", 12) //标识的大小
+            .attr("markerHeight", 12)
+            .attr("orient", "auto") //绘制方向，可设定为：auto（自动确认方向）和 角度值
+            .attr("stroke-width", 1.5) //箭头宽度
+            .append("path")
+            .attr("d", "M0,-5L10,0L0,5") //箭头的路径
+            .attr('stroke', object.style.lineColorSlow)
             .attr("fill", "none") //箭头颜色
             .attr("transform", "rotate(30)");
         var marker6 = //直+绿
@@ -205,7 +259,7 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.lineColorFalse)
+            .attr('stroke', object.style.lineColorFast)
             .attr("fill", "none"); //箭头颜色
         var marker7 = //环+绿
             defs.append("marker")
@@ -220,7 +274,7 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.lineColorFalse)
+            .attr('stroke', object.style.lineColorFast)
             .attr("fill", "none") //箭头颜色
             .attr("transform", "rotate(30)");
         //使用力导向图布局获取数据
@@ -255,11 +309,11 @@ $.extend({
                 "id": function(d, i) { return "edgepath" + i; },
                 "stroke": function(d, i) {
                     if (d.status == "fast") {
-                        return object.lineColorFalse;
+                        return object.style.lineColorFast;
                     } else if (d.status == "slow") {
-                        return object.lineColorShow;
+                        return object.style.lineColorSlow;
                     } else {
-                        return object.lineColorNor;
+                        return object.style.lineColorNor;
                     }
                 },
                 "stroke-width": 1.5,
@@ -288,17 +342,25 @@ $.extend({
                 },
                 "cursor": "pointer"
             })
-            .on("click", function(line, d) {
-                $(".drill").css("display", "none");
-                edgeClick(line);
-                event.stopPropagation();
-                var innerY = event.clientY - ($("#canvas").offset().top - $(document).scrollTop());
-                drillY = innerY >= $(".drill").innerHeight() ? innerY - $(".drill").innerHeight() + $("#canvas").offset().top : innerY + $("#canvas").offset().top;
-                var innerX = event.clientX - ($("#canvas").offset().left - $(document).scrollLeft());
-                drillX = innerX >= $(".drill").innerWidth() ? innerX - $(".drill").innerWidth() + $("#canvas").offset().left : $("#canvas").width() - innerX < $(".drill").innerWidth() ? $("#canvas").width() - $(".drill").innerWidth() : innerX + $("#canvas").offset().left;
+            .on({
+                "mouseover": function(line, i) {
+                    edgeMouseover(line);
+                },
+                "mouseout": function(line, i) {
+                    edgeMouseout(line);
+                },
+                "click": function(line, d) {
+                    $(".drill").css("display", "none");
+                    edgeClick(line);
+                    event.stopPropagation();
+                    var innerY = event.clientY - ($("#canvas").offset().top - $(document).scrollTop());
+                    drillY = innerY >= $(".drill").innerHeight() ? innerY - $(".drill").innerHeight() + $("#canvas").offset().top : innerY + $("#canvas").offset().top;
+                    var innerX = event.clientX - ($("#canvas").offset().left - $(document).scrollLeft());
+                    drillX = innerX >= $(".drill").innerWidth() ? innerX - $(".drill").innerWidth() + $("#canvas").offset().left : $("#canvas").width() - innerX < $(".drill").innerWidth() ? $("#canvas").width() - $(".drill").innerWidth() : innerX + $("#canvas").offset().left;
 
-                $(".drill").empty().html(edgeInfo(line));
-                $(".drill").css({ "top": drillY, "left": drillX, "display": "block" });
+                    $(".drill").empty().html(edgeInfo(line));
+                    $(".drill").css({ "top": drillY, "left": drillX, "display": object.modalSwitch?'block':'none' });
+                }
             });
         //设置相互依赖曲线
         curve();
@@ -313,11 +375,11 @@ $.extend({
                 "id": function(d, i) { return "edgepath" + i; },
                 "fill": function(d, i) {
                     if (d.status == "fast") {
-                        return object.lineColorFalse;
+                        return object.style.lineColorFast;
                     } else if (d.status == "slow") {
-                        return object.lineColorShow;
+                        return object.style.lineColorSlow;
                     } else {
-                        return object.lineColorNor;
+                        return object.style.lineColorNor;
                     }
                 },
                 "font-weight": 700
@@ -330,6 +392,12 @@ $.extend({
             })
             .text(function(d, i) { return d.relation + "" })
             .on({
+                "mouseover": function(line, i) {
+                    edgeMouseover(line);
+                },
+                "mouseout": function(line, i) {
+                    edgeMouseout(line);
+                },
                 "click": function(text, d) {
                     $(".drill").css("display", "none");
                     edgeClick(text);
@@ -340,7 +408,7 @@ $.extend({
                     drillX = innerX >= $(".drill").innerWidth() ? innerX - $(".drill").innerWidth() + $("#canvas").offset().left : $("#canvas").width() - innerX < $(".drill").innerWidth() ? $("#canvas").width() - $(".drill").innerWidth() : innerX + $("#canvas").offset().left;
 
                     $(".drill").empty().html(edgeInfo(text));
-                    $(".drill").css({ "top": drillY, "left": drillX, "display": "block" });
+                    $(".drill").css({ "top": drillY, "left": drillX, "display": object.modalSwitch?'block':'none' });
                 }
             });
         //设置图片外边框
@@ -351,22 +419,20 @@ $.extend({
             .attr({
                 "class": "nodesrect",
                 "r": 25,
-                "fill":object.fillColor,
-                /* "strokeWidth": 10,
+                "fill":object.style.fillColor,
+                "stroke-width": object.style.strokeW,
                 "stroke": function(d, i) {
-                    return "#555555";
-                    if (d.status == 1) {
-                        return "#CC0000";
+                    if (object.mode=="node" && d.status == 1) {
+                        return object.style.faultColor;
                     } else {
-                        return "#555555";
+                        return object.style.textColor;
                     }
-                } */
+                }
             });
         //拖拽定点固定
         var drag = force.drag()
             .on("dragstart", function(d, i) {
                 d.fixed = true;
-                /*  nofree = true; */
             });
 
         //节点钻取拖动
@@ -405,7 +471,7 @@ $.extend({
                 </div>
                 `;
             }
-            //设置图片节点
+        //设置图片节点
         var nodes_img = container.append("g").selectAll("image")
             .data(force.nodes())
             .enter()
@@ -443,7 +509,7 @@ $.extend({
                     downX = event.clientX;
                 },
                 "mouseup": function(e) {
-                    $(".drill").css("display", `${downY==event.clientY&&downX==event.clientX?'block':'none'}`);
+                    $(".drill").css("display", `${downY==event.clientY&&downX==event.clientX&&object.modalSwitch?'block':'none'}`);
                 }
             })
             .call(drag);
@@ -456,7 +522,7 @@ $.extend({
             .attr({
                 "class": "nodetext",
                 "font-size": "14px",
-                "fill": object.textColor
+                "fill": object.style.textColor
             })
             .attr(
                 " ",
@@ -524,14 +590,14 @@ $.extend({
         //计算力学图布局位置
         function forceTick() {
             //限制结点的边界
-            /* if (!nofree) { */
+            if (object.freedom) {
             root.nodes.forEach(function(d, i) {
                 d.x = d.x - circleR / 2 - 2 < 0 ? circleR / 2 + 2 : d.x;
                 d.x = d.x + circleR / 2 + 50 > width ? width - circleR / 2 - 50 : d.x;
                 d.y = d.y - circleR / 2 - 7 < 0 ? circleR / 2 + 7 : d.y;
                 d.y = d.y + circleR / 2 + img_h > height ? height - circleR / 2 - img_h : d.y;
             });
-            /* } */
+            }
             //跟新连接线的位置
             edges_path.attr({
                 "d": function(d, i) {
@@ -604,167 +670,391 @@ $.extend({
                 }
             });
         }
+        //节点图片鼠标点击事件
+        function imageClick(image) {
+            pathStyle(image);
+            textPStyle();
+            nodeStyle(image);
+            textNStyle(image);
+        }
         //节点图片鼠标划入事件
         function imageMouseover(image) {
             pathStyle(image);
             edges_text.style("", function(d, i) {
                 if (d.source.key != nodeClick && d.target.key != nodeClick) {
                     if (image.key == d.source.key || image.key == d.target.key) {
-                        d3.select(this).style("fill", object.clickColor);
+                        if(object.mode=="line"){
+                            d3.select(this).style("fill", object.style.highLColor);
+                        }else{
+                            if ((image.key == d.source.key || image.key == d.target.key)&&d.target.status==1) {
+                                d3.select(this).style("fill", object.style.faultColor);
+                            }else{
+                                d3.select(this).style("fill", object.style.highLColor);
+                            }
+                        }
                     }
                 }
             });
-        }
-        //节点图片鼠标点击事件
-        function imageClick(image) {
-            pathStyle(image);
-            textStyle();
             nodeStyle(image);
+            textNStyle(image);
         }
-        //关系线点击事件
-        function edgeClick(line){
-            nodeClick = null;
-            lineClick=line;
-            edges_path.style("", function(d, i) {
-                if (d.source.key !== d.target.key) {
-                    if (d.status == "fast") {
-                        d3.select(this).attr("marker-end", "url(#resolved6)");
-                        d3.select(this).style("stroke", object.lineColorFalse);
-                    } else if (d.status == "slow") {
-                        d3.select(this).attr("marker-end", "url(#resolved2)");
-                        d3.select(this).style("stroke", object.lineColorShow);
-                    } else {
-                        d3.select(this).attr("marker-end", "url(#resolved)");
-                        d3.select(this).style("stroke", object.lineColorNor);
-                    }
-                } else {
-                    if (d.status == "fast") {
-                        d3.select(this).attr("marker-end", "url(#resolved7)");
-                        d3.select(this).style("stroke", object.lineColorFalse);
-                    } else if (d.status == "slow") {
-                        d3.select(this).attr("marker-end", "url(#resolved5)");
-                        d3.select(this).style("stroke", object.lineColorShow);
-                    } else {
-                        d3.select(this).attr("marker-end", "url(#resolved3)");
-                        d3.select(this).style("stroke", object.lineColorNor);
-                    }
-                }
-                if(d==line){
-                    if (d.source.key !== d.target.key) {
-                        d3.select(this).attr("marker-end", "url(#resolved1)");
-                    } else {
-                        d3.select(this).attr("marker-end", "url(#resolved4)");
-                    }
-                    d3.select(this).style("stroke", object.clickColor);
-                }
-            });
-            edges_text.style("", function(d, i) {
-                if (d.status == "fast") {
-                    d3.select(this).style("fill", object.lineColorFalse);
-                } else if (d.status == "slow") {
-                    d3.select(this).style("fill", object.lineColorShow);
-                } else {
-                    d3.select(this).style("fill", object.lineColorNor);
-                }
-                if(d==line){
-                    d3.select(this).style("fill", object.clickColor);
-                }
-            });
-            nodes_text.style("",function(d,i){  
-                d3.select(this).style("fill", object.textColor);
-                if(d.key==line.target.key||d.key==line.source.key){
-                    d3.select(this).style("fill", object.clickColor);
-                }
-            });
-        };
-        //鼠标划出事件
+        //节点图片鼠标划出事件
         function imageMouseout(image) {
             edges_path.style("", function(d) {
                 if (d.source.key != nodeClick && d.target.key != nodeClick&&d!=lineClick) {
                     if (d.source.key !== d.target.key) {
                         if (d.status == "fast") {
                             d3.select(this).attr("marker-end", "url(#resolved6)");
-                            d3.select(this).style("stroke", object.lineColorFalse);
+                            d3.select(this).style("stroke", object.style.lineColorFast);
                         } else if (d.status == "slow") {
                             d3.select(this).attr("marker-end", "url(#resolved2)");
-                            d3.select(this).style("stroke", object.lineColorShow);
+                            d3.select(this).style("stroke", object.style.lineColorSlow);
                         } else {
                             d3.select(this).attr("marker-end", "url(#resolved)");
-                            d3.select(this).style("stroke", object.lineColorNor);
+                            d3.select(this).style("stroke", object.style.lineColorNor);
                         }
                     } else {
                         if (d.status == "fast") {
                             d3.select(this).attr("marker-end", "url(#resolved7)");
-                            d3.select(this).style("stroke", object.lineColorFalse);
+                            d3.select(this).style("stroke", object.style.lineColorFast);
                         } else if (d.status == "slow") {
                             d3.select(this).attr("marker-end", "url(#resolved5)");
-                            d3.select(this).style("stroke", object.lineColorShow);
+                            d3.select(this).style("stroke", object.style.lineColorSlow);
                         } else {
                             d3.select(this).attr("marker-end", "url(#resolved3)");
-                            d3.select(this).style("stroke", object.lineColorNor);
+                            d3.select(this).style("stroke", object.style.lineColorNor);
                         }
                     }
                 }
             });
-            textStyle();
+            textPStyle();
+            nodes_rect.style("", function(d, i) {
+                if(object.mode=="line"){
+                    if (d.key == image.key&&d.key != nodeClick){
+                        d3.select(this).style("stroke", object.style.textColor);
+                    }
+                }else{
+                    if(d.key == image.key&&d.status==0&&d.key == nodeClick){
+                        d3.select(this).style("stroke", object.style.highLColor);
+                    }else if(d.key == image.key&&d.status==0){
+                        d3.select(this).style("stroke", object.style.textColor);
+                    }else if(d.key == image.key&&d.status==1){
+                        d3.select(this).style("stroke", object.style.faultColor);
+                    }
+                } 
+            });
+            nodes_text.style("",function(d,i){ 
+                if(object.mode=="line"){
+                    if (d.key == image.key&&d.key != nodeClick){
+                        d3.select(this).style("fill", object.style.textColor);
+                    }
+                }else{
+                    if(d.key == image.key&&d.status==0&&d.key == nodeClick){
+                        d3.select(this).style("fill", object.style.highLColor);
+                    }else if(d.key == image.key&&d.status==1&&d.key == nodeClick){
+                        d3.select(this).style("fill", object.style.faultColor);
+                    }else if(d.key == image.key){
+                        d3.select(this).style("fill", object.style.textColor);
+                    }
+                } 
+            });
         };
         var pathStyle = function(image) {
             edges_path.style("", function(d, i) {
                 if (d.source.key != nodeClick && d.target.key != nodeClick&&d!=lineClick) {
-                    if (d.source.key !== d.target.key) {
-                        if (d.status == "fast") {
-                            d3.select(this).attr("marker-end", "url(#resolved6)");
-                            d3.select(this).style("stroke", object.lineColorFalse);
-                        } else if (d.status == "slow") {
-                            d3.select(this).attr("marker-end", "url(#resolved2)");
-                            d3.select(this).style("stroke", object.lineColorShow);
+                    if(object.mode=="line"){
+                        if (d.source.key !== d.target.key) {
+                            if (d.status == "fast") {
+                                d3.select(this).attr("marker-end", "url(#resolved6)");
+                                d3.select(this).style("stroke", object.style.lineColorFast);
+                            } else if (d.status == "slow") {
+                                d3.select(this).attr("marker-end", "url(#resolved2)");
+                                d3.select(this).style("stroke", object.style.lineColorSlow);
+                            } else {
+                                d3.select(this).attr("marker-end", "url(#resolved)");
+                                d3.select(this).style("stroke", object.style.lineColorNor);
+                            }
                         } else {
-                            d3.select(this).attr("marker-end", "url(#resolved)");
-                            d3.select(this).style("stroke", object.lineColorNor);
+                            if (d.status == "fast") {
+                                d3.select(this).attr("marker-end", "url(#resolved7)");
+                                d3.select(this).style("stroke", object.style.lineColorFast);
+                            } else if (d.status == "slow") {
+                                d3.select(this).attr("marker-end", "url(#resolved5)");
+                                d3.select(this).style("stroke", object.style.lineColorSlow);
+                            } else {
+                                d3.select(this).attr("marker-end", "url(#resolved3)");
+                                d3.select(this).style("stroke", object.style.lineColorNor);
+                            }
                         }
-                    } else {
-                        if (d.status == "fast") {
-                            d3.select(this).attr("marker-end", "url(#resolved7)");
-                            d3.select(this).style("stroke", object.lineColorFalse);
-                        } else if (d.status == "slow") {
-                            d3.select(this).attr("marker-end", "url(#resolved5)");
-                            d3.select(this).style("stroke", object.lineColorShow);
+                        if (image.key == d.source.key || image.key == d.target.key) {
+                            if (d.source.key !== d.target.key) {
+                                d3.select(this).attr("marker-end", "url(#resolved1)");
+                            } else {
+                                d3.select(this).attr("marker-end", "url(#resolved4)");
+                            }
+                            d3.select(this).style("stroke", object.style.highLColor);
+                        }
+                    }else{
+                        if (d.source.key !== d.target.key) {
+                            d3.select(this).attr("marker-end", "url(#resolved)");
+                            d3.select(this).style("stroke", object.style.lineColorNor);
                         } else {
                             d3.select(this).attr("marker-end", "url(#resolved3)");
-                            d3.select(this).style("stroke", object.lineColorNor);
+                            d3.select(this).style("stroke", object.style.lineColorNor);
                         }
-                    }
-                    if (image.key == d.source.key || image.key == d.target.key) {
-                        if (d.source.key !== d.target.key) {
-                            d3.select(this).attr("marker-end", "url(#resolved1)");
-                        } else {
-                            d3.select(this).attr("marker-end", "url(#resolved4)");
+                        if ((image.key == d.source.key || image.key == d.target.key)&&d.target.status==1) {
+                            if (d.source.key !== d.target.key) {
+                                d3.select(this).attr("marker-end", "url(#resolved2node)");
+                            } else {
+                                d3.select(this).attr("marker-end", "url(#resolved5node)");
+                            }
+                            d3.select(this).style("stroke", object.style.faultColor);
+                        }else if (image.key == d.source.key || image.key == d.target.key) {
+                            if (d.source.key !== d.target.key) {
+                                d3.select(this).attr("marker-end", "url(#resolved1)");
+                            } else {
+                                d3.select(this).attr("marker-end", "url(#resolved4)");
+                            }
+                            d3.select(this).style("stroke", object.style.highLColor);
                         }
-                        d3.select(this).style("stroke", object.clickColor);
                     }
                 }
             });
         }
-        var textStyle = function() {
+        var textPStyle = function() {
             edges_text.style("", function(d, i) {
                 if (d.source.key != nodeClick && d.target.key != nodeClick&&d!=lineClick) {
-                    if (d.status == "fast") {
-                        d3.select(this).style("fill", object.lineColorFalse);
-                    } else if (d.status == "slow") {
-                        d3.select(this).style("fill", object.lineColorShow);
-                    } else {
-                        d3.select(this).style("fill", object.lineColorNor);
+                    if(object.mode=="line"){
+                        if (d.status == "fast") {
+                            d3.select(this).style("fill", object.style.lineColorFast);
+                        } else if (d.status == "slow") {
+                            d3.select(this).style("fill", object.style.lineColorSlow);
+                        } else {
+                            d3.select(this).style("fill", object.style.lineColorNor);
+                        }
+                    }else{
+                        d3.select(this).style("fill", object.style.lineColorNor);
                     }
                 }
             });
         }
         var nodeStyle=function(image){
-            nodes_text.style("",function(d,i){  
-                d3.select(this).style("fill", object.textColor);
-                if(d.key==image.key){
-                    d3.select(this).style("fill", object.clickColor);
+            nodes_rect.style("", function(d, i) {
+                if(object.mode=="line"){
+                    if (d.key != nodeClick) {
+                        d3.select(this).style("stroke", object.style.textColor);
+                    }
+                    if(d.key == image.key){
+                        d3.select(this).style("stroke", object.style.highLColor);
+                    }
+                }else{
+                    if (d.key != nodeClick&&d.status==0) {
+                        d3.select(this).style("stroke", object.style.textColor);
+                    }else if(d.key != nodeClick&&d.status==1){
+                        d3.select(this).style("stroke", object.style.faultColor);
+                    }
+                    if(d.key == image.key&&d.status==0){
+                        d3.select(this).style("stroke", object.style.highLColor);
+                    }else if(d.key == image.key&&d.status==1){
+                        d3.select(this).style("stroke", object.style.faultColor);
+                    }
                 }
             });
+        }
+        var textNStyle=function(image){
+            nodes_text.style("",function(d,i){
+                if(object.mode=="line"){
+                    if (d.key != nodeClick) {
+                        d3.select(this).style("fill", object.style.textColor);
+                    }
+                    if(d.key == image.key){
+                        d3.select(this).style("fill", object.style.highLColor);
+                    }
+                  }else{
+                    if (d.key != nodeClick) {
+                        d3.select(this).style("fill", object.style.textColor);
+                    }
+                    if(d.key == image.key&&d.status==0){
+                        d3.select(this).style("fill", object.style.highLColor);
+                    }else if(d.key == image.key&&d.status==1){
+                        d3.select(this).style("fill", object.style.faultColor);
+                    }
+                  }
+            });
+        }
+        //关系线点击事件
+        function edgeClick(line){
+            nodeClick = null;
+            lineClick=line;
+            edges_path.style("", function(d, i) {
+                if(object.mode=="line"){
+                    if (d.source.key !== d.target.key) {
+                        if (d.status == "fast") {
+                            d3.select(this).attr("marker-end", "url(#resolved6)");
+                            d3.select(this).style("stroke", object.style.lineColorFast);
+                        } else if (d.status == "slow") {
+                            d3.select(this).attr("marker-end", "url(#resolved2)");
+                            d3.select(this).style("stroke", object.style.lineColorSlow);
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved)");
+                            d3.select(this).style("stroke", object.style.lineColorNor);
+                        }
+                    } else {
+                        if (d.status == "fast") {
+                            d3.select(this).attr("marker-end", "url(#resolved7)");
+                            d3.select(this).style("stroke", object.style.lineColorFast);
+                        } else if (d.status == "slow") {
+                            d3.select(this).attr("marker-end", "url(#resolved5)");
+                            d3.select(this).style("stroke", object.style.lineColorSlow);
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved3)");
+                            d3.select(this).style("stroke", object.style.lineColorNor);
+                        }
+                    }
+                    if(d==line){
+                        if (d.source.key !== d.target.key) {
+                            d3.select(this).attr("marker-end", "url(#resolved1)");
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved4)");
+                        }
+                        d3.select(this).style("stroke", object.style.highLColor);
+                    }
+                }else{
+                    if (d.source.key !== d.target.key) {
+                        d3.select(this).attr("marker-end", "url(#resolved)");
+                        d3.select(this).style("stroke", object.style.lineColorNor);
+                    } else {
+                        d3.select(this).attr("marker-end", "url(#resolved3)");
+                        d3.select(this).style("stroke", object.style.lineColorNor);
+                    }
+                    if (d==line&&d.target.status==1) {
+                        if (d.source.key !== d.target.key) {
+                            d3.select(this).attr("marker-end", "url(#resolved2node)");
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved5node)");
+                        }
+                        d3.select(this).style("stroke", object.style.faultColor);
+                    }else if (d==line) {
+                        if (d.source.key !== d.target.key) {
+                            d3.select(this).attr("marker-end", "url(#resolved1)");
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved4)");
+                        }
+                        d3.select(this).style("stroke", object.style.highLColor);
+                    }
+                }
+            });
+            edges_text.style("", function(d, i) {
+                if(object.mode=="line"){
+                    if (d.status == "fast") {
+                        d3.select(this).style("fill", object.style.lineColorFast);
+                    } else if (d.status == "slow") {
+                        d3.select(this).style("fill", object.style.lineColorSlow);
+                    } else {
+                        d3.select(this).style("fill", object.style.lineColorNor);
+                    }
+                    if(d==line){
+                        d3.select(this).style("fill", object.style.highLColor);
+                    }
+                }else{
+                    if(d==line&&d.target.status==0){
+                        d3.select(this).style("fill", object.style.highLColor);
+                    }else if(d==line&&d.target.status==1){
+                        d3.select(this).style("fill", object.style.faultColor);
+                    }else{
+                        d3.select(this).style("fill", object.style.lineColorNor);
+                    }
+                }
+            });
+            nodes_rect.style("", function(d, i) {
+                if(object.mode=="line"){
+                    d3.select(this).style("stroke", object.style.textColor);
+                }else{
+                    if(d.status==0){
+                        d3.select(this).style("stroke", object.style.textColor);
+                    }else{
+                        d3.select(this).style("stroke", object.style.faultColor);
+                    }
+                }
+            });
+            nodes_text.style("",function(d,i){  
+                d3.select(this).style("fill", object.style.textColor);
+            });
+        };
+        /* edges鼠标滑入事件 */
+        function edgeMouseover(line){
+            edges_path.style("", function(d, i) {
+                if(object.mode=="line"){
+                    if(d==line){
+                        if (d.source.key !== d.target.key) {
+                            d3.select(this).attr("marker-end", "url(#resolved1)");
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved4)");
+                        }
+                        d3.select(this).style("stroke", object.style.highLColor);
+                    }
+                }else{
+                    if (d==line&&d.target.status==1) {
+                        if (d.source.key !== d.target.key) {
+                            d3.select(this).attr("marker-end", "url(#resolved2node)");
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved5node)");
+                        }
+                        d3.select(this).style("stroke", object.style.faultColor);
+                    }else if (d==line) {
+                        if (d.source.key !== d.target.key) {
+                            d3.select(this).attr("marker-end", "url(#resolved1)");
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved4)");
+                        }
+                        d3.select(this).style("stroke", object.style.highLColor);
+                    }
+                }
+            });
+            edges_text.style("", function(d, i) {
+                if(object.mode=="line"){
+                    if (d==line){
+                        d3.select(this).style("fill", object.style.highLColor);
+                    }
+                }else{
+                    if (d==line&&d.target.status==1) {
+                        d3.select(this).style("fill", object.style.faultColor);
+                    }else if (d==line) {
+                        d3.select(this).style("fill", object.style.highLColor);
+                    }
+                }
+            });
+        }
+        /* edges鼠标滑出事件 */
+        function edgeMouseout(line){
+            edges_path.style("", function(d) {
+                if (d.source.key != nodeClick && d.target.key != nodeClick&&d!=lineClick) {
+                    if (d.source.key !== d.target.key) {
+                        if (d.status == "fast") {
+                            d3.select(this).attr("marker-end", "url(#resolved6)");
+                            d3.select(this).style("stroke", object.style.lineColorFast);
+                        } else if (d.status == "slow") {
+                            d3.select(this).attr("marker-end", "url(#resolved2)");
+                            d3.select(this).style("stroke", object.style.lineColorSlow);
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved)");
+                            d3.select(this).style("stroke", object.style.lineColorNor);
+                        }
+                    } else {
+                        if (d.status == "fast") {
+                            d3.select(this).attr("marker-end", "url(#resolved7)");
+                            d3.select(this).style("stroke", object.style.lineColorFast);
+                        } else if (d.status == "slow") {
+                            d3.select(this).attr("marker-end", "url(#resolved5)");
+                            d3.select(this).style("stroke", object.style.lineColorSlow);
+                        } else {
+                            d3.select(this).attr("marker-end", "url(#resolved3)");
+                            d3.select(this).style("stroke", object.style.lineColorNor);
+                        }
+                    }
+                }
+            });
+            textPStyle();
         }
         //数据转化
         function replaceId(data){
@@ -782,16 +1072,5 @@ $.extend({
             }
             return data;
         }
-        /* 返回工具类 */
-       /*  var relativeD3Tools={
-            getSelectedTime:function(){
-
-            },
-            getSelectedTag:function(){
-                var $this=keep?null:$(".listPa .timeTag.active");
-                return $this;
-            }
-        }
-        return relativeD3Tools; */
     }
 });

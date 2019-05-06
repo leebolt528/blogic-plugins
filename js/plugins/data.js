@@ -629,27 +629,33 @@ var oneData=[
     "nodes": [{
         "name": "存量营销(同网)",
         "image": "../img/plugins/relativeD3/user.png",
-        "key": "11"
+        "key": "11",
+        "status": "1"
     }, {
         "name": "营销活动接口服务",
         "image": "../img/plugins/relativeD3/tomcat.png",
-        "key": "22"
+        "key": "22",
+        "status": "1"
     }, {
         "name": "用户划配",
         "image": "../img/plugins/relativeD3/mysql.png",
-        "key": "33"
+        "key": "33",
+        "status": "0"
     }, {
         "name": "fdafafawefwaefwef",
         "image": "../img/plugins/relativeD3/user.png",
-        "key": "44"
+        "key": "44",
+        "status": "0"
     }, {
         "name": "USER",
         "image": "../img/plugins/relativeD3/mysql.png",
-        "key": "55"
+        "key": "55",
+        "status": "0"
     }, {
         "name": "工单中心",
         "image": "../img/plugins/relativeD3/tomcat.png",
-        "key": "00"
+        "key": "00",
+        "status": "0"
     }],
     "edges": [{
         "source": "00",

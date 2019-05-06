@@ -49,42 +49,49 @@
             });
 
             var options={
-            lineColorNor:"#A9A9A9",//灰色
-            lineColorShow:"#CC0000",//红色
-            lineColorFalse:"#228B22",//绿色
-            clickColor:"#0099CC",//蓝色 点击
-            textColor:"#696969",//蓝色 文本
-            fillColor:"#fff",
-            zoom:false,
-            blankClear:true,
-            callback:{
-                onClickNode:function(node){console.log("node="+node);return node},
-                onClickEdge:function(edge){console.log("edge="+edge);return edge}
-            }
-        };
-        $(function(){
-            $.relativeD3("#canvas", d3Data,options);//options参数可不传，将使用默认值
-        })
-        /* var resizeQunee=function(){
-            if(d3Data.nodes.length>0){
-                $.relativeD3("#canvas",d3Data,options, false);
+                style:{
+                    lineColorNor:"#A9A9A9",//灰色
+                    lineColorSlow:"#CC0000",//红色
+                    lineColorFast:"#228B22",//绿色
+                    highLColor:"#0099CC",//蓝色 点击
+                    textColor:"#696969",//灰色 文本
+                    fillColor:"#fff",//节点背景色
+                    faultColor:"#CC0000",
+                    strokeW:1,
+                },
+                zoom:false,
+                blankClear:true,
+                modalSwitch:true,
+                mode:"line",
+                freedom:true,
+                callback:{
+                    onClickNode:function(node){console.log("node="+node);return node},
+                    onClickEdge:function(edge){console.log("edge="+edge);return edge}
+                }
             };
-        }
-        //如果画布的父类大小随窗口变化自适应需要重新绘图，防止连续变化窗口大小时进行多次数据请求和绘图
-        var debounce = function(idle, action){
-            var last
-            return function(){
-                var ctx = this, args = arguments
-                clearTimeout(last)
-                last = setTimeout(function(){
-                    action.apply(ctx, args)
-                }, idle)
+            $(function(){
+                $.relativeD3("#canvas", d3Data,options);//options参数可不传，将使用默认值
+            })
+            /* var resizeQunee=function(){
+                if(d3Data.nodes.length>0){
+                    $.relativeD3("#canvas",d3Data,options, false);
+                };
             }
-        }
-        var oneQunee=debounce(250,resizeQunee);
-        $(window).resize(function(){
-            oneQunee();
-        }); */
+            //如果画布的父类大小随窗口变化自适应需要重新绘图，防止连续变化窗口大小时进行多次数据请求和绘图
+            var debounce = function(idle, action){
+                var last
+                return function(){
+                    var ctx = this, args = arguments
+                    clearTimeout(last)
+                    last = setTimeout(function(){
+                        action.apply(ctx, args)
+                    }, idle)
+                }
+            }
+            var oneQunee=debounce(250,resizeQunee);
+            $(window).resize(function(){
+                oneQunee();
+            }); */
         })
     </script>
 </head>

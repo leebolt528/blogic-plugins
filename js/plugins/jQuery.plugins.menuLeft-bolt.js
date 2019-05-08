@@ -5,6 +5,7 @@
             options1={callback:{}};
         }
         var options0={
+            selected:"",
             menuOpen:true,
             hideFloat:true,
             callback:{}

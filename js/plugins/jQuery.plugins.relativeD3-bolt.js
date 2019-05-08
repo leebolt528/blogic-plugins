@@ -26,7 +26,7 @@ $.extend({
         if(!object1){
             object1={};
         }
-        var object=$.extend({},object2,object1);
+        var object=$.extend(true,{},object2,object1);
         if(object.mode=="node"){
             object.style.lineColorSlow=object2.style.lineColorNor;
             object.style.lineColorFast=object2.style.lineColorNor;

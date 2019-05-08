@@ -119,6 +119,9 @@
             return function(){
                 inputNode.value = '';
                 document.getElementById('clear').classList.remove("clear");
+                if(options.callback.hasOwnProperty("onClickClear")){
+                    options.callback.onClickClear();
+                }
             }
         }
         //创建清空按钮

@@ -34,6 +34,9 @@
     background-color: #3875d7!important;
     color: #fff;
 }
+.ztreeTBolt li a.highLight{
+    color:red;
+}
 .ztreeTBolt div.diy {
     height: 100%;
     border-top: 1px solid #ddd;

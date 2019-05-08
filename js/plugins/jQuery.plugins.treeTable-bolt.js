@@ -1,9 +1,9 @@
 (function($){
     $.fn.treeTableBolt=function(options1,getData){
-        if (arguments.length === 1) {
+        /* if (arguments.length === 1) {
             getData=options1;
             options1={};
-        }
+        } */
         var options0={
             displayW:1,
             startUrl:"",
@@ -71,9 +71,9 @@
             var elemArr= persistData.filter(function(item){
                 return item.idP == $tr.data("tt-id");
             }) ;
-        if(elemArr.length!=0){
-            ajaxBool=false;
-        }
+            if(elemArr.length!=0){
+                ajaxBool=false;
+            }
             if(!ajaxBool){ return;}
             if($tr.data("ajax")){
                 //异步请求数据等待ajax显示loading动画
@@ -280,8 +280,8 @@
                     '<tbody style="font-size: 12px;position:relative;background-color: #f9f9f9" class="layout scrollBox"></tbody>';
        $(".treeTBolt").html(tableIn);
         $(".treeTBolt").wrap('<div class="treeTBoltPa tableOutPa" style="height:100%"> ');
-       /*  treeTableAsync(options,oneData); */
-        treeTableAsync(options,treeTData); 
+        treeTableAsync(options,oneData);
+        /* treeTableAsync(options,treeTData); */ 
         $(window).resize();
         
         //返回对象事件

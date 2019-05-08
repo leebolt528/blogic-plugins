@@ -1,9 +1,9 @@
 (function($){
     $.fn.ztreeTableBolt=function(options1,getData){
-        if (arguments.length === 1) {
+       /*  if (arguments.length === 1) {
             getData=options1;
             options1={};
-        }
+        } */
         var options0={
             displayW:1,
             class:"",
@@ -36,6 +36,9 @@
             })
             if($(".ztreeTBolt").hasClass("table-click")&&treeNode.selected){
                 aObj.addClass("curSelectedNode");
+            }
+            if(treeNode.highLight){
+                aObj.addClass("highLight");
             }
             aObj.append("<div class='diy swich textOverflow' title='"+treeNode["parameter"][keyName]+"' style='width:"+nameW+";text-align:"+nameA+"'></div>");
             var div = $(liObj).find('div').eq(0);

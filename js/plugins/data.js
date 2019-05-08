@@ -169,7 +169,7 @@ var ztreeData={
     ],
     data:[
         {
-            open:true,id:"0",pId:"1","selected":true,
+            open:true,id:"0",pId:"1","selected":true,highLight:false,
             parameter:{
                 name:"Tomcat Servlet Process",
                 funPara:"/paas/operator/redis/service/2c90839e683590eb01684a784cce006f/node",
@@ -184,7 +184,7 @@ var ztreeData={
             }
         },
         {
-            open:true,id:"2",pId:"1",
+            open:true,id:"2",pId:"1",highLight:true,
             parameter:{
                 name:"http.status.code",
                 funPara:"200",

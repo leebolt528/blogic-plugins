@@ -10,9 +10,9 @@ var object2={
         strokeW:0,
     },
     zoom:false,
-    blankClear:true,
+    canvasClear:true,
     modalSwitch:false,
-    mode:"line",
+    mode:"node",
     freedom:false,
     callback:{}
 };
@@ -61,7 +61,10 @@ $.extend({
                 "click",
                 function(image, i) {
                     $(".drill").css("display", "none");
-                    if(object.blankClear){
+                    if(object.callback.hasOwnProperty("onClickCanvas")){
+                        object.callback.onClickCanvas();
+                    }   
+                    if(object.canvasClear){
                         nodeClick = null;
                         lineClick=null;
                         edges_path.style("", function(d) {
@@ -116,7 +119,7 @@ $.extend({
                     }
                 }
             );
-            object.zoom?(function(){svg.call(zoom)})():"";
+            object.zoom?(function(){svg.call(zoom);})():"";
         var container = svg.append("g");
         var drillX;
         var drillY;
@@ -243,7 +246,7 @@ $.extend({
             .attr("stroke-width", 1.5) //箭头宽度
             .append("path")
             .attr("d", "M0,-5L10,0L0,5") //箭头的路径
-            .attr('stroke', object.style.lineColorSlow)
+            .attr('stroke', object.style.faultColor)
             .attr("fill", "none") //箭头颜色
             .attr("transform", "rotate(30)");
         var marker6 = //直+绿
@@ -590,7 +593,7 @@ $.extend({
         //计算力学图布局位置
         function forceTick() {
             //限制结点的边界
-            if (object.freedom) {
+            if (!object.freedom) {
             root.nodes.forEach(function(d, i) {
                 d.x = d.x - circleR / 2 - 2 < 0 ? circleR / 2 + 2 : d.x;
                 d.x = d.x + circleR / 2 + 50 > width ? width - circleR / 2 - 50 : d.x;

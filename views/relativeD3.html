@@ -36,7 +36,7 @@
     <script>
         $(function(){
             var optionsMenu={
-                selected:"1",
+                selected:"8",
                 menuOpen:true,
                 hideFloat:true,
                 callback:{
@@ -57,16 +57,17 @@
                     textColor:"#696969",//灰色 文本
                     fillColor:"#fff",//节点背景色
                     faultColor:"#CC0000",
-                    strokeW:1,
+                    strokeW:2,
                 },
-                zoom:false,
-                blankClear:true,
+                /* zoom:false, */
+                canvasClear:false,
                 modalSwitch:true,
                 mode:"line",
-                freedom:true,
+                freedom:false,
                 callback:{
                     onClickNode:function(node){console.log("node="+node);return node},
-                    onClickEdge:function(edge){console.log("edge="+edge);return edge}
+                    onClickEdge:function(edge){console.log("edge="+edge);return edge},
+                    onClickCanvas:function(){console.log("onClickCanvas");}
                 }
             };
             $(function(){

@@ -14,7 +14,7 @@
         }
         var options=$.extend(true,{},options0,options1);
         var treeTData=$.isFunction(getData) ? getData() : getData;
-        var aa=0;//模拟异步请求需要的临时变量
+        var temvar=0;//模拟异步请求需要的临时变量
         var ajaxArr=[];//存储正在执行的AJAX
         var abortBoolean=false;//是否停止一个AJAX
         var persistData=[];//缓存AJAX请求返回数据
@@ -85,12 +85,12 @@
                         url : $tr.data("ajax"),
                         data: ajaxPara,
                         success:function(treeData) { */
-                            if(aa==0){
+                            if(temvar==0){
                                 var treeTData=threeData;
                             }else{
                                 var treeTData=lastData;
                             }
-                            aa++;
+                            temvar++;
                             //移除异步请求load动画
                             if($(".treeTBolt").find("[data-tt-id='" + node.id+"childLoad" + "']")[0]) {
                                 $(".treeTBolt").treetable("removeNode", node.id+"childLoad");
@@ -184,7 +184,6 @@
         }
         function treeTableAsync(options,treeTData){
             //ajax请求局部刷新时初始化全局参数
-            //ajaxArr=[];//存储正在执行的AJAX
             abortBoolean=false;//是否停止一个AJAX
             persistData=[];//缓存AJAX请求返回数据
             ajaxArr.map(function(elem){
@@ -197,16 +196,15 @@
             $(".treeTBolt>tbody").html(loading);//初始化数据等待ajax状态显示load动画
             $(".panel-load").css("left",options.displayW*100/2+"%");
             if(options.async){
-                var defferArr=[];
                 setTimeout(function(){ 
                     /* var ajax=$.ajax({
                         type: 'GET',
                         url: options.startUrl,
                         data: {
                         },
-                        success: function (data){ */
-                            //var data=oneData;
+                        success: function (treeTData){ */
                             initTable(options,treeTData);
+                            initTreeTable(options,treeTData);
                     /*  },
                         error:function(){
                             if(!abortBoolean){
@@ -217,11 +215,7 @@
                             }
                         }
                     });
-                    defferArr.push(ajax);
-                    ajaxArr.push(ajax);
-                    $.when.apply(this, defferArr).done(function() { */
-                        initTreeTable(options,treeTData);
-                /*  }); */
+                    ajaxArr.push(ajax); */
                 }, 1000);
             }else{
                 initTable(options,treeTData)
@@ -280,8 +274,7 @@
                     '<tbody style="font-size: 12px;position:relative;background-color: #f9f9f9" class="layout scrollBox"></tbody>';
        $(".treeTBolt").html(tableIn);
         $(".treeTBolt").wrap('<div class="treeTBoltPa tableOutPa" style="height:100%"> ');
-        treeTableAsync(options,oneData);
-        /* treeTableAsync(options,treeTData); */ 
+        treeTableAsync(options,treeTData);
         $(window).resize();
         
         //返回对象事件

@@ -60,22 +60,22 @@ var promptExpreData = {
         "fl_board_name": [
             "=",
             "!=",
-            "is"
-        ],
-        "fl_content": [
-            "=",
-            "!=",
             ">",
             ">=",
             "<",
             "<=",
             "is"
+        ],
+        "fl_content": [
+            "=",
+            "!=",
+            "is"
         ]
     },
     "valuemap": {
         "fl_article_from#=": "contentop1",
-        "fl_article_from#!=": "contentop1",
-        "fl_article_from#is": "contentop2",
+        "fl_article_from#!=": "contentop4",
+        "fl_board_name#is": "contentop2",
         "fl_board_name#=": "contentop3",
         "fl_board_name#!=": "contentop3",
         "fl_board_name#is": "contentop2",
@@ -106,11 +106,14 @@ var promptExpreData = {
         "contentop3": {
             "type": "value",
             "data": [
-                "新华地方"
+                "新华地方",
+                "新华地方1",
+                "新华地方2"
             ]
         },
         "contentop4": {
-            "type": "http"
+            "type": "http",
+            "data":"ajax请求路径"
         }
     }
 }

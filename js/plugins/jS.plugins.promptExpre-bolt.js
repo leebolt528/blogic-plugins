@@ -53,6 +53,19 @@
                             if (dataSource.values[dataSource.valuemap[`${qw}`]].type == "value") {
                                 valueArr.sort();
                                 createSelect(/[.]*/, false);
+                            }//dataSource.values[dataSource.valuemap[`${qw}`]].type == "http"的情况
+                            else{
+                                fetch(dataSource.values[dataSource.valuemap[`${qw}`]].data + oneSplit[oneSplit.length - 1], {
+                                    credentials: 'same-origin',
+                                    method: 'GET'
+                                })
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    let reg = new RegExp("(" + '^' + `${oneSplit[oneSplit.length-1]}` + ")", "i");
+                                    createSelectHttp(reg, data.data);
+                                }).catch((err) => {
+                                    console.log(err.toString());
+                                });
                             }
                         }
                     }
@@ -68,7 +81,7 @@
                         } 
                         //dataSource.values[dataSource.valuemap[`${qw}`]].type == "http"的情况
                         else {
-                            fetch(dataSource.values[this.state.dataSource.valuemap[`${qw}`]].data + oneSplit[oneSplit.length - 1], {
+                            fetch(dataSource.values[dataSource.valuemap[`${qw}`]].data + oneSplit[oneSplit.length - 1], {
                                     credentials: 'same-origin',
                                     method: 'GET'
                                 })

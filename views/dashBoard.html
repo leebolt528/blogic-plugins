@@ -32,19 +32,20 @@
     <script type='text/javascript' src='../js/common/highcharts/oldie.js'></script>
     <script type='text/javascript' src='../js/common/highcharts/solid-gauge.js'></script>
     <script type='text/javascript' src='../js/common/highcharts/wordcloud.js'></script>
-    <script type='text/javascript' src='../js/plugins/jQuery.plugins.chartUtil-bolt.js'></script>
-    <script type='text/javascript' src='../js/plugins/chartUtil-data.js'></script>
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.highcharts-bolt.js'></script>
+    <script type='text/javascript' src='../js/plugins/highcharts-data.js'></script>
 
     <title>仪表板</title>
     <script>
         $(function(){
+            var dashboardObj;
             var optionsMenu={
                 selected:"6",
                 menuOpen:true,
                 hideFloat:true,
                 callback:{
-                    onExpand:function(){console.log('onExpand');},
-                    onCollapse:function(){ console.log('onCollapse');},
+                    onExpand:function(){console.log('onExpand');reflowHightcharts(dashboardObj)},
+                    onCollapse:function(){ console.log('onCollapse');reflowHightcharts(dashboardObj)},
                 }
             };
             $(".menuLeft").menuLeftBolt(optionsMenu,function(){
@@ -56,15 +57,22 @@
                     verticalMargin:15,
                     cellHeight:2,
                     handle: ".drag-handle",
-                    float:false,
                     levelMargin:15
                 },
                 callback:{
-                    onClear:function($this,delArray){console.log($this);console.log(delArray);},
+                    onDel:function($this,delArray){console.log($this);console.log(delArray);},
                 }
             };
-            var dashboardObj=$(".dashBoard").getDashboard(optionsDashBoard,dashboardData);
+            dashboardObj=$(".dashBoard").getDashboard(optionsDashBoard,dashboardData);
             console.log(dashboardObj.getAllWidgets());
+            /* highcharts图自适应菜单收缩 */
+            function reflowHightcharts(dashboardObj){
+                let hightchartIdArr=dashboardObj.getAllHightchartId();
+                hightchartIdArr.map(function(item){
+                    $(item).highcharts().reflow();
+                });
+            }
+            reflowHightcharts(dashboardObj)
         })
     </script>
 </head>

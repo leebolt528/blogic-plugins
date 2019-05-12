@@ -25,6 +25,7 @@
         var grid = $this.data('gridstack');
         var delArray=[];//记录删除的面板id
         var widgetsArray=[];//获取当前面板的最新属性
+        var hightchartsIdArr=[];//保存绘图id,不加入单值图id
         switch(options.mode) {
             case "view":
                 dashboardData.map(function(value){
@@ -59,9 +60,12 @@
                     });
 
                     $.when.apply(this, defferArr).done(function() {
-                        $this.find("#"+value.id).chart(value.options,chartData);
+                        $this.find("#"+value.id).hightcharts(value.options,chartData);
+                        if(chartData[0].label.type!="singleValuechart"){
+                            hightchartsIdArr.push("#"+value.id);
+                        }
                     }).fail(function() {
-                       $this.find("#"+value.id).chart([]);
+                       $this.find("#"+value.id).hightcharts([]);
                     });
                 });
                 break;
@@ -102,18 +106,23 @@
                     });
 
                     $.when.apply(this, defferArr).done(function() {
-                        $this.find("#"+value.id).chart(value.options,chartData);
-                    });
+                        $this.find("#"+value.id).hightcharts(value.options,chartData);
+                        if(chartData[0].label.type!="singleValuechart"){
+                            hightchartsIdArr.push("#"+value.id);
+                        }
+                    }).fail(function() {
+                        $this.find("#"+value.id).hightcharts([]);
+                     });;
                 });
                 break;
         }
         $(document).on("click",".delete-panel",function(){
             var grid = $(this).closest(".grid-stack").data('gridstack');
             grid.removeWidget($(this).closest(".grid-stack-item"));
-            if(options.callback.hasOwnProperty("onClear")){
+            if(options.callback.hasOwnProperty("onDel")){
                 var $this=$(this).closest(".grid-stack-item");
                 delArray.push($(this).closest(".dashboard-panel").children(".panel-body").attr("id"));
-                options.callback.onClear($this,delArray);
+                options.callback.onDel($this,delArray);
             }
         });
         $this.on('gsresizestop', function(event, elem) {
@@ -165,6 +174,9 @@
                     });
                 });
                 return widgetsArray;
+            },
+            getAllHightchartId:function(){
+                return hightchartsIdArr;
             }
         }
         return dashboardTools;

@@ -1,5 +1,5 @@
 (function( $ ){
-    $.fn.chart = function(options1,getData) {
+    $.fn.hightcharts = function(options1,getData) {
         if (arguments.length == 1) {
             getData=options1
             options1={};

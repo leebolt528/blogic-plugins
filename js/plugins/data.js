@@ -379,7 +379,7 @@ var ztreeData={
             "img" : "",
             "last" : false,
             "synChild" : true,
-            "ajax" : "/app/monitor/orchestration/ajax/deployments?jumpsource=deployment&isIndicator=true",
+            "ajax" : "/app/monitor/orchestration/ajax/deployments",
             "parameterName" : "namespace",
             "subResourceCount" : "2",
             "data" : {
@@ -397,7 +397,7 @@ var ztreeData={
             "img" : "",
             "last" : false,
             "synChild" : false,
-            "ajax" : "/app/monitor/orchestration/ajax/pods?isIndicator=true&type=deployment",
+            "ajax" : "/app/monitor/orchestration/ajax/pods",
             "parameterName" : "byname",
             "subResourceCount" : "1",
             "selected":true,

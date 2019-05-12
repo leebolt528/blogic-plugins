@@ -1584,14 +1584,14 @@ var singleValueData=[
 /* 仪表板数据 */
 var dashboardData= [{
     "id":"panels1",
-    "title": ".chart(areaData)",
+    "title": "面积图-areachart-.highcharts(areaData,{export:true})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 0,
         "dataGsWidth":4,
         "dataGsHeight": 15
     },
-    "options":{},
+    "options":{export:true},
     "widgets": [{
         "ajax":false,
         "data":areaData[0]
@@ -1601,7 +1601,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels2",
-    "title": ".chart(areaSplineData)",
+    "title": "曲线面积图-areasplinechart-.highcharts(areaSplineData)",
     "location": {
         "dataGsX": 4,
         "dataGsY": 0,
@@ -1615,7 +1615,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels3",
-    "title": ".chart(areaPerData)",
+    "title": "百分比面积图-areachartpercent-.highcharts(areaPerData)",
     "location": {
         "dataGsX": 8,
         "dataGsY": 0,
@@ -1632,7 +1632,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels4",
-    "title": ".chart(areaNorData)",
+    "title": "堆叠面积图-areachartnormal-.highcharts(areaNorData)",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15,
@@ -1649,7 +1649,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels5",
-    "title": ".chart(lineData)",
+    "title": "折线图-linechart-.highcharts(lineData)",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*2,
@@ -1663,7 +1663,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels6",
-    "title": ".chart(splineData)",
+    "title": "曲线图-splinechart-.highcharts(splineData)",
     "location": {
         "dataGsX": 6,
         "dataGsY": 15*2,
@@ -1677,7 +1677,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels7",
-    "title": ".chart(pieData)",
+    "title": "饼图-piechart-.highcharts(pieData)",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*3,
@@ -1691,7 +1691,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels8",
-    "title": ".chart(pieDrillData)",
+    "title": "下钻饼图-piechart-.highcharts(pieDrillData)",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*3,
@@ -1708,7 +1708,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels9",
-    "title": ".chart(ringRuleData,{pieRing:{subY:30,subfontSize:'25px'}})",
+    "title": "双环图-piechartringrule-.highcharts(ringRuleData,{pieRing:{subY:30,subfontSize:'25px'}})",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*3,
@@ -1724,7 +1724,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels10",
-    "title": ".chart(ringHalfData,{pieRing:{subY:15}})",
+    "title": "环形图-piechartring-.highcharts(ringHalfData,{pieRing:{subY:15}})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*4,
@@ -1740,7 +1740,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels11",
-    "title": ".chart(ringData,{ring:{startAngle:0,endAngle:360}})",
+    "title": "环形图-piechartring-.highcharts(ringData,{ring:{startAngle:0,endAngle:360}})",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*4,
@@ -1756,7 +1756,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels12",
-    "title": ".chart(scatterData)",
+    "title": "散点图-scatterchart-.highcharts(scatterData)",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*4,
@@ -1770,7 +1770,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels13",
-    "title": ".chart(bubbleData)",
+    "title": "气泡图-bubblechart-.highcharts(bubbleData)",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*5,
@@ -1784,7 +1784,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels14",
-    "title": ".chart(columnData)",
+    "title": "柱状图-columnchart-.highcharts(columnData)",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*5,
@@ -1801,7 +1801,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels15",
-    "title": ".chart(columnDrillData)",
+    "title": "可下钻柱状图-columnchartdrill-.highcharts(columnDrillData)",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*5,
@@ -1818,7 +1818,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels16",
-    "title": ".chart(columnPerData)",
+    "title": "百分比柱状图-columnchartpercent-.highcharts(columnPerData)",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*6,
@@ -1835,7 +1835,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels17",
-    "title": ".chart(columnNorData)",
+    "title": "堆叠柱状图-columnchartnormal-.highcharts(columnNorData)",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*6,
@@ -1852,7 +1852,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels18",
-    "title": ".chart(barData)",
+    "title": "条形图-barchart-.highcharts(barData)",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*6,
@@ -1869,7 +1869,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels19",
-    "title": ".chart(barPerData)",
+    "title": "百分比条形图-barchartpercent-.highcharts(barPerData)",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*7,
@@ -1886,7 +1886,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels20",
-    "title": ".chart(barNorData)",
+    "title": "堆叠条形图-barchartnormal-.highcharts(barNorData)",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*7,
@@ -1903,7 +1903,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels21",
-    "title": ".chart(solidgaugePreHalfData,{solidgauge:{tickAmount:5}})",
+    "title": "百分比活动图in-solidgaugechartpreIn-.highcharts(solidgaugePreHalfData,{solidgauge:{tickAmount:5}})",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*7,
@@ -1919,7 +1919,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels22",
-    "title": ".chart(solidgaugePreData,{solidgauge:{tickAmount:5},ring:{startAngle:0,endAngle:360}})",
+    "title": "百分比活动图out-solidgaugechartpreOut-.highcharts(solidgaugePreData,{solidgauge:{tickAmount:5},ring:{startAngle:0,endAngle:360}})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*8,
@@ -1936,7 +1936,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels23",
-    "title": ".chart(solidgaugeNumData,{ring:{startAngle:0,endAngle:360}})",
+    "title": "数值活动图-solidgaugechartnum-.highcharts(solidgaugeNumData,{ring:{startAngle:0,endAngle:360}})",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*8,
@@ -1952,7 +1952,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels24",
-    "title": ".chart(solidgaugeNumHalfData,{solidgauge:{tickAmount:2},tooltip:{enabled:false}})",
+    "title": "数值活动图-solidgaugechartnum-.highcharts(solidgaugeNumHalfData,{solidgauge:{tickAmount:2},tooltip:{enabled:false}})",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*8,
@@ -1969,7 +1969,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels25",
-    "title": ".chart(gaugePreHalfData,{solidgauge:{tickAmount:5}, yAxis:{yTitleUnit:true},tooltip:{enabled:false}})",
+    "title": "百分比仪表图-gaugechartpre-.highcharts(gaugePreHalfData,{solidgauge:{tickAmount:5}, yAxis:{yTitleUnit:true},tooltip:{enabled:false}})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*9,
@@ -1987,7 +1987,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels26",
-    "title": ".chart(gaugePreHalfData1,{solidgauge:{tickAmount:5},tooltip:{enabled:true}})",
+    "title": "百分比仪表图out-gaugechartpreOut-.highcharts(gaugePreHalfData1,{solidgauge:{tickAmount:5},tooltip:{enabled:true}})",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*9,
@@ -2004,7 +2004,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels27",
-    "title": ".chart(gaugeNumHalfData,{solidgauge:{tickAmount:5}})",
+    "title": "数值仪表图out-gaugechartnumOut-.highcharts(gaugeNumHalfData,{solidgauge:{tickAmount:5}})",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*9,
@@ -2020,7 +2020,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels28",
-    "title": ".chart(wordcloudData)",
+    "title": "词云图-wordcloudchart-.highcharts(wordcloudData)",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*10,
@@ -2037,7 +2037,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels29",
-    "title": ".chart(singleValueData)",
+    "title": "单值图-singleValuechart-.highcharts(singleValueData)",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*10,

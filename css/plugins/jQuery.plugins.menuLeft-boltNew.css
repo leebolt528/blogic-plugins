@@ -1,0 +1,468 @@
+.menuLeftBolt{
+    height:100%;
+    position: relative;
+    width: 215px;
+    float: left;
+    background-color:#e6e8ec;
+    font-family: "Microsoft YaHei";
+    border-right: 1px solid #dadde2;
+}
+/* 导航上方标题 */
+.menuLeftBolt>.title>div{
+    height:62px;
+    line-height: 62px;
+    padding: 0px 20px;
+    display: inline-block;
+    width: 100%;
+}
+.menuLeftBolt>.title .menu-app-img{
+    width: 24px;
+    height: 22px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 15px;
+}
+.menuLeftBolt>.title span{
+    vertical-align: middle;
+    font-size: 18px;
+}
+/* 左侧导航 */
+.bolt-sidebar-three{
+    height:-webkit-calc(100% - 122px);
+    height:-moz-calc(100% - 122px);
+    height:calc(100% - 122px);
+}
+.bolt-sidebar-twoDown{
+    height:-webkit-calc(100% - 60px);
+    height:-moz-calc(100% - 60px);
+    height:calc(100% - 60px);
+}
+.bolt-sidebar-twoTop{
+    height:-webkit-calc(100% - 62px);
+    height:-moz-calc(100% - 62px);
+    height:calc(100% - 62px);
+}
+.bolt-sidebar-one{
+    height:100%;
+}
+
+.bolt-sidebar>ul{
+    height: 100%;
+}
+.bolt-sidebar li a {
+    display: block;
+    padding:0px 22px;
+    height: 44px;
+    line-height: 44px;
+    width: 100%;
+    overflow: hidden;
+}
+.bolt-sidebar li a:hover{
+    background: #dadde2;
+}
+.bolt-sidebar li a span{
+    color:#333333;
+    /*  padding-left:15px;
+     font-family: 微软雅黑; */
+    font-size: 14px;
+    vertical-align: middle;
+}
+.bolt-sidebar li.treeview.active>a,
+    /* .bolt-sidebar li.hasChild.active>a, */
+.bolt-sidebar li.selectedLi.active>a {
+    background-color: #dadde2;
+}
+.bolt-sidebar li.treeview.active>a span,
+.bolt-sidebar li.treeview.active>a i{
+    color:#0090f4;
+}
+.bolt-sidebar .menu-app{
+    display: inline-block;
+    margin-right: 15px;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+/* 左侧导航二级 */
+/* .bolt-sidebar ul ul{
+    background-color: rgb(55, 56, 57);
+} */
+.bolt-sidebar .floatRight2>li.active>a,
+.bolt-sidebar .floatRight2>.sec>li.active>a{
+    background-color: #dadde2;
+}
+.bolt-sidebar .floatRight2>li.active>a span,
+.bolt-sidebar .floatRight2>.sec>li.active>a span,
+.bolt-sidebar .floatRight2>li.active>a i,
+.bolt-sidebar .floatRight2>.sec>li.active>a i{
+    color:#0090f4;
+}
+.bolt-sidebar>ul {
+    white-space: normal;
+}
+/* .bolt-sidebar>ul ul li a {
+    padding-left: 40px;
+} */
+.bolt-sidebar>ul .acc-menu {
+    display: none;
+}
+.bolt-sidebar>ul li.hasChild>a {
+    position: relative;
+}
+.bolt-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a span,
+.bolt-sidebar>ul ul:not(.floatRight2) li.active:not(.open) > a i {
+    color: #0090f4;
+}
+.bolt-sidebar>ul li.hasChild>a:before,
+.bolt-sidebar>ul li.hasChild>a:after {
+    content: " ";
+    display: table;
+}
+.bolt-sidebar>ul li.hasChild>a:after {
+    clear: both;
+}
+.bolt-sidebar>ul li.hasChild>a:before,
+.bolt-sidebar>ul .floatRight2>li.hasChild>a:before{
+    content: "\f0d7";
+    color:#9d9d9d;
+    filter: alpha(opacity=50);
+}
+/* .bolt-sidebar>ul li.hasChild:hover>a:before,
+.bolt-sidebar>ul li.hasChild.active>a:before{
+    color:#fff;
+} */
+.bolt-sidebar>ul li.hasChild.open>a:before {
+    content: "\f0d8";
+    /* color:#fff; */
+    filter: alpha(opacity=50);
+}
+
+.bolt-sidebar>ul>li>ul>li.hasChild>a:before {
+    content: "\f105";/* "\f078" */
+    color:#9d9d9d;
+    filter: alpha(opacity=50);
+}
+.bolt-sidebar>ul li.hasChild>a:before {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px !important;
+    text-decoration: inherit;
+    text-align: right;
+    padding-right: 12px;
+    display: inline-block;
+    float: right;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.bolt-sidebar>ul>li>ul:not(.floatRight2) li>a{ /* 展开二级菜单内边距 */
+    padding-left: 70px;
+}
+.bolt-sidebar>ul>li ul:not(.floatRight2) ul.floatRight3 li>a{/* 展开三级菜单内边距 */
+    padding: 0px 22px;
+}
+/* 左侧导航收缩 */
+.bolt-menu-arrow{
+    height:60px;
+    position: absolute;
+    bottom: 0px;
+    width: 215px;
+    /*  border-top: 1px solid #09121a;
+     background-color: #222; */
+    color: #9d9d9d;
+}
+.bolt-menu-arrow img{
+    padding:10px 12px;
+    transition-duration:0.2s;
+}
+.bolt-menu-arrow img:hover{
+    cursor: pointer;
+    filter:brightness(95%);
+}
+.bolt-menu-arrow .fa-outdent{
+    transform:rotate(180deg);
+}
+.floatRight2,
+.floatRight3{
+    width: 215px;
+    background-color: #e6e8ec;
+    position: absolute;
+}
+.floatRight2{
+    margin-left: 64px;
+    z-index:999;
+}
+.floatRight2 li>a{/* 收缩二级菜单内边距 */
+    padding-left: 22px;
+}
+.floatRight2>li>ul a{/* 收缩三级菜单内边距 */
+    padding-left: 40px;
+}
+.floatRight3{
+    margin-left: 215px;
+    z-index:999;
+}
+
+/*滚动条*/
+.scrollBox{
+    overflow-y: auto;
+}
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 0;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: #999;
+    -webkit-border-radius: 4px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+    height: 50px;
+    background-color: #9f9f9f;
+    -webkit-border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+    width: 5px;
+    background-color: #CCCCCC;
+    -webkit-border-radius: 6px;
+}
+/* 第二种收缩情况 */
+.shrink-moved{
+    position: absolute;
+    height: 60px;
+    width: 30px;
+    top: 46%;
+    cursor: pointer;
+    display:none;
+}
+
+.shrink-moved:hover{
+    cursor: pointer;
+    filter:brightness(90%);
+}
+.shrink-moved:hover .collapse-background{
+    width: 18px;
+}
+.shrink-moved:hover .collapse-arrow{
+    right: 6px;
+}
+.shrink-moved .collapse-background{
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    height: 60px;
+    width: 14px;
+    -webkit-transition: all 0.2s ease;
+}
+.shrink-moved .collapse-arrow{
+    position: absolute;
+    right: 4px;
+    z-index: 20;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transition: all 0.2s ease;
+}
+.cloud-shrink1-L.shrink-moved{
+    right:0px;
+}
+.cloud-shrink1-R.shrink-moved{
+    transform:rotate(180deg);
+}
+.bolt-options-shrink1 nav>ul>li.hasChild>a:before{
+    float:left;
+}
+.bolt-options-shrink1 nav>ul>li:not(.hasChild)>a{
+    padding-left: 42px;
+}
+.bolt-options-shrink1 .title i,
+.bolt-options-shrink1 nav>ul> li a>i{
+    display: none;
+}
+.bolt-options-shrink1 nav>ul> li a>span{
+    padding-left: 0px;
+}
+.bolt-options-shrink1{
+    width: 186px;
+}
+.bolt-options-shrink1 nav>ul>li>ul:not(.floatRight2)>li>a,
+.bolt-options-shrink1 nav>ul>li>ul:not(.floatRight2)>.sec>li>a{
+    padding-left:50px;
+}
+.bolt-options-shrink1 .floatRight3{
+    margin-left:186px;
+    width:186px;
+}
+/* 导航图标引入 */
+.menuLeftBolt>.title .acc-menu-log{
+    background: url(../../img/plugins/menuLeft/log/log.svg) no-repeat;
+}
+.menuLeftBolt>.title .acc-menu-app{
+    background: url(../../img/plugins/menuLeft/application/apply.svg) no-repeat;
+}
+.menuLeftBolt>.title .acc-menu-cloud{
+    background: url(../../img/plugins/menuLeft/monitor/cloud.svg) no-repeat;
+}
+.menuLeftBolt>.title .acc-menu-set{
+    background: url(../../img/plugins/menuLeft/set/setting.svg) no-repeat;
+}
+
+.bolt-sidebar li a .menu-log-search{
+    background: url(../../img/plugins/menuLeft/log/search.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-log-perspect{
+    background: url(../../img/plugins/menuLeft/log/perspect.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-log-meter{
+    background: url(../../img/plugins/menuLeft/log/meter.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-log-data{
+    background: url(../../img/plugins/menuLeft/log/data.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-log-collect{
+    background: url(../../img/plugins/menuLeft/log/collect.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-log-colony{
+    background: url(../../img/plugins/menuLeft/log/colony.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-log-alarm{
+    background: url(../../img/plugins/menuLeft/log/alarm.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-log-search{
+    background: url(../../img/plugins/menuLeft/log/search_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-log-perspect{
+    background: url(../../img/plugins/menuLeft/log/perspect_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-log-meter{
+    background: url(../../img/plugins/menuLeft/log/meter_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-log-data{
+    background: url(../../img/plugins/menuLeft/log/data_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-log-collect{
+    background: url(../../img/plugins/menuLeft/log/collect_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-log-colony{
+    background: url(../../img/plugins/menuLeft/log/colony_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-log-alarm{
+    background: url(../../img/plugins/menuLeft/log/alarm_active.svg) no-repeat;
+}
+
+.bolt-sidebar li a .menu-app-overview{
+    background: url(../../img/plugins/menuLeft/application/overview.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-app-link{
+    background: url(../../img/plugins/menuLeft/application/link.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-app-node{
+    background: url(../../img/plugins/menuLeft/application/node.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-app-thing{
+    background: url(../../img/plugins/menuLeft/application/thing.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-app-threshold{
+    background: url(../../img/plugins/menuLeft/application/threshold.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-app-alarm{
+    background: url(../../img/plugins/menuLeft/application/alarm.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-app-overview{
+    background: url(../../img/plugins/menuLeft/application/overview_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-app-link{
+    background: url(../../img/plugins/menuLeft/application/link_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-app-node{
+    background: url(../../img/plugins/menuLeft/application/node_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-app-thing{
+    background: url(../../img/plugins/menuLeft/application/thing_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-app-threshold{
+    background: url(../../img/plugins/menuLeft/application/threshold_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-app-alarm{
+    background: url(../../img/plugins/menuLeft/application/alarm_active.svg) no-repeat;
+}
+
+.bolt-sidebar li a .menu-monitor-overview{
+    background: url(../../img/plugins/menuLeft/monitor/overview.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-monitor-cache{
+    background: url(../../img/plugins/menuLeft/monitor/cache.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-monitor-middle{
+    background: url(../../img/plugins/menuLeft/monitor/middle.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-monitor-conCloud{
+    background: url(../../img/plugins/menuLeft/monitor/conCloud.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-monitor-bigData{
+    background: url(../../img/plugins/menuLeft/monitor/bigData.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-monitor-server{
+    background: url(../../img/plugins/menuLeft/monitor/server.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-monitor-alarm{
+    background: url(../../img/plugins/menuLeft/monitor/alarm.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-monitor-overview{
+    background: url(../../img/plugins/menuLeft/monitor/overview_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-monitor-cache{
+    background: url(../../img/plugins/menuLeft/monitor/cache_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-monitor-middle{
+    background: url(../../img/plugins/menuLeft/monitor/middle_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-monitor-conCloud{
+    background: url(../../img/plugins/menuLeft/monitor/conCloud_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-monitor-bigData{
+    background: url(../../img/plugins/menuLeft/monitor/bigData_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-monitor-server{
+    background: url(../../img/plugins/menuLeft/monitor/server_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-monitor-alarm{
+    background: url(../../img/plugins/menuLeft/monitor/alarm_active.svg) no-repeat;
+}
+
+.bolt-sidebar li a .menu-set-app{
+    background: url(../../img/plugins/menuLeft/set/apply.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-set-tenant{
+    background: url(../../img/plugins/menuLeft/set/tenant.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-set-user{
+    background: url(../../img/plugins/menuLeft/set/user.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-set-role{
+    background: url(../../img/plugins/menuLeft/set/role.svg) no-repeat;
+}
+.bolt-sidebar li a .menu-set-system{
+    background: url(../../img/plugins/menuLeft/set/system.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-set-app{
+    background: url(../../img/plugins/menuLeft/set/apply_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-set-tenant{
+    background: url(../../img/plugins/menuLeft/set/tenant_active.svg) no-repeat;
+}   
+.bolt-sidebar li.active a .menu-set-user{
+    background: url(../../img/plugins/menuLeft/set/user_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-set-role{
+    background: url(../../img/plugins/menuLeft/set/role_active.svg) no-repeat;
+}
+.bolt-sidebar li.active a .menu-set-system{
+    background: url(../../img/plugins/menuLeft/set/system_active.svg) no-repeat;
+}

@@ -12,15 +12,41 @@ body, html {
 body {
     margin: 0;
     padding-top: 50px;
-    background-color: #EAEAEA;
+    background-color: #eff0f4;
 }
 .blogic-nav{
     height: 50px;
-    background-color: #222;
+    background-color: #fff;
     position: fixed;
     right: 0;
     left: 0;
     top: 0px;
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(74, 74, 74, 0.2);
+    box-shadow: 0px 0px 12px 0px rgba(74, 74, 74, 0.2);
+    z-index: 4;
+}
+.blogic-nav .menu-wrap{
+    height: 50px;
+    width: 64px;
+    background-color: #0090f4;
+    line-height: 50px;
+    text-align: center;
+}
+.blogic-nav .menu-wrap .menu-wrap-img{
+    background: url(../../img/common/common.png) no-repeat;
+    width: 64px;
+    height: 100%;
+    background-position: -253px -37px;
+}
+.blogic-nav .logo-wrap{
+    height: 50px;
+    display: inline-block;
+    line-height: 50px;
+    padding: 0px 10px;
+}
+.blogic-nav .logo-wrap img{
+    width: 112px;
+    height: 100%;
 }
 .blogic-container{
     height: 100%;
@@ -38,3 +64,109 @@ body {
     content: "";
     display: table;
 } */
+
+/* 独立框架一级菜单 */
+.blogic-nav .sidebar {
+    top: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    z-index: 998!important;
+    background-color: #fff;
+}
+.blogic-nav .sidebar .blogic-sidebar-mask-wrap.show {
+    visibility: visible;
+    opacity: 1;
+}
+.blogic-nav .sidebar .blogic-sidebar-mask-wrap {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.45);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all .3s cubic-bezier(0,0,.2,1);
+    transition: all .3s cubic-bezier(0,0,.2,1);
+}
+.blogic-nav .sidebar.showSidebar .blogic-sidebar-wrap {
+    width: 215px;
+}
+.blogic-nav .sidebar .blogic-sidebar-wrap {
+    overflow: hidden;
+    position: absolute;
+    z-index: 999;
+    width: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    -webkit-transition: all .3s cubic-bezier(0,0,.2,1);
+    transition: all .3s cubic-bezier(0,0,.2,1);
+}
+.blogic-nav .outer-sidebar{
+    height: 100%;
+    padding-top: 10px;
+}
+.blogic-nav .outer-sidebar>ul{
+    height: 100%;
+    overflow-y: auto
+}
+.blogic-nav .outer-sidebar>ul>li{
+    display: block;
+    padding: 0px 22px;
+    height: 42px;
+    line-height: 42px;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+}
+.blogic-nav .outer-sidebar>ul>li:hover{
+    background: #e6e8ec;
+}
+.blogic-nav .outer-sidebar>ul>li .acc-menu-home,
+.blogic-nav .outer-sidebar>ul>li .acc-menu-log,
+.blogic-nav .outer-sidebar>ul>li .acc-menu-app,
+.blogic-nav .outer-sidebar>ul>li .acc-menu-cloud,
+.blogic-nav .outer-sidebar>ul>li .acc-menu-set{
+    display: inline-block;
+    margin-right: 15px;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+.blogic-nav .outer-sidebar>ul>li .acc-menu-home{
+    background: url(../../img/common/home/home.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li .acc-menu-log{
+    background: url(../../img/common/home/log.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li .acc-menu-app{
+    background: url(../../img/common/home/apply.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li .acc-menu-cloud{
+    background: url(../../img/common/home/cloud.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li .acc-menu-set{
+    background: url(../../img/common/home/setting.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li.active .acc-menu-home{
+    background: url(../../img/common/home/home_active.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li.active .acc-menu-log{
+    background: url(../../img/common/home/log_active.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li.active .acc-menu-app{
+    background: url(../../img/common/home/apply_active.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li.active .acc-menu-cloud{
+    background: url(../../img/common/home/cloud_active.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li.active .acc-menu-set{
+    background: url(../../img/common/home/setting_active.svg) no-repeat;
+}
+.blogic-nav .outer-sidebar>ul>li>span{
+    vertical-align: middle;
+}
+.blogic-nav .outer-sidebar>ul>li.active>span{
+    color:#0090f4;
+}

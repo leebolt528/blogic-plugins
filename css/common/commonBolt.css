@@ -18,6 +18,12 @@ a{
 .float-left{
     float:left;
 }
+.show {
+    display: block!important;
+}
+.hide {
+    display: none!important;
+}
 .textOverflow{
     overflow: hidden;
     white-space: nowrap;
@@ -32,25 +38,36 @@ a{
     width: 240px!important;
     text-align: center!important;
 }
-/*滚动条整体样式*/
-.scrollBox::-webkit-scrollbar {
-    width: 5px;
-    background: #f3f3f3;
-    height: 5px;
-}
-/*滚动条里面小方块*/
-.scrollBox::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background: #9d9d9d;
-    height: 120px;
-}
-  /*滚动条里面轨道*/
-.scrollBox::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background: rgba(0, 0, 0, 0.1);
-}
+
+/*滚动条*/
 .scrollBox{
     overflow-y: auto;
+}
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 0;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-thumb:vertical {
+    height: 50px;
+    background-color: #999;
+    -webkit-border-radius: 4px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+    height: 50px;
+    background-color: #9f9f9f;
+    -webkit-border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:horizontal {
+    width: 5px;
+    background-color: #CCCCCC;
+    -webkit-border-radius: 6px;
 }
 /* 表格头部固定 */
 .tableOut tbody.layout{
@@ -77,4 +94,39 @@ a{
     left:calc(50% - 15px);
     left: -webkit-calc(50% - 15px);
     left:-moz-calc(50% - 15px);
+}
+/* 按钮 */
+.btn{
+    cursor:pointer;
+}
+.btn:focus{
+    outline:0;
+}
+.btn-lg {
+    padding: 0px 16px;
+    font-size: 16px;
+    height: 46px;
+}
+.btn-bcloud-blue {
+    color: #0090f4;
+    border: 1px solid #0090f4;
+    background-color: #eff0f4;
+}
+.btn-bcloud-blue.active {
+    color: #fff;
+    border: 1px solid #0090f4;
+    background-color: #0090f4;
+}
+.btn-bcloud-blue.active:focus, .btn-bcloud-blue.active:hover {
+    color: #fff;
+    background-color: #0090f4;
+}
+.btn-bcloud-white {
+    color: #999;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.btn-bcloud-white:focus, .btn-bcloud-white:hover {
+    color: #0090f4;
+    border-color: #0090f4;
 }

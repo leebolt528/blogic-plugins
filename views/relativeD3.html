@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="../css/common/commonBlogic.css">
     <link rel="stylesheet" href="../css/common/commonBolt.css">
     <script type='text/javascript' src='../js/common/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='../js/common/commonBlogic.js'></script>
     <script type='text/javascript' src='../js/plugins/data.js'></script>
 
-    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-bolt.css">
-    <script type='text/javascript' src='../js/plugins/jQuery.plugins.menuLeft-bolt.js'></script>
+    <link rel="stylesheet" href="../css/plugins/jQuery.plugins.menuLeft-boltNew.css">
+    <script type='text/javascript' src='../js/plugins/jQuery.plugins.menuLeft-boltNew.js'></script>
 
     <script type="text/javascript" src="../js/common/D3/d3.min.js"></script>
     <script type="text/javascript" src="../js/plugins/jQuery.plugins.relativeD3-bolt.js"></script>
@@ -35,7 +36,7 @@
     <title>关系依赖图</title>
     <script>
         $(function(){
-            var optionsMenu={
+           /*  var optionsMenu={
                 selected:"8",
                 menuOpen:true,
                 hideFloat:true,
@@ -43,9 +44,25 @@
                     onExpand:function(){console.log('onExpand');},
                     onCollapse:function(){ console.log('onCollapse');},
                 }
+            }; */
+            var optionsMenu={
+                selected:8,
+                menuOpen:true,
+                hideFloat:true,
+                shrink:0,
+                title:{
+                    enabled:true,
+                    "class":"acc-menu-log",
+                    content:"日志分析"
+                },
+                callback:{
+                    onClick:function($this,param){console.log(param)},
+                    onExpand:function(shrink){},
+                    onCollapse:function(shrink){},
+                }
             };
             $(".menuLeft").menuLeftBolt(optionsMenu,function(){
-                return menuLeftData;
+                return menuLeftDataNew;
             });
 
             var options={
@@ -97,7 +114,45 @@
     </script>
 </head>
 <body>
-    <nav class="blogic-nav"></nav>
+    <nav class="blogic-nav">
+        <div class="topbar">
+            <div class="menu-wrap float-left">
+                <div class="menu-wrap-img"></div>
+            </div>
+            <div class="logo-wrap float-left">
+                <img src="../img/common/logo.svg">
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="blogic-sidebar-mask-wrap"></div>
+            <div class="blogic-sidebar-wrap">
+                <nav class="outer-sidebar">
+                    <ul class="acc-menu">
+                        <li>
+                            <div class="acc-menu-home"></div>
+                            <span>首页</span>
+                        </li>
+                        <li>    
+                            <div class="acc-menu-log"></div>
+                            <span>日志分析</span>
+                        </li>
+                        <li>
+                            <div class="acc-menu-app"></div>
+                            <span>应用分析</span>
+                        </li>
+                        <li>
+                            <div class="acc-menu-cloud"></div>
+                            <span>云监控</span>
+                        </li>
+                        <li>
+                            <div class="acc-menu-set"></div>
+                            <span>设置</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </nav>
     <div class="blogic-container">
         <div class="menuLeft"></div>
         <div class="blogic-content scrollBox">

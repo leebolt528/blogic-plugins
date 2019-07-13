@@ -42,6 +42,44 @@ var menuLeftData=[
         {"id":"3-4","name":"设备管理4","fa":"fa-home","href":"#","children":[]}
     ]},
 ]
+var menuLeftDataNew=[
+    {"id":"1","name":"时间选择","class":"menu-log-search","href":"selectTime.html","secUrl":"","param":{"aa":"11"},"children":[]},
+    {"id":"5","name":"自动提示","class":"menu-log-perspect","href":"promptExpre.html","secUrl":"","param":{"aa":"11"},"children":[]},
+    {"id":"6","name":"仪表板","class":"menu-log-meter","href":"dashBoard.html","secUrl":"","children":[]},
+    {"id":"7","name":"raphael编排","class":"menu-log-data","href":"#","secUrl":"","children":[
+        {"id":"7-1","name":"编排过程","class":"","href":"#","secUrl":"","children":[]},
+        {"id":"7-2","name":"编排状态","class":"","href":"#","secUrl":"","children":[]},
+    ]},
+    {"id":"8","name":"关系依赖图","class":"menu-log-collect","href":"relativeD3.html","secUrl":"","children":[]},
+    {"id":"9","name":"zTree表格","class":"menu-log-colony","href":"ztreeTable.html","secUrl":"","children":[]},
+    {"id":"10","name":"TreeTable异步","class":"menu-log-alarm","href":"treeTable.html","secUrl":"","children":[]},
+    {"id":"11","name":"一级菜单","class":"menu-log-alarm","href":"#","secUrl":"","children":[
+        {"id":"11-1","name":"二级菜单1","class":"","href":"#","secUrl":"","children":[
+            {"id":"11-1-1","name":"三级菜单1","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-2","name":"三级菜单2","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-3","name":"三级菜单3","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-4","name":"三级菜单4","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-5","name":"三级菜单5","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-6","name":"三级菜单6","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-7","name":"三级菜单7","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-8","name":"三级菜单8","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-9","name":"三级菜单9","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-10","name":"三级菜单10","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-11","name":"三级菜单11","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-12","name":"三级菜单12","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-13","name":"三级菜单13","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-14","name":"三级菜单14","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-1-15","name":"三级菜单15","class":"","href":"#","secUrl":"","children":[]}
+        ]},
+        {"id":"11-2","name":"二级菜单2","class":"","href":"#","secUrl":"","children":[
+            {"id":"11-2-1","name":"三级菜单1","class":"","href":"#","secUrl":"","children":[]},
+            {"id":"11-2-2","name":"三级菜单2","class":"","href":"#","secUrl":"","children":[]},
+        ]},
+        {"id":"11-3","name":"二级菜单3","class":"","href":"#","secUrl":"","children":[]},
+        {"id":"11-4","name":"二级菜单4","class":"","href":"#","secUrl":"","children":[]},
+        {"id":"11-5","name":"二级菜单5","class":"","href":"#","secUrl":"","children":[]}
+    ]}
+];
 /* 关联自动提述搜索数据 */
 var promptExpreData = {
     "field": [

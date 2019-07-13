@@ -64,7 +64,7 @@
             $(".bolt-sidebar>ul.acc-menu ul.acc-menu li").each(function(){
                 $(this).children(".acc-menu").removeClass("floatRight3");
             });
-            if(!first){
+            if(!first&&options.callback.hasOwnProperty("onCollapse")){
                 options.callback.onCollapse();
             }
         });
@@ -92,6 +92,9 @@
             hasChildArr=[];
             $(".treeview.active.hasChild").addClass("open").children(".acc-menu").css("display","block");//向右边展开时展开选中二级的父级
             options.callback.onExpand();
+            if(options.callback.hasOwnProperty("onExpand")){
+                options.callback.onExpand();
+             }
         });
         var menuLeftDiv='<nav class="bolt-sidebar" role="navigation">'+drawMenu(data)+'</nav>'+
                         '<div class="bolt-menu-arrow">'+

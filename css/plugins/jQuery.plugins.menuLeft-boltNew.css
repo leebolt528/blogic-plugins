@@ -5,6 +5,10 @@
     float: left;
     background-color:#e6e8ec;
     font-family: "Microsoft YaHei";
+}
+.menuLeftBolt>.title,
+.bolt-sidebar,
+.bolt-menu-arrow{
     border-right: 1px solid #dadde2;
 }
 /* 导航上方标题 */
@@ -256,7 +260,7 @@
 .shrink-moved .collapse-background{
     position: absolute;
     right: 0;
-    z-index: 10;
+  /*   z-index: 10; */
     height: 60px;
     width: 14px;
     -webkit-transition: all 0.2s ease;
@@ -264,7 +268,7 @@
 .shrink-moved .collapse-arrow{
     position: absolute;
     right: 4px;
-    z-index: 20;
+   /*  z-index: 20; */
     top: 50%;
     transform: translateY(-50%);
     -webkit-transition: all 0.2s ease;
@@ -278,7 +282,8 @@
 .bolt-options-shrink1 nav>ul>li.hasChild>a:before{
     float:left;
 }
-.bolt-options-shrink1 nav>ul>li:not(.hasChild)>a{
+.bolt-options-shrink1 nav>ul>li:not(.hasChild)>a,
+.bolt-options-shrink1 nav>ul>.sec>li:not(.hasChild)>a{
     padding-left: 42px;
 }
 .bolt-options-shrink1 .title i,
@@ -293,7 +298,7 @@
 }
 .bolt-options-shrink1 nav>ul>li>ul:not(.floatRight2)>li>a,
 .bolt-options-shrink1 nav>ul>li>ul:not(.floatRight2)>.sec>li>a{
-    padding-left:50px;
+    padding-left:55px;
 }
 .bolt-options-shrink1 .floatRight3{
     margin-left:186px;

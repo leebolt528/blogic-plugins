@@ -23,12 +23,12 @@ $.extend({
         //向页面添加阴影背景
         let body=document.getElementsByTagName("body")[0];
         if($(".designer-mask").length==0){
-            $(body).append(`<div class="designer-mask" style="position:fixed;top:0;bottom:0;left:0;right:0;display:none;background:rgba(0,0,0,0.35);z-index:999"><div>`);
+            $(body).append('<div class="designer-mask" style="position:fixed;top:0;bottom:0;left:0;right:0;display:none;background:rgba(0,0,0,0.35);z-index:999"><div>');
             //向父页面添加右侧模态框
-            let rightModel=`<div class="designer_detail">`+
-                `<div class="detail_head"><span class="headTitle"></span><a class="headClose"><img src=`+options.imgPath+`/img/plugins/sideModal/close.png></a></div>`+
-                `<div class="detail_context"><img style="width:50px;margin:100px auto;display: block;" src=`+options.imgPath+`/img/plugins/sideModal/loading.gif></div>`+
-                `</div>`;
+            let rightModel='<div class="designer_detail">'+
+                '<div class="detail_head"><span class="headTitle"></span><a class="headClose"><img src='+options.imgPath+'/img/plugins/sideModal/close.png></a></div>'+
+                '<div class="detail_context"><img style="width:50px;margin:100px auto;display: block;" src='+options.imgPath+'/img/plugins/sideModal/loading.gif></div>'+
+                '</div>';
             $(body).append(rightModel);
         }
         $(".designer_detail .headClose").mouseenter(function(){
@@ -71,8 +71,8 @@ $.extend({
             "overflow":"auto"
         });
         //按钮Html
-        let operateDiv=`<div class="detail-footer" style="padding:30px 32px;position:absolute;bottom:0px;left:0;right:0"><button type="button" class="btn btn-bcloud-blue active btn-lg btn-confirm" style="float:left;width: 100px;">保存</button>`+
-            `<button type="button" class="btn btn-bcloud-white btn-cancel btn-lg" style="float:left;margin:0px 20px 0px 15px;width: 100px;">取消</button></div>`;
+        let operateDiv='<div class="detail-footer" style="padding:30px 32px;position:absolute;bottom:0px;left:0;right:0"><button type="button" class="btn btn-bcloud-blue active btn-lg btn-confirm" style="float:left;width: 100px;">保存</button>'+
+            '<button type="button" class="btn btn-bcloud-white btn-cancel btn-lg" style="float:left;margin:0px 20px 0px 15px;width: 100px;">取消</button></div>';
 
         $mask.on('click',function () {
             rightHide();
@@ -101,7 +101,7 @@ $.extend({
             $rightModel.css("transform","translate(100%, 0px)");
             $mask.hide();
             setTimeout(function(){
-                $rightModel.find(".detail_context").html(`<img style="width:50px;margin:100px auto;display: block;" src=`+options.imgPath+`/img/plugins/sideModal/loading.gif>`);
+                $rightModel.find(".detail_context").html('<img style="width:50px;margin:100px auto;display: block;" src='+options.imgPath+'/img/plugins/sideModal/loading.gif>');
             },200);
         }
         //添加内容文本

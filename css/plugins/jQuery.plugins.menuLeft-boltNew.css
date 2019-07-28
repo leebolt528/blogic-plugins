@@ -1,16 +1,40 @@
 .menuLeftBolt{
     height:100%;
     position: relative;
-    width: 215px;
+    /*width: 215px;*/
     float: left;
     background-color:#e6e8ec;
     font-family: "Microsoft YaHei";
 }
-.menuLeftBolt>.title,
+/*导航右边框*/
+/*.menuLeftBolt>.title,
 .bolt-sidebar,
 .bolt-menu-arrow{
     border-right: 1px solid #dadde2;
+}*/
+.menuLeftBolt:after {
+    content: '';
+    position: absolute;
+    left: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 1px;
+    background-color: #dadde2;
 }
+.bolt-sidebar:after {
+    content: '';
+    position: absolute;
+    left: auto;
+    top: 62px;
+    bottom: 60px;
+    right: 0;
+    width: 1px;
+    background-color: #dadde2;
+    z-index: 1;
+}
+
 /* 导航上方标题 */
 .menuLeftBolt>.title>div{
     height:62px;
@@ -71,13 +95,13 @@
     font-size: 14px;
     vertical-align: middle;
 }
-.bolt-sidebar li.treeview.active>a,
+.bolt-sidebar li.level1.active>a,
     /* .bolt-sidebar li.hasChild.active>a, */
 .bolt-sidebar li.selectedLi.active>a {
     background-color: #dadde2;
 }
-.bolt-sidebar li.treeview.active>a span,
-.bolt-sidebar li.treeview.active>a i{
+.bolt-sidebar li.level1.active>a span,
+.bolt-sidebar li.level1.active>a i{
     color:#0090f4;
 }
 .bolt-sidebar .menu-app{
@@ -91,14 +115,11 @@
 /* .bolt-sidebar ul ul{
     background-color: rgb(55, 56, 57);
 } */
-.bolt-sidebar .floatRight2>li.active>a,
-.bolt-sidebar .floatRight2>.sec>li.active>a{
+.bolt-sidebar .floatRight2 li.level2.active>a{
     background-color: #dadde2;
 }
-.bolt-sidebar .floatRight2>li.active>a span,
-.bolt-sidebar .floatRight2>.sec>li.active>a span,
-.bolt-sidebar .floatRight2>li.active>a i,
-.bolt-sidebar .floatRight2>.sec>li.active>a i{
+.bolt-sidebar .floatRight2 li.level2.active>a span,
+.bolt-sidebar .floatRight2 li.level2.active>a i{
     color:#0090f4;
 }
 .bolt-sidebar>ul {
@@ -260,7 +281,7 @@
 .shrink-moved .collapse-background{
     position: absolute;
     right: 0;
-  /*   z-index: 10; */
+    /*   z-index: 10; */
     height: 60px;
     width: 14px;
     -webkit-transition: all 0.2s ease;
@@ -268,7 +289,7 @@
 .shrink-moved .collapse-arrow{
     position: absolute;
     right: 4px;
-   /*  z-index: 20; */
+    /*  z-index: 20; */
     top: 50%;
     transform: translateY(-50%);
     -webkit-transition: all 0.2s ease;
@@ -282,8 +303,7 @@
 .bolt-options-shrink1 nav>ul>li.hasChild>a:before{
     float:left;
 }
-.bolt-options-shrink1 nav>ul>li:not(.hasChild)>a,
-.bolt-options-shrink1 nav>ul>.sec>li:not(.hasChild)>a{
+.bolt-options-shrink1 nav>ul li.level1:not(.hasChild)>a{
     padding-left: 42px;
 }
 .bolt-options-shrink1 .title i,
@@ -293,16 +313,51 @@
 .bolt-options-shrink1 nav>ul> li a>span{
     padding-left: 0px;
 }
-.bolt-options-shrink1{
-    width: 186px;
-}
-.bolt-options-shrink1 nav>ul>li>ul:not(.floatRight2)>li>a,
-.bolt-options-shrink1 nav>ul>li>ul:not(.floatRight2)>.sec>li>a{
+.bolt-options-shrink1 nav>ul>li>ul:not(.floatRight2) li.level2>a{
     padding-left:55px;
 }
 .bolt-options-shrink1 .floatRight3{
     margin-left:186px;
     width:186px;
+}
+/*初始化菜单向左收起状态*/
+.menuClose-shrink0 .title>div>span,
+.menuClose-shrink1 .title>div>span,
+.menuClose-shrink0 .bolt-sidebar>ul li.level1>a>span,
+.menuClose-shrink1 .bolt-sidebar>ul li.level1>a>span{
+    display: none;
+}
+.menuClose-shrink0,
+.menuClose-shrink0 .title,
+.menuClose-shrink0 .bolt-menu-arrow{
+    width: 64px!important;
+}
+.menuClose-shrink1,
+.menuClose-shrink1 .title,
+.menuClose-shrink1 .bolt-menu-arrow{
+    width: 0px;
+}
+.menuClose-shrink1 .menu-app-img{
+    display: none!important;
+}
+.menuClose-shrink0+.blogic-content{
+    left:64px!important;
+}
+.menuClose-shrink1+.blogic-content{
+    left:0px!important;
+}
+
+.menuLeftBolt:not(.bolt-options-shrink1){
+    width: 215px;
+}
+.menuLeftBolt:not(.bolt-options-shrink1)+.blogic-content{
+    left: 215px;
+}
+.bolt-options-shrink1:not(.menuClose-shrink1){
+    width: 186px!important;
+}
+.bolt-options-shrink1:not(.menuClose-shrink1)+.blogic-content{
+    left: 186px;
 }
 /* 导航图标引入 */
 .menuLeftBolt>.title .acc-menu-log{

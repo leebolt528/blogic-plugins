@@ -366,13 +366,16 @@
                 }
             });
 
-            hasChildArr.map(function($this){
-                $this.addClass("hasChild");
-            });
-            hasChildArr=[];
-            var $LIs = $('.bolt-sidebar').find('.selectedLi');
-            $LIs.parents(".hasChild").not(".level2").removeClass('active');
-            $(".level1.hasChild.selectedFirst").addClass("open").children(".acc-menu").css("display","block");//向右边展开时展开选中二级的父级
+            setTimeout(function(){//避免向右展开菜单有过渡效果时，有子级的一级菜单右侧图标导致左侧图标闪现问题
+                hasChildArr.map(function($this){
+                    $this.addClass("hasChild");
+                });
+                hasChildArr=[];
+                var $LIs = $('.bolt-sidebar').find('.selectedLi');
+                $LIs.parents(".hasChild").not(".level2").removeClass('active');
+                $(".level1.hasChild.selectedFirst").addClass("open").children(".acc-menu").css("display","block");//向右边展开时展开选中二级的父级
+            },50);
+
             if(options.callback.hasOwnProperty("onExpand")){
                 options.callback.onExpand(options.shrink);
             }

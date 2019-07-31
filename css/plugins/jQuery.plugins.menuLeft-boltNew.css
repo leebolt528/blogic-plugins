@@ -36,6 +36,10 @@
 }
 
 /* 导航上方标题 */
+.menuLeftBolt>.title{/* 避免向右展开菜单有过渡效果时,标题向下撑开导致下面内存抖动效果 */
+    height: 62px;
+    overflow: hidden;
+}
 .menuLeftBolt>.title>div{
     height:62px;
     line-height: 62px;

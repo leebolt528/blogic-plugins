@@ -1677,14 +1677,14 @@ var dashboardData= [{
     }]
 },{
     "id":"panels7",
-    "title": "饼图-piechart-.highcharts(pieData)",
+    "title": "饼图-piechart-.highcharts(pieData,{dataLabels:{enabled:true}})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*3,
         "dataGsWidth": 4,
         "dataGsHeight": 15
     },
-    "options":{},
+    "options":{dataLabels:{enabled:true}},
     "widgets": [{
         "ajax":false,
         "data":pieData[0]
@@ -1708,7 +1708,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels9",
-    "title": "双环图-piechartringrule-.highcharts(ringRuleData,{pieRing:{subY:30,subfontSize:'25px'}})",
+    "title": "双环图-piechartringrule-.highcharts(ringRuleData,{pieRing:{subY:12,subfontSize:'25px'}})",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*3,
@@ -1716,7 +1716,7 @@ var dashboardData= [{
         "dataGsHeight": 15
     },
     "options":{
-        pieRing:{subY:30,subfontSize:'25px'}
+        pieRing:{subY:12,subfontSize:'25px'}
     },
     "widgets": [{
         "ajax":false,
@@ -1724,7 +1724,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels10",
-    "title": "环形图-piechartring-.highcharts(ringHalfData,{pieRing:{subY:15}})",
+    "title": "环形图-piechartring-.highcharts(ringHalfData,{ring:{startAngle:-135,endAngle:135},dataLabels:{enabled:true}})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*4,
@@ -1732,7 +1732,8 @@ var dashboardData= [{
         "dataGsHeight": 15
     },
     "options":{
-        pieRing:{subY:15}
+        ring:{startAngle:-135,endAngle:135},
+        dataLabels:{enabled:true}
     },
     "widgets": [{
         "ajax":false,
@@ -1740,7 +1741,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels11",
-    "title": "环形图-piechartring-.highcharts(ringData,{ring:{startAngle:0,endAngle:360}})",
+    "title": "环形图-piechartring-.highcharts(ringData)",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*4,

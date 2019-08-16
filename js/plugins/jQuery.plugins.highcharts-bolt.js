@@ -54,7 +54,7 @@
                 fontWeight: "bold"
             },
             dataLabels: {
-                enabled: true,
+                enabled: false,
                 color: "contrast",
                 fontSize: "11px",
                 fontWeight: "bold",
@@ -87,8 +87,8 @@
             colorRule:['#38ae33','#ef8f40','#f64a4a',"#e6e6e6","#f4a6c4"],
             size:'100%',
             ring:{
-                startAngle:-135,
-                endAngle:135,
+                startAngle:0,//-135,
+                endAngle:360,//135,
                 center:['50%', '50%']
             },
             pieRing:{
@@ -1181,6 +1181,16 @@
                         defaultChart["series"]=parseData(data);
                     }
                     break;
+                case "piechart":
+                case "piechartring":
+                    defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
+                        layout: 'vertical',
+                        align: 'right',
+                        maxHeight:defaultChart["legend"]["maxHeight"]*2,
+                        verticalAlign: 'middle',
+                        symbolRadius: 0,
+                        x:-50
+                    });
                 case "piechart":
                     defaultChart["chart"]["type"]=data[0].label.type.split("chart")[0];
                     defaultChart["tooltip"]["headerFormat"]='<span>{point.key}</span><br/>';

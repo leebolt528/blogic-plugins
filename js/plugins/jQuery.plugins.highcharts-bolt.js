@@ -87,8 +87,8 @@
             colorRule:['#38ae33','#ef8f40','#f64a4a',"#e6e6e6","#f4a6c4"],
             size:'100%',
             ring:{
-                startAngle:0,//-135,
-                endAngle:360,//135,
+                startAngle:0,
+                endAngle:360,
                 center:['50%', '50%']
             },
             pieRing:{
@@ -131,6 +131,9 @@
                 dialRearLength:"15%"
             },
             gauge:{
+                startAngle:-135,
+                endAngle:135,
+                center:['50%', '50%'],
                 labelY:-10,
                 dialColor:"#0f0f0f",
                 dialSize:4
@@ -1182,16 +1185,6 @@
                     }
                     break;
                 case "piechart":
-                case "piechartring":
-                    defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
-                        layout: 'vertical',
-                        align: 'right',
-                        maxHeight:defaultChart["legend"]["maxHeight"]*2,
-                        verticalAlign: 'middle',
-                        symbolRadius: 0,
-                        x:-50
-                    });
-                case "piechart":
                     defaultChart["chart"]["type"]=data[0].label.type.split("chart")[0];
                     defaultChart["tooltip"]["headerFormat"]='<span>{point.key}</span><br/>';
                     defaultChart["plotOptions"]={
@@ -1212,12 +1205,21 @@
                         }
                     };
                     defaultChart["series"]=parseData(data);
+                    defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
+                        layout: 'vertical',
+                        align: 'right',
+                        maxHeight:defaultChart["legend"]["maxHeight"]*2,
+                        verticalAlign: 'middle',
+                        symbolRadius: 0,
+                        x:-50
+                    });
                     pieDrilldown(defaultChart);
                     break;
                 case "piechartring":
                     defaultChart["chart"]["type"]=data[0].label.type.split("chart")[0];
                     defaultChart["subtitle"]={
-                        text:options.pieRing.subEnabled?data[0].label.title:null,
+                       /*  text:options.pieRing.subEnabled?data[0].label.title:null, */
+                       text:null,
                         align: 'center',
                         verticalAlign: 'middle',
                         y: options.pieRing.subY,
@@ -1250,6 +1252,14 @@
                         }
                     };
                     defaultChart["series"]=parseData(data);
+                    defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
+                        layout: 'vertical',
+                        align: 'right',
+                        maxHeight:defaultChart["legend"]["maxHeight"]*2,
+                        verticalAlign: 'middle',
+                        symbolRadius: 0,
+                        x:-50
+                    });
                 break;
                 case "columnchart":
                 case "columnchartpercent":
@@ -1421,13 +1431,13 @@
                         //}
                         var preValue=Number(singlePreValue().replace("%",""));
                         defaultChart["tooltip"]["headerFormat"]='<span>{point.key}</span><br/>';
-                        var angleGap=Math.abs(options.ring.startAngle-options.ring.endAngle);
+                        var angleGap=Math.abs(options.gauge.startAngle-options.gauge.endAngle);
                         var size=(angleGap==360||angleGap==270)?(Number(options.size.replace("%",""))-15)+"%":options.size;
-                        var center=Math.abs(options.ring.startAngle-options.ring.endAngle)==270?[options.ring.center[0],Number(options.ring.center[1].replace("%",""))+7+"%"]:options.ring.center;
+                        var center=Math.abs(options.gauge.startAngle-options.gauge.endAngle)==270?[options.gauge.center[0],Number(options.gauge.center[1].replace("%",""))+7+"%"]:options.gauge.center;
                         defaultChart["pane"]={
                             size:size,
-                            startAngle:options.ring.startAngle, // 圆环的开始角度
-                            endAngle:options.ring.endAngle,   // 圆环的结束角度
+                            startAngle:options.gauge.startAngle, // 圆环的开始角度
+                            endAngle:options.gauge.endAngle,   // 圆环的结束角度
                             center:center,
                             background: [{
                                 outerRadius: options.solidgauge.panelOuterRadius,
@@ -1446,8 +1456,8 @@
                         var secondL=(options.gaugeLevel[0]+options.gaugeLevel[1])/agaugeLevelAll;
 
                         var color=preValue<=firstL*100?options.colorRule[0]:preValue>secondL*100?options.colorRule[2]:options.colorRule[1];
-                        var tickAmount=Math.abs(options.ring.startAngle-options.ring.endAngle)<360?options.solidgauge.tickAmount:options.solidgauge.tickAmount-1;
-                        var showFirstLabel=Math.abs(options.ring.startAngle-options.ring.endAngle)<360?true:false;
+                        var tickAmount=Math.abs(options.gauge.startAngle-options.gauge.endAngle)<360?options.solidgauge.tickAmount:options.solidgauge.tickAmount-1;
+                        var showFirstLabel=Math.abs(options.gauge.startAngle-options.gauge.endAngle)<360?true:false;
                         var yAxis={
                             title: {
                                 text: yTitleUnit()?yTitleUnitTrans():"",

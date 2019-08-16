@@ -1708,7 +1708,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels9",
-    "title": "双环图-piechartringrule-.highcharts(ringRuleData,{pieRing:{subY:12,subfontSize:'25px'}})",
+    "title": "双环图-piechartringrule-.highcharts(ringRuleData,{pieRing:{subY:30,subfontSize:'25px'},ring:{startAngle:-135,endAngle:135}})",
     "location": {
         "dataGsX": 8,
         "dataGsY": 15*3,
@@ -1716,7 +1716,8 @@ var dashboardData= [{
         "dataGsHeight": 15
     },
     "options":{
-        pieRing:{subY:12,subfontSize:'25px'}
+        pieRing:{subY:30,subfontSize:'25px'},
+        ring:{startAngle:-135,endAngle:135}
     },
     "widgets": [{
         "ajax":false,
@@ -1724,7 +1725,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels10",
-    "title": "环形图-piechartring-.highcharts(ringHalfData,{ring:{startAngle:-135,endAngle:135},dataLabels:{enabled:true}})",
+    "title": "环形图11-piechartring-.highcharts(ringHalfData,{pieRing:{subY:15},dataLabels:{enabled:true},ring:{startAngle:-135,endAngle:135}})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*4,
@@ -1732,8 +1733,9 @@ var dashboardData= [{
         "dataGsHeight": 15
     },
     "options":{
-        ring:{startAngle:-135,endAngle:135},
-        dataLabels:{enabled:true}
+        pieRing:{subY:15},
+        dataLabels: {enabled: true},
+        ring:{startAngle:-135,endAngle:135}
     },
     "widgets": [{
         "ajax":false,
@@ -1748,9 +1750,7 @@ var dashboardData= [{
         "dataGsWidth": 4,
         "dataGsHeight": 15
     },
-    "options":{
-        ring:{startAngle:0,endAngle:360}
-    },
+    "options":{},
     "widgets": [{
         "ajax":false,
         "data":ringData[0]
@@ -1920,7 +1920,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels22",
-    "title": "百分比活动图out-solidgaugechartpreOut-.highcharts(solidgaugePreData,{solidgauge:{tickAmount:5},ring:{startAngle:0,endAngle:360}})",
+    "title": "百分比活动图out-solidgaugechartpreOut-.highcharts(solidgaugePreData,{solidgauge:{tickAmount:5},gauge:{startAngle:0,endAngle:360}})",
     "location": {
         "dataGsX": 0,
         "dataGsY": 15*8,
@@ -1929,7 +1929,7 @@ var dashboardData= [{
     },
     "options":{
         solidgauge:{tickAmount:5},
-        ring:{startAngle:0,endAngle:360}
+        gauge:{startAngle:0,endAngle:360}
     },
     "widgets": [{
         "ajax":false,
@@ -1937,7 +1937,7 @@ var dashboardData= [{
     }]
 },{
     "id":"panels23",
-    "title": "数值活动图-solidgaugechartnum-.highcharts(solidgaugeNumData,{ring:{startAngle:0,endAngle:360}})",
+    "title": "数值活动图-solidgaugechartnum-.highcharts(solidgaugeNumData,{gauge:{startAngle:0,endAngle:360}})",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*8,
@@ -1945,7 +1945,7 @@ var dashboardData= [{
         "dataGsHeight": 15
     },
     "options":{
-        ring:{startAngle:0,endAngle:360}
+        gauge:{startAngle:0,endAngle:360}
     },
     "widgets": [{
         "ajax":false,

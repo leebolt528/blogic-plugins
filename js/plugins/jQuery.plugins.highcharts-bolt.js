@@ -40,7 +40,8 @@
                 color:'#000',
                 navEnabled:true,
                 navHeight:40,
-                y:0
+                y:0,
+                right:false
             },
             labels: {
                 color: "#666666", 
@@ -1025,6 +1026,19 @@
                     }
                 }
             };
+            if(options.legend.right){
+                defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
+                    layout: 'vertical',
+                    align: 'right',
+                    maxHeight:defaultChart["legend"]["maxHeight"]*2,
+                    verticalAlign: 'middle',
+                    symbolRadius: 0,
+                    x:-20,
+                    itemWidth:$(divId).width()/3,
+                    width:$(divId).width()/3
+
+                });
+            }
             //额外附加属性，内部没有默认值
             if(options["chart"].hasOwnProperty("marginBottom")){
                 defaultChart["chart"]["marginBottom"]=options.chart.marginBottom;
@@ -1205,14 +1219,6 @@
                         }
                     };
                     defaultChart["series"]=parseData(data);
-                    defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
-                        layout: 'vertical',
-                        align: 'right',
-                        maxHeight:defaultChart["legend"]["maxHeight"]*2,
-                        verticalAlign: 'middle',
-                        symbolRadius: 0,
-                        x:-50
-                    });
                     pieDrilldown(defaultChart);
                     break;
                 case "piechartring":
@@ -1252,15 +1258,7 @@
                         }
                     };
                     defaultChart["series"]=parseData(data);
-                    defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
-                        layout: 'vertical',
-                        align: 'right',
-                        maxHeight:defaultChart["legend"]["maxHeight"]*2,
-                        verticalAlign: 'middle',
-                        symbolRadius: 0,
-                        x:-50
-                    });
-                break;
+                    break;
                 case "columnchart":
                 case "columnchartpercent":
                 case "columnchartnormal":

@@ -138,6 +138,10 @@
             
             if($chart.highcharts()){
                 $chart.highcharts().reflow();
+                $chart.highcharts().legend.update( {
+                    itemWidth:$(elem).find(".panel-body").width()/3,
+                    width:$(elem).find(".panel-body").width()/3
+                } );
             }
 
             //拖拽改变图大小时，仪表盘部分自适应大小

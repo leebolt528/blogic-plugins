@@ -427,7 +427,7 @@ var pieDrillData= [
         "result":[
             {
                 "seriesAttr":{
-                    "monitor_host":"大众"
+                    "monitor_host":"大众1111111111111111111111111111111111111"
                 },
                 "values":[
                     ["",'200',"dazhong"]
@@ -435,7 +435,7 @@ var pieDrillData= [
             },
             {
                 "seriesAttr":{                 
-                    "monitor_host":"本田"
+                    "monitor_host":"本田11111111111111111111111111111111111111111111"
                 },
                 "values":[
                     ["",150,"bentian"]
@@ -443,7 +443,7 @@ var pieDrillData= [
             },
             {
                 "seriesAttr":{                 
-                    "monitor_host":"雪佛兰"
+                    "monitor_host":"雪佛兰1111111111111111111111111111111111111111111"
                 },
                 "values":[
                     ["",100,"xuefulan"]
@@ -1691,14 +1691,16 @@ var dashboardData= [{
     }]
 },{
     "id":"panels8",
-    "title": "下钻饼图-piechart-.highcharts(pieDrillData)",
+    "title": "下钻饼图-piechart-.highcharts(pieDrillData,{legend:{right:true}})",
     "location": {
         "dataGsX": 4,
         "dataGsY": 15*3,
         "dataGsWidth": 4,
         "dataGsHeight": 15
     },
-    "options":{},
+    "options":{
+        legend:{right:true}
+    },
     "widgets": [{
         "ajax":false,
         "data":pieDrillData[0]

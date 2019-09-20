@@ -979,7 +979,7 @@ var columnPerData=[
     {
         "label":{
             "seriesReg":"{{people_name}}",
-            "yAxisUnit":"数量-框",
+            "yAxisUnit":"值-s-KiB-KiB/S-框-辆",
             "xAxisUnit":"-",
             "zAxisUnit":"-",
             "xAxisType":"string",
@@ -998,7 +998,7 @@ var columnPerData=[
                     "monitor_type":"MQ",
                     "people_name":"小明"
                 },
-                "values":[['苹果',699],['橘子',344], ['梨',090], ['葡萄',700], ['香蕉',2000]]
+                "values":[['时间',699],['内存',344], ['速率',090], ['框数量',700], ['车数',2000]]
             },
             {
                 "seriesAttr":{                 
@@ -1011,7 +1011,7 @@ var columnPerData=[
                     "monitor_type":"MQ",
                     "people_name":"小红"
                 },
-                "values":[['苹果',2060],['橘子',1555], ['梨',300], ['葡萄',2000], ['香蕉',100]]
+                "values":[['时间',2060],['内存',1555], ['速率',300], ['框数量',2000], ['车数',100]]
             }
         ]
         
@@ -1019,7 +1019,7 @@ var columnPerData=[
      {
         "label":{
             "seriesReg":"{{people_name}}",
-            "yAxisUnit":"数量-框",
+            "yAxisUnit":"值-框",
             "xAxisUnit":"-",
             "xAxisType":"",
             "type":"columnchartpercent",
@@ -1037,7 +1037,7 @@ var columnPerData=[
                     "monitor_type":"MQ",
                     "people_name":"小王"
                 },
-                "values":[['苹果',999],['橘子',555], ['梨',795], ['葡萄',2787], ['香蕉',545]]
+                "values":[['时间',999],['内存',555], ['速率',795], ['框数量',2787], ['车数',545]]
             }
         ]
     }
@@ -1180,7 +1180,7 @@ var barPerData=[
     {
         "label":{
             "seriesReg":"{{people_name}}",
-            "yAxisUnit":"数量-框",
+            "yAxisUnit":"值-s-KiB-KiB/S-框-辆",
             "xAxisUnit":"-",
             "zAxisUnit":"-",
             "xAxisType":"string",
@@ -1199,7 +1199,7 @@ var barPerData=[
                     "monitor_type":"MQ",
                     "people_name":"小明"
                 },
-                "values":[['苹果',699],['橘子',344], ['梨',090], ['葡萄',700], ['香蕉',2000]]
+                "values":[['时间',699],['内存',344], ['速率',090], ['框数量',700], ['车数',2000]]
             },
             {
                 "seriesAttr":{                 
@@ -1212,7 +1212,7 @@ var barPerData=[
                     "monitor_type":"MQ",
                     "people_name":"小红"
                 },
-                "values":[['苹果',2060],['橘子',1555], ['梨',300], ['葡萄',2000], ['香蕉',100]]
+                "values":[['时间',2060],['内存',1555], ['速率',300], ['框数量',2000], ['车数',100]]
             }
         ]
         
@@ -1220,7 +1220,7 @@ var barPerData=[
      {
         "label":{
             "seriesReg":"{{people_name}}",
-            "yAxisUnit":"数量-框",
+            "yAxisUnit":"值-框",
             "xAxisUnit":"-",
             "xAxisType":"",
             "type":"barchartpercent",
@@ -1238,7 +1238,7 @@ var barPerData=[
                     "monitor_type":"MQ",
                     "people_name":"小王"
                 },
-                "values":[['苹果',999],['橘子',555], ['梨',795], ['葡萄',2787], ['香蕉',545]]
+                "values":[['时间',999],['内存',555], ['速率',795], ['框数量',2787], ['车数',545]]
             }
         ]
     }

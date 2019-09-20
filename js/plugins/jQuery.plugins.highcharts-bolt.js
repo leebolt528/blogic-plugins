@@ -36,12 +36,13 @@
             legend:{
                 enabled:true,
                 fontWeight:"normal",
-                fontSize:"12px",
-                color:'#000',
+                fontSize:"14px",
+                color:'#999',
                 navEnabled:true,
-                navHeight:40,
+                navHeight:44,
                 y:0,
-                right:false
+                right:false,
+                symbolRadius:true
             },
             labels: {
                 color: "#666666", 
@@ -68,14 +69,15 @@
             tooltip: {
                 enabled:true,
                 shared: true,
-                color: "#333333", 
+                color: "#666", 
                 fontSize: "12px",
                 whiteSpace: "nowrap",
                 fontWeight:"normal"
             },
             xAxis:{
                 enabledTitle:true,
-                xTitleUnit:true
+                xTitleUnit:true,
+                tickLength:10
             },
             yAxis:{
                 enabledTitle:true,
@@ -242,7 +244,7 @@
                 if(batchData.label.hasOwnProperty("drillData")){
                     batchData.label.drillData.map(function(elem){
                         elem.tooltip={
-                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                         }
                     });
                     defaultChart["drilldown"]={
@@ -257,7 +259,7 @@
                 if(batchData.label.hasOwnProperty("drillData")){
                     batchData.label.drillData.map(function(elem){
                         elem.tooltip={
-                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                         }
                     });
                     defaultChart["drilldown"]={
@@ -335,7 +337,7 @@
                                 var seriesElem={
                                     "data":oneDataResult.values,
                                     "tooltip": {
-                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                                     },
                                     "name":transSeriesName(batchData,oneDataResult)
                                 };
@@ -364,7 +366,7 @@
                         data:colorData.innerData,
                         colors: colorData.color,
                         tooltip: {
-                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                         }
                     };
                     var outSiteObj={
@@ -373,7 +375,7 @@
                         data: colorData.outerData,
                         colors: options.colorRule,
                         tooltip: {
-                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false,true)
+                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false,true)
                         }
                     };
                     if(data[0].label.type=='piechart'){
@@ -401,7 +403,7 @@
                                 var seriesElem={
                                     "data":oneDataResult.values,
                                     "tooltip": {
-                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                                     },
                                     "name":transSeriesName(batchData,oneDataResult)
                                 };
@@ -434,7 +436,7 @@
                     dataproArr.push({
                         "name":transSeriesName(data[0],data[0].result[0]),
                         "tooltip": {
-                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                            "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                         },
                         "colorByPoint": true,
                         "data":series
@@ -453,7 +455,7 @@
                                     "marker":{enabled: true},
                                     "data":oneDataResult.values,
                                     "tooltip": {
-                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                                     },
                                     "name":transSeriesName(batchData,oneDataResult)
                                 };
@@ -476,7 +478,7 @@
                                     "marker":{enabled: true},
                                     "data":oneDataResult.values,
                                     "tooltip": {
-                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                                        "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                                     },
                                     "name":transSeriesName(batchData,oneDataResult)
                                 };
@@ -501,7 +503,7 @@
                         dataproArr=[{
                             name: transSeriesName(data[0],data[0].result[0]),
                             tooltip: {
-                                "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                                "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                             },
                             data: [{
                                 color:options.color[0],
@@ -530,7 +532,7 @@
                         dataproArr=[{
                             data:wordcloudData,
                             tooltip: {
-                                "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
+                                "pointFormatter":formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"tooltip",data[0].label.type,false)
                             },
                         }];
                     }
@@ -639,8 +641,15 @@
         };
         //Y轴和Z轴单位刻度+提示框格式单位处理
         function formatterFun(xUnit,yUnit,zUnit,positionType,chartType,dataLabelsBoolean,outerBoolean){
+            if(chartType!="columnchartpercent"&&chartType!="barchartpercent"){
+                yUnit=yUnit.split("-")[1];
+            }
             var data1=data;
             var pointFormat=function() {
+                var yUnitTem=yUnit;
+                if(chartType=="columnchartpercent"||chartType=="barchartpercent"){
+                    yUnit=yUnit.split("-")[this.index+1];
+                }
                 if(yUnit=="KiB/s"){
                     var pointY=formatterKiBs(this.y,"y",dataLabelsBoolean);
                 }else if(yUnit=="KiB"){
@@ -675,7 +684,9 @@
                 }else{
                     var pointX=this.x;
                 }
-                
+
+                yUnit=yUnitTem;
+
                 if((chartType=="piechart"||chartType=="piechartringrule")&&outerBoolean){
                     return '<span style="color: '+ this.color + '">\u25CF占比</span> '+': <b>'+decimal(Number(this.percentage))+'%</b>'
                 }else if(chartType=="piechart"||chartType=="piechartringrule"||chartType=="piechartring"){
@@ -780,7 +791,7 @@
                 for(var oneDataResult of batchData.result){
                     if(oneDataResult.values!=null&&oneDataResult.values!="null"&&oneDataResult.values.length!=0&&oneDataResult.values[0][1]!=null&&oneDataResult.values[0][1]!="null"){
                         var elem=oneDataResult.values[0];
-                        elem[1]=((elem[1]=='null'||elem[1]==null)?null:Number((Number(elem[1]).toFixed(2))));
+                        elem[1]=((elem[1]=='null'||elem[1]==null)?null:Number(elem[1]));
                         innerData.push({
                             name:transSeriesName(batchData,oneDataResult),
                             y:elem[1]
@@ -798,7 +809,7 @@
                 var allValue=innerData[0]["y"]+innerData[1]["y"];
                 var allPre=0;
                 data[0].label.outerData.map(function(elem,index){
-                    elem[1]=Number((Number(elem[1]).toFixed(2)));
+                    elem[1]=Number(elem[1]);
                     outerData.push({
                         name:elem[0],
                         y:elem[1]
@@ -963,7 +974,8 @@
                             fontSize: options.labels.fontSize ,
                             fontWeight:options.labels.fontWeight
                         }
-                    }
+                    },
+                    tickLength: options.xAxis.tickLength
                 },
                 yAxis:{
                     title: {
@@ -1006,14 +1018,15 @@
                     itemStyle : {
                         fontFamily : '微软雅黑',
                         fontSize : options.legend.fontSize,
-                        fontWeight : options.legend.fontWeight
+                        fontWeight : options.legend.fontWeight,
+                        color: options.legend.color
                     },
-                    color: options.legend.color,
                     maxHeight:options.legend.navHeight,
                     navigation:{
                         enabled:options.legend.navEnabled
                     },
-                    y:options.legend.y
+                    y:options.legend.y,
+                    itemMarginTop:1,
                 },
                 tooltip: {
                     enabled:options.tooltip.enabled,
@@ -1026,6 +1039,7 @@
                     }
                 }
             };
+            options.legend.symbolRadius?"":defaultChart["legend"]["symbolRadius"]=0;
             if(options.legend.right){
                 defaultChart["legend"]=$.extend(true,{},defaultChart["legend"],{
                     layout: 'vertical',
@@ -1059,7 +1073,7 @@
                     }else if(data[0].label.xAxisType=="number"){
                         var xAxis={
                             labels:{
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
                             }
                         };
                         defaultChart["xAxis"]=$.extend(true,{},defaultChart["xAxis"],xAxis);
@@ -1069,7 +1083,7 @@
                     };
                     var yAxis={
                         labels:{
-                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
+                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
                         }
                     };
                     defaultChart["yAxis"]=$.extend(true,{},defaultChart["yAxis"],yAxis);
@@ -1272,7 +1286,7 @@
                     }else if(data[0].label.xAxisType=="number"){
                         var xAxis={
                             labels:{
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
                             }
                         };
                         defaultChart["xAxis"]=$.extend(true,{},defaultChart["xAxis"],xAxis);
@@ -1281,7 +1295,7 @@
                     };
                     var yAxis={
                         labels:{
-                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
+                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
                         }
                     };
                     defaultChart["yAxis"]=$.extend(true,{},defaultChart["yAxis"],yAxis);
@@ -1292,7 +1306,7 @@
                             stacking: data[0].label.type.split("chart")[1],
                             dataLabels: {
                                 enabled: options.dataLabels.enabled,
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type,true),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type,true),
                                 style: {
                                     color: options.dataLabels.color, 
                                     fontSize: options.dataLabels.fontSize ,
@@ -1313,7 +1327,7 @@
                     }else if(data[0].label.xAxisType=="number"){
                         var xAxis={
                             labels:{
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
                             }
                         };
                         defaultChart["xAxis"]=$.extend(true,{},defaultChart["xAxis"],xAxis);
@@ -1325,8 +1339,9 @@
                             align: 'high'
                         },
                         labels:{
-                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type)
-                        }
+                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type)
+                        },
+                        reversedStacks:false
                     };
                     defaultChart["yAxis"]=$.extend(true,{},defaultChart["yAxis"],yAxis);
                     defaultChart["xAxis"]["title"]["align"]="middle";
@@ -1337,7 +1352,7 @@
                             stacking: data[0].label.type.split("chart")[1],
                             dataLabels: {
                                 enabled: options.dataLabels.enabled,
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type,true),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type,true),
                                 style: {
                                     color: options.dataLabels.color, 
                                     fontSize: options.dataLabels.fontSize ,
@@ -1355,7 +1370,7 @@
                     }else if(data[0].label.xAxisType=="number"){
                         var xAxis={
                             labels:{
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
                             }
                         };
                         defaultChart["xAxis"]=$.extend(true,{},defaultChart["xAxis"],xAxis);
@@ -1365,7 +1380,7 @@
                     };
                     var yAxis={
                         labels:{
-                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
+                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
                         }
                     };
                     defaultChart["yAxis"]=$.extend(true,{},defaultChart["yAxis"],yAxis);
@@ -1386,7 +1401,7 @@
                     }else if(data[0].label.xAxisType=="number"){
                         var xAxis={
                             labels:{
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"xAxis",data[0].label.type,false),
                             }
                         };
                         defaultChart["xAxis"]=$.extend(true,{},defaultChart["xAxis"],xAxis);
@@ -1396,7 +1411,7 @@
                     };
                     var yAxis={
                         labels:{
-                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
+                            formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false)
                         }
                     };
                     defaultChart["yAxis"]=$.extend(true,{},defaultChart["yAxis"],yAxis);
@@ -1466,7 +1481,7 @@
                             },
                             labels:{
                                 enabled:options.solidgauge.ylabelsEnabled,
-                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit.split("-")[1],zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false),
+                                formatter:formatterFun(xAxisUnit.split("-")[1],yAxisUnit,zAxisUnit.split("-")[1],"yAxis",data[0].label.type,false),
                                 y:options.solidgauge.ylabelsY,
                                 style:{
                                     color:options.solidgauge.ylabelsColor,

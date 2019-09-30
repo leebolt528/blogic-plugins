@@ -336,6 +336,7 @@
             $(".bolt-sidebar>ul.acc-menu ul.acc-menu li").each(function(){
                 $(this).children(".acc-menu").removeClass("floatRight3");
             });
+            highchartsReflow(false,options.shrink);
             if(!first&&options.callback.hasOwnProperty("onCollapse")){
                 options.callback.onCollapse(options.shrink);
             }
@@ -376,6 +377,7 @@
                 $(".level1.hasChild.selectedFirst").addClass("open").children(".acc-menu").css("display","block");//向右边展开时展开选中二级的父级
             },50);
 
+            highchartsReflow(true,options.shrink);
             if(options.callback.hasOwnProperty("onExpand")){
                 options.callback.onExpand(options.shrink);
             }
@@ -394,6 +396,32 @@
                 typeof functionB == "function"?functionB(aa,bb):"";
             };
             return functionAB
+        }
+        /*菜单收缩highchart重绘*/
+        function highchartsReflow(onExpand,shrink){
+            var time = [];
+            if(onExpand){
+                var chartIds = $(".highcharts-container").parent();
+                chartIds.map(function(index,item){
+                    time[index] = setInterval(function(){
+                        $(item).highcharts().reflow();
+                        if($('.blogic-sidebar').width() === (shrink==0?215:186)){
+                            clearInterval(time);
+                        }
+                    },10);
+                });
+            }else{
+                var chartIds = $(".highcharts-container").parent();
+                chartIds.map(function(index,item){
+                    time[index] = setInterval(function(){
+                        $(item).highcharts().reflow();
+                        if($('.blogic-sidebar').width() === (shrink==0?64:0)){
+                            clearInterval(time);
+                        }
+                    },10);
+                });
+            }
+
         }
         //返回对象事件
         var menuLeftTools={

@@ -6,6 +6,10 @@
     background-color:#e6e8ec;
     font-family: "Microsoft YaHei";
 }
+/* .menuLeftBolt,
+.blogic-content{
+    -webkit-transition: all 0.2s ease;
+} */
 /*导航右边框*/
 /*.menuLeftBolt>.title,
 .bolt-sidebar,

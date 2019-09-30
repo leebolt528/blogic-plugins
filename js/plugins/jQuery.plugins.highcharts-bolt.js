@@ -23,6 +23,7 @@
             lineWidth:1.7,
             cursor:'pointer',
             gaugeLevel:[50,30,20],
+            decimal:2,
             chart:{
                 //marginBottom 额外附加属性，内部没有默认值
                 // marginTop
@@ -552,7 +553,7 @@
         //科学计数法
         function scienceNum(num){
             var p = Math.floor(Math.log(Math.abs(num))/Math.LN10);
-            var n = parseFloat((num * Math.pow(10, -p)).toFixed(2));
+            var n = parseFloat((num * Math.pow(10, -p)).toFixed(options.decimal));
             return n + 'e' + p;
         }
         //保留两位小数并去除小数点后无用的0
@@ -564,7 +565,7 @@
                 // if(Math.abs(number)>=100){
                 //     return parseInt(number);//整数部分超过两位数时不保留小数
                 // }else{
-                    return parseFloat(number.toFixed(2));
+                    return parseFloat(number.toFixed(options.decimal));
                 //}
             }
         }
@@ -779,8 +780,11 @@
         }
         //环图和仪表盘百分比计算
         function singlePreValue(){
-            //return parseInt(getPieColorData(data).innerData[0].y/(getPieColorData(data).innerData[0].y+getPieColorData(data).innerData[1].y)*100)+"%";
-            return decimal(getPieColorData(data).innerData[0].y/(getPieColorData(data).innerData[0].y+getPieColorData(data).innerData[1].y)*100)+"%";
+            if((getPieColorData(data).innerData[0].y+getPieColorData(data).innerData[1].y)==0){
+                return "0%";
+            }else{
+                return decimal(getPieColorData(data).innerData[0].y/(getPieColorData(data).innerData[0].y+getPieColorData(data).innerData[1].y)*100)+"%";
+            }
         }
         //得到饼图内环颜色+内外环值
         function getPieColorData(data){
@@ -1238,8 +1242,7 @@
                 case "piechartring":
                     defaultChart["chart"]["type"]=data[0].label.type.split("chart")[0];
                     defaultChart["subtitle"]={
-                       /*  text:options.pieRing.subEnabled?data[0].label.title:null, */
-                       text:null,
+                        text:options.pieRing.subEnabled?data[0].label.title:null,
                         align: 'center',
                         verticalAlign: 'middle',
                         y: options.pieRing.subY,
